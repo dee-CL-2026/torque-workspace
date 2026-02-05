@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque Command Centre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+  <div class="dashboard">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>⚙️ Command Centre</h1>
+        <span class="subtitle">Torque Operations Dashboard</span>
+      </div>
+      <div class="header-right">
+        <div class="pulse-indicator" id="pulse-indicator">
+          <span class="pulse-dot"></span>
+          <span class="pulse-text" id="pulse-text">Loading...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="main-grid">
+      
+      <!-- Left Column -->
+      <div class="column-left">
+        
+        <!-- Task Summary Cards -->
+        <section class="task-summary">
+          <div class="summary-card active">
+            <div class="summary-number" id="active-count">-</div>
+            <div class="summary-label">Active</div>
+          </div>
+          <div class="summary-card backlog">
+            <div class="summary-number" id="backlog-count">-</div>
+            <div class="summary-label">Backlog</div>
+          </div>
+          <div class="summary-card blocked">
+            <div class="summary-number" id="blocked-count">-</div>
+            <div class="summary-label">Blocked</div>
+          </div>
+          <div class="summary-card done">
+            <div class="summary-number" id="done-count">-</div>
+            <div class="summary-label">Done</div>
+          </div>
+        </section>
+
+        <!-- Active Tasks -->
+        <section class="card">
+          <div class="card-header">
+            <h2>🔄 Active Tasks</h2>
+          </div>
+          <div class="card-body" id="active-tasks">
+            <div class="loading">Loading tasks...</div>
+          </div>
+        </section>
+
+        <!-- Backlog -->
+        <section class="card">
+          <div class="card-header">
+            <h2>📥 Backlog</h2>
+            <span class="badge" id="backlog-badge">0</span>
+          </div>
+          <div class="card-body" id="backlog-tasks">
+            <div class="loading">Loading...</div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right Column -->
+      <div class="column-right">
+
+        <!-- Agent Roster -->
+        <section class="card">
+          <div class="card-header">
+            <h2>👥 Agent Roster</h2>
+          </div>
+          <div class="card-body" id="agent-roster">
+            <div class="loading">Loading agents...</div>
+          </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="card">
+          <div class="card-header">
+            <h2>📋 Recent Activity</h2>
+          </div>
+          <div class="card-body" id="recent-activity">
+            <div class="loading">Loading...</div>
+          </div>
+        </section>
+
+        <!-- System Status -->
+        <section class="card">
+          <div class="card-header">
+            <h2>🖥️ System Status</h2>
+          </div>
+          <div class="card-body">
+            <div class="status-grid" id="system-status">
+              <div class="status-item">
+                <span class="status-label">Heartbeat</span>
+                <span class="status-value" id="heartbeat-status">-</span>
+              </div>
+              <div class="status-item">
+                <span class="status-label">Last Check</span>
+                <span class="status-value" id="last-heartbeat">-</span>
+              </div>
+              <div class="status-item">
+                <span class="status-label">Morning Report</span>
+                <span class="status-value" id="morning-report">7:00 AM</span>
+              </div>
+              <div class="status-item">
+                <span class="status-label">Data Updated</span>
+                <span class="status-value" id="data-updated">-</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer / Pulse Monitor -->
+    <footer class="footer">
+      <div class="pulse-monitor">
+        <span class="pulse-label">Last Pulse:</span>
+        <span class="pulse-time" id="last-pulse-time">-</span>
+        <span class="pulse-ago" id="pulse-ago"></span>
+      </div>
+      <div class="footer-right">
+        <span id="current-time"></span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -15,9 +15,15 @@
 
 ## Queue (To Process)
 
-| Added | Video | Status |
-|-------|-------|--------|
-| — | *empty* | — |
+| Added | Video | URL | Status |
+|-------|-------|-----|--------|
+| 2026-02-06 | How I Use Clawdbot to Run My Business and Life 24/7 | https://youtu.be/YRhGtHfs1Lw | pending |
+| 2026-02-06 | Clawdbot/OpenClaw Clearly Explained (and how to use it) | https://youtu.be/U8kXfk8enrY | pending |
+| 2026-02-06 | Clawdbot to Moltbot to OpenClaw: The 72 Hours That Broke Everything | https://youtu.be/p9acrso71KU | pending |
+| 2026-02-06 | Full Tutorial: Set Up Your 24/7 AI Employee in 20 Minutes (OpenClaw) | https://youtu.be/4zXQyswXj7U | pending |
+| 2026-02-06 | 10 INSANE ClawdBot/Openclaw Use Cases You Can Use Instantly | https://youtu.be/zX-9xXlBTtA | pending |
+| 2026-02-06 | OpenClaw use cases: 9 automations + 4 wild builds that actually work | https://youtu.be/52kOmSQGt_E | pending |
+| 2026-02-06 | How OpenClaw's Creator Uses AI to Run His Life (Peter Steinberger) 👨‍👦 | https://youtu.be/AcwK1Uuwc0U | pending |
 
 ---
 
@@ -45,4 +51,4 @@
 
 ---
 
-*Last updated: 2026-02-05*
+*Last updated: 2026-02-06*

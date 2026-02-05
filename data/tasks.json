@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-05T23:51:00+07:00"
+    "lastUpdated": "2026-02-06T00:41:00+07:00"
   },
   "tasks": [
     {
@@ -44,6 +44,90 @@
       "dueDate": null,
       "tags": ["candid", "gas", "data"],
       "project": "candid-labs-tiered",
+      "notes": []
+    },
+    {
+      "id": "task-004",
+      "title": "Cloudflare tunnel setup",
+      "description": "Research and implement Cloudflare tunnel for remote access to Chromebook - discussed with Ryan",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": "torque",
+      "createdAt": "2026-02-06T00:41:00+07:00",
+      "updatedAt": "2026-02-06T00:41:00+07:00",
+      "dueDate": null,
+      "tags": ["infrastructure", "remote-access"],
+      "project": null,
+      "notes": []
+    },
+    {
+      "id": "task-005",
+      "title": "Torque email address",
+      "description": "Set up email address for Torque - decide between Candid domain vs personal. Needed for automation (Precoro, Zoom).",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": "dee",
+      "createdAt": "2026-02-06T00:41:00+07:00",
+      "updatedAt": "2026-02-06T00:41:00+07:00",
+      "dueDate": null,
+      "tags": ["setup", "comms"],
+      "project": null,
+      "notes": []
+    },
+    {
+      "id": "task-006",
+      "title": "Browser agent - Precoro auto-approvals",
+      "description": "Build browser automation agent to login to Precoro and approve items up to specified threshold value.",
+      "status": "backlog",
+      "priority": "low",
+      "assignee": "scraper",
+      "createdAt": "2026-02-06T00:41:00+07:00",
+      "updatedAt": "2026-02-06T00:41:00+07:00",
+      "dueDate": null,
+      "tags": ["automation", "browser", "candid"],
+      "project": null,
+      "notes": ["Claude Chrome extension has done this successfully"]
+    },
+    {
+      "id": "task-007",
+      "title": "Browser agent - Zoom summary extraction",
+      "description": "Build browser automation to extract Zoom meeting summaries, share via email. Navigate to summaries, share, enter email, send.",
+      "status": "backlog",
+      "priority": "low",
+      "assignee": "scraper",
+      "createdAt": "2026-02-06T00:41:00+07:00",
+      "updatedAt": "2026-02-06T00:41:00+07:00",
+      "dueDate": null,
+      "tags": ["automation", "browser", "candid"],
+      "project": null,
+      "notes": ["Separate research task for Zoom transcript flow in progress"]
+    },
+    {
+      "id": "task-008",
+      "title": "Command Centre - Usage tracker module",
+      "description": "Add token usage and cost tracking panel to Command Centre dashboard.",
+      "status": "active",
+      "priority": "high",
+      "assignee": "frontend",
+      "createdAt": "2026-02-06T00:41:00+07:00",
+      "updatedAt": "2026-02-06T00:41:00+07:00",
+      "dueDate": null,
+      "tags": ["dashboard", "monitoring", "command-centre"],
+      "project": "command-centre",
+      "notes": []
+    },
+    {
+      "id": "task-009",
+      "title": "Command Centre - Task/backlog module",
+      "description": "Add task list and backlog view to Command Centre dashboard, reading from data/tasks.json.",
+      "status": "active",
+      "priority": "high",
+      "assignee": "frontend",
+      "createdAt": "2026-02-06T00:41:00+07:00",
+      "updatedAt": "2026-02-06T00:41:00+07:00",
+      "dueDate": null,
+      "tags": ["dashboard", "tasks", "command-centre"],
+      "project": "command-centre",
       "notes": []
     }
   ],

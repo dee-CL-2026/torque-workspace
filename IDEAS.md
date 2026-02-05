@@ -45,6 +45,20 @@
 
 ## 💡 Other Ideas
 
+### 🎙️ "It's All Torque" — Podcast/Blog
+**Source:** Late night idea 2026-02-06 00:03
+**Priority:** Fun / Long-term
+
+The journey of building a personal AI orchestrator. Documenting:
+- Setup, failures, breakthroughs
+- What works, what doesn't
+- The evolving relationship between human + AI
+- Real use cases, not hype
+
+Format TBD: podcast, blog, video series, all of the above?
+
+---
+
 *(add as they come up)*
 
 ---
