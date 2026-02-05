@@ -120,3 +120,17 @@ Instead of (or in addition to) DM alerts, post a digest **in the group itself** 
 ## Done
 
 *(move completed items here)*
+
+## Remote Management from Mobile
+
+**Problem:** Can't restart gateway, run commands, or manage OpenClaw from phone.
+
+**Research needed:**
+- Webhook endpoint for basic commands (restart, status)?
+- SSH from mobile (JuiceSSH, Termux)?
+- Telegram bot commands → local execution?
+- Lightweight web panel (local network)?
+- Tasker/automation integration?
+
+**Priority:** Medium (quality of life)
+**Assigned:** analyst (when built)
