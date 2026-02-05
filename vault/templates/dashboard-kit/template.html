@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Template</title>
+  <link rel="stylesheet" href="dashboard-base.css">
+  <style>
+    /* Project-specific overrides go here */
+    /* Uncomment to change color theme:
+    :root {
+      --accent-primary: #c9a0c9;
+      --accent-secondary: #e0c5e0;
+      --accent-muted: #f8f0f8;
+    }
+    */
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    
+    <!-- Header -->
+    <header class="dashboard-header">
+      <h1 class="dashboard-title">Project Dashboard</h1>
+      <p class="dashboard-subtitle">Last updated: <span id="update-time"></span></p>
+    </header>
+
+    <!-- ===== SECTION: Key Metrics (Ring Gauges) ===== -->
+    <section class="section">
+      <h2 class="section-title">Overview</h2>
+      <div class="grid grid-4" id="gauges">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ===== SECTION: Stat Cards ===== -->
+    <section class="section">
+      <div class="grid grid-4" id="stats">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ===== SECTION: Progress Bars ===== -->
+    <section class="section">
+      <h2 class="section-title">Progress</h2>
+      <div class="card">
+        <div id="progress-bars">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: Two Column Layout ===== -->
+    <section class="section">
+      <div class="grid grid-2">
+        
+        <!-- Tasks -->
+        <div class="card">
+          <div class="card-header">Active Tasks</div>
+          <div id="task-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="card">
+          <div class="card-header">Planned vs Actual</div>
+          <div id="compare-table">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== SECTION: Full Width Table ===== -->
+    <section class="section">
+      <h2 class="section-title">Detailed View</h2>
+      <div class="card">
+        <div id="detail-table">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="dashboard-components.js"></script>
+  <script>
+    // =========================================
+    // SAMPLE DATA - Replace with your data
+    // =========================================
+    
+    const data = {
+      // Ring gauges
+      gauges: [
+        { percent: 75, label: 'Revenue Target' },
+        { percent: 60, label: 'Production' },
+        { percent: 90, label: 'Gross Margin' },
+        { percent: 45, label: 'Q1 Goals' }
+      ],
+      
+      // Stat cards
+      stats: [
+        { value: '5.52B', label: 'YTD Revenue', change: { value: 9.6, period: 'YoY' } },
+        { value: '16,234', label: 'Cases Shipped', change: { value: 12, period: 'vs LY' } },
+        { value: '54.8%', label: 'Gross Margin', change: { value: 14, period: 'pts' } },
+        { value: '3', label: 'Active Channels', change: null }
+      ],
+      
+      // Progress bars
+      progress: [
+        { percent: 75, label: 'SKD Distribution', right: '75% of target' },
+        { percent: 40, label: 'Modern Trade Rollout', right: '8 of 20 stores' },
+        { percent: 90, label: 'Finns Partnership', right: 'On track' },
+        { percent: 25, label: 'Hotel Groups', right: 'Early stage' }
+      ],
+      
+      // Tasks
+      tasks: [
+        { text: 'Finalize Q1 projections', done: true },
+        { text: 'Review SKD payment terms', done: true },
+        { text: 'Holywings launch prep', done: false },
+        { text: 'Modern Trade listing fees', done: false },
+        { text: 'New SKU formulation', done: false },
+        { text: 'Hire field sales (2)', done: false }
+      ],
+      
+      // Compare table
+      compare: {
+        headers: ['Metric', 'Planned', 'Actual'],
+        rows: [
+          ['Revenue', '8.0B', '5.52B'],
+          ['Cases', '20,000', '16,234'],
+          ['Gross Margin', '55%', '54.8%'],
+          ['New Channels', '4', '3']
+        ]
+      },
+      
+      // Detail table
+      details: {
+        headers: ['Channel', 'Cases/Mo', 'Revenue/Mo', 'Status', 'Notes'],
+        rows: [
+          ['SKD Baseline', '2,500', '512M', createBadge('Active', 'success'), 'Stable'],
+          ['Finns', '1,200', '318M', createBadge('Active', 'success'), 'Premium pricing'],
+          ['Holywings', '500', '102M', createBadge('Launching', 'warning'), 'Feb start'],
+          ['Modern Trade', '300', '54M', createBadge('Ramping', 'info'), '8 stores live'],
+          ['Hotel Groups', '100', '20M', createBadge('Pipeline', 'neutral'), 'In negotiation']
+        ]
+      }
+    };
+
+    // =========================================
+    // RENDER FUNCTIONS
+    // =========================================
+    
+    function render() {
+      // Update time
+      document.getElementById('update-time').textContent = 
+        new Date().toLocaleDateString('en-GB', { 
+          day: 'numeric', month: 'short', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+      
+      // Gauges
+      document.getElementById('gauges').innerHTML = data.gauges
+        .map(g => `<div class="card text-center">${createRingGauge(g.percent, g.label)}</div>`)
+        .join('');
+      
+      // Stats
+      document.getElementById('stats').innerHTML = data.stats
+        .map(s => createStatCard(s.value, s.label, s.change))
+        .join('');
+      
+      // Progress bars
+      document.getElementById('progress-bars').innerHTML = data.progress
+        .map(p => createProgressBar(p.percent, p.label, p.right))
+        .join('');
+      
+      // Tasks
+      document.getElementById('task-list').innerHTML = createTaskList(data.tasks);
+      
+      // Compare table
+      document.getElementById('compare-table').innerHTML = 
+        createTable(data.compare.headers, data.compare.rows, { compare: true });
+      
+      // Detail table
+      document.getElementById('detail-table').innerHTML = 
+        createTable(data.details.headers, data.details.rows);
+    }
+    
+    // Initial render
+    render();
+  </script>
+</body>
+</html>

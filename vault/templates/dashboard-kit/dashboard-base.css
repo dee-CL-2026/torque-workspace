@@ -1,0 +1,356 @@
+/* ===========================================
+   DASHBOARD KIT - Base Styles
+   MindsetStack-inspired aesthetic
+   =========================================== */
+
+/* ----- CSS Variables (Theme) ----- */
+:root {
+  /* Primary palette - change these to re-theme */
+  --accent-primary: #7cb083;      /* Sage green */
+  --accent-secondary: #a8d5ae;    /* Light green */
+  --accent-muted: #e8f5e9;        /* Very light green */
+  
+  /* Alternative palettes (uncomment to use) */
+  /* Pink/Lavender */
+  /* --accent-primary: #c9a0c9;
+  --accent-secondary: #e0c5e0;
+  --accent-muted: #f8f0f8; */
+  
+  /* Blue */
+  /* --accent-primary: #5b8fb9;
+  --accent-secondary: #8bb8d9;
+  --accent-muted: #e8f4fc; */
+  
+  /* Neutrals */
+  --bg-page: #fafafa;
+  --bg-card: #ffffff;
+  --text-primary: #2d2d2d;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --border-light: #eeeeee;
+  --border-medium: #dddddd;
+  
+  /* Status colors */
+  --status-success: #4caf50;
+  --status-warning: #ff9800;
+  --status-danger: #f44336;
+  --status-info: #2196f3;
+  
+  /* Typography */
+  --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'SF Mono', 'Consolas', monospace;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  
+  /* Borders */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
+
+/* ----- Reset & Base ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+  padding: var(--space-lg);
+}
+
+/* ----- Layout Grid ----- */
+.dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- Cards ----- */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  background: var(--accent-primary);
+  color: white;
+  padding: var(--space-md) var(--space-lg);
+  margin: calc(-1 * var(--space-lg));
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-md);
+}
+
+/* ----- Ring Gauge ----- */
+.ring-gauge {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--space-md);
+}
+
+.ring-gauge svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.ring-gauge-bg {
+  fill: none;
+  stroke: var(--accent-muted);
+  stroke-width: 10;
+}
+
+.ring-gauge-fill {
+  fill: none;
+  stroke: var(--accent-primary);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.ring-gauge-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ring-gauge-label {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ----- Stat Cards ----- */
+.stat-card {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: var(--space-xs);
+}
+
+.stat-change {
+  font-size: 12px;
+  margin-top: var(--space-xs);
+}
+
+.stat-change.up { color: var(--status-success); }
+.stat-change.down { color: var(--status-danger); }
+
+/* ----- Progress Bar ----- */
+.progress-bar {
+  height: 8px;
+  background: var(--accent-muted);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: var(--space-sm) 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ----- Task List ----- */
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--accent-primary);
+  border-radius: 3px;
+  margin-right: var(--space-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.task-checkbox.checked {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.task-checkbox.checked::after {
+  content: '✓';
+  font-size: 12px;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 14px;
+}
+
+.task-item.done .task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* ----- Tables ----- */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead th {
+  background: var(--accent-primary);
+  color: white;
+  padding: var(--space-md);
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+}
+
+tbody td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border-light);
+}
+
+tbody tr:hover {
+  background: var(--accent-muted);
+}
+
+/* Planned vs Actual table style */
+.table-compare th:nth-child(n+2),
+.table-compare td:nth-child(n+2) {
+  text-align: right;
+}
+
+/* ----- Status Badges ----- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-success { background: #e8f5e9; color: #2e7d32; }
+.badge-warning { background: #fff3e0; color: #ef6c00; }
+.badge-danger { background: #ffebee; color: #c62828; }
+.badge-info { background: #e3f2fd; color: #1565c0; }
+.badge-neutral { background: #f5f5f5; color: #616161; }
+
+/* ----- Section Divider ----- */
+.section {
+  margin-bottom: var(--space-xl);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--accent-primary);
+}
+
+/* ----- Utilities ----- */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--text-muted); }
+.text-small { font-size: 12px; }
+.mt-md { margin-top: var(--space-md); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
