@@ -16,6 +16,7 @@ Status key:
 |------|----------|--------|-------|------------|
 | **Chief of Staff** | `torque` (main) | ✅ | opus | Dee |
 | **PA (Personal Assistant)** | `pa` | ✅ | haiku | Dee |
+| **Secretary** | `secretary` | ✅ | flash | Torque |
 
 ---
 
