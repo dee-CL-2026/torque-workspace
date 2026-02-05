@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "c82c5a0f1efe1dce",
+    "type": "split",
+    "children": [
+      {
+        "id": "8398725debb18427",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "485f075c5c27f792",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9c58fd8720e54c09",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed15b9cb777859a1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d06296fda68f115",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f9a21df5df982ff8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "047d07a388209565",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5c71642880812d6d",
+    "type": "split",
+    "children": [
+      {
+        "id": "8a1923d5cd76858b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a9676915e8849f81",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "532f60bc32e32a87",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "aadbbbf317de28f9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "24a8d7e5717a2cb4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "f0de62e0e2ddaa1b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "485f075c5c27f792",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "inbox/Candid OS Governance and Documentation Standards.md",
+    "inbox/LOOKER_MASTER_GUIDE_v1.0.docx",
+    "inbox/LOOKER_CONSTANTS_v1.0.docx",
+    "inbox/1) Candid_Looker_Dashboard_Spec.xlsx",
+    "inbox/CR Doc 4A System Architecture Diagram.docx",
+    "inbox/CR Doc 3 - System Architecture.docx",
+    "inbox/CR Doc 2 - SalesDB Guide.docx",
+    "inbox/CR Doc 4C Data Dictionary.docx",
+    "inbox/CR Doc 4B Script Index.docx",
+    "inbox/CR Doc 4- Data Governance & Framework.docx",
+    "inbox/Candid Labs - CR Docs Map.docx"
+  ]
+}
