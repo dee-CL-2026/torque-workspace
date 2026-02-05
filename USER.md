@@ -16,6 +16,7 @@
 - Plans to share historical data over time to help me understand working style
 
 **Working style:** *(learning)*
+**Social media:** Not a big socmed guy — don't assume heavy platform usage
 
 **Current projects:** *(tbd)*
 
