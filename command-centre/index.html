@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Centre | Torque</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --success: #3fb950;
+      --warning: #d29922;
+      --danger: #f85149;
+      --purple: #a371f7;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .header .updated {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .card-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .card-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+    
+    .card-header .badge {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: var(--bg);
+    }
+    
+    .card-body {
+      padding: 16px;
+    }
+    
+    /* Task list styles */
+    .task-group {
+      margin-bottom: 16px;
+    }
+    
+    .task-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .task-group-header {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .task-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    
+    .task-item:last-child {
+      border-bottom: none;
+    }
+    
+    .task-title {
+      margin-bottom: 4px;
+    }
+    
+    .task-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    /* Agent list styles */
+    .agent-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .agent-item:last-child {
+      border-bottom: none;
+    }
+    
+    .agent-name {
+      font-weight: 500;
+    }
+    
+    .agent-role {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .status {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    
+    .status-available { background: rgba(63, 185, 80, 0.2); color: var(--success); }
+    .status-planned { background: rgba(88, 166, 255, 0.2); color: var(--accent); }
+    .status-dormant { background: rgba(139, 148, 158, 0.2); color: var(--text-muted); }
+    .status-active { background: rgba(163, 113, 247, 0.2); color: var(--purple); }
+    
+    .priority-high { color: var(--danger); }
+    .priority-medium { color: var(--warning); }
+    .priority-low { color: var(--text-muted); }
+    
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+    }
+    
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    
+    /* Activity log */
+    .activity-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+    
+    .activity-time {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+    
+    .activity-agent {
+      color: var(--purple);
+      font-weight: 500;
+    }
+    
+    /* Footer */
+    .footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 16px;
+    }
+    
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    
+    .dot-green { background: var(--success); }
+    .dot-yellow { background: var(--warning); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>⚙️ Command Centre</h1>
+    <span class="updated">Updated: <span id="timestamp"></span></span>
+  </header>
+
+  <div class="grid">
+    
+    <!-- CARD: Tasks -->
+    <div class="card">
+      <div class="card-header">
+        <h2>📋 Tasks</h2>
+        <span class="badge" id="task-count">3</span>
+      </div>
+      <div class="card-body">
+        <div class="task-group">
+          <div class="task-group-header">🔥 Active</div>
+          <div class="task-item">
+            <div class="task-title">—</div>
+          </div>
+        </div>
+        <div class="task-group">
+          <div class="task-group-header">📋 Backlog</div>
+          <div class="task-item">
+            <div class="task-title">Deploy tiered fork to GAS</div>
+            <div class="task-meta"><span class="priority-high">high</span> · gas-dev</div>
+          </div>
+          <div class="task-item">
+            <div class="task-title">Token usage tracking for Command Centre</div>
+            <div class="task-meta"><span class="priority-medium">medium</span> · frontend</div>
+          </div>
+          <div class="task-item">
+            <div class="task-title">Watch button shortcut research</div>
+            <div class="task-meta"><span class="priority-low">low</span> · analyst</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CARD: Team -->
+    <div class="card">
+      <div class="card-header">
+        <h2>🤖 Team</h2>
+        <span class="badge">3 ready</span>
+      </div>
+      <div class="card-body">
+        <div class="agent-item">
+          <div>
+            <div class="agent-name">torque</div>
+            <div class="agent-role">Chief of Staff</div>
+          </div>
+          <span class="status status-active">Active</span>
+        </div>
+        <div class="agent-item">
+          <div>
+            <div class="agent-name">pa</div>
+            <div class="agent-role">Personal Assistant</div>
+          </div>
+          <span class="status status-available">Available</span>
+        </div>
+        <div class="agent-item">
+          <div>
+            <div class="agent-name">gas-dev</div>
+            <div class="agent-role">GAS Developer</div>
+          </div>
+          <span class="status status-available">Available</span>
+        </div>
+        <div class="agent-item">
+          <div>
+            <div class="agent-name">frontend</div>
+            <div class="agent-role">Frontend Dev</div>
+          </div>
+          <span class="status status-planned">Planned</span>
+        </div>
+        <div class="agent-item">
+          <div>
+            <div class="agent-name">analyst</div>
+            <div class="agent-role">Research</div>
+          </div>
+          <span class="status status-planned">Planned</span>
+        </div>
+        <div class="agent-item">
+          <div>
+            <div class="agent-name">finance</div>
+            <div class="agent-role">Finance</div>
+          </div>
+          <span class="status status-planned">Planned</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CARD: Session Stats -->
+    <div class="card">
+      <div class="card-header">
+        <h2>📊 Session</h2>
+      </div>
+      <div class="card-body">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">147k</div>
+            <div class="stat-label">Tokens Used</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">72%</div>
+            <div class="stat-label">Context</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Sub-agents Run</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">30m</div>
+            <div class="stat-label">Heartbeat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CARD: Recent Activity -->
+    <div class="card">
+      <div class="card-header">
+        <h2>📝 Recent Activity</h2>
+      </div>
+      <div class="card-body">
+        <div class="activity-item">
+          <span class="activity-time">23:51</span>
+          <span class="activity-agent">torque</span> Added 3 tasks to system
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">23:40</span>
+          <span class="activity-agent">torque</span> Watch → WhatsApp working ✅
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">22:03</span>
+          <span class="activity-agent">gas-dev</span> Metric mapping complete (184 metrics)
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">21:19</span>
+          <span class="activity-agent">torque</span> Team matrix created
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">19:24</span>
+          <span class="activity-agent">sonnet</span> PROJECT-VIZ-MVP.md created
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">19:24</span>
+          <span class="activity-agent">sonnet</span> CONTACT-DIRECTORY-MVP.md created
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-item">
+      <span class="dot dot-green"></span>
+      Gateway Online
+    </div>
+    <div class="footer-item">
+      <span class="dot dot-green"></span>
+      Telegram
+    </div>
+    <div class="footer-item">
+      <span class="dot dot-green"></span>
+      WhatsApp
+    </div>
+    <div class="footer-item">
+      <span class="dot dot-yellow"></span>
+      Context 72%
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('timestamp').textContent = new Date().toLocaleString('en-GB', {
+      day: 'numeric', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+  </script>
+</body>
+</html>
