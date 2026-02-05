@@ -1,21 +1,49 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-05T22:06:00+07:00"
+    "lastUpdated": "2026-02-05T23:51:00+07:00"
   },
   "tasks": [
     {
       "id": "task-001",
-      "title": "Example task",
-      "description": "This is a sample task to show the structure",
+      "title": "Token usage tracking for Command Centre",
+      "description": "Add OMC-style usage stats (5hr/1wk aggregates) to Command Centre dashboard. Check web UI, parse logs, or build custom tracker.",
       "status": "backlog",
       "priority": "medium",
-      "assignee": null,
-      "createdAt": "2026-02-05T22:06:00+07:00",
-      "updatedAt": "2026-02-05T22:06:00+07:00",
+      "assignee": "frontend",
+      "createdAt": "2026-02-05T23:51:00+07:00",
+      "updatedAt": "2026-02-05T23:51:00+07:00",
       "dueDate": null,
-      "tags": ["example"],
+      "tags": ["command-centre", "dashboard", "monitoring"],
+      "project": "command-centre",
+      "notes": []
+    },
+    {
+      "id": "task-002",
+      "title": "Watch button shortcut research",
+      "description": "Find way to remap Pixel Watch button to open WhatsApp or specific chat. Check settings, third-party apps, or ADB.",
+      "status": "backlog",
+      "priority": "low",
+      "assignee": "analyst",
+      "createdAt": "2026-02-05T23:51:00+07:00",
+      "updatedAt": "2026-02-05T23:51:00+07:00",
+      "dueDate": null,
+      "tags": ["pixel-watch", "research"],
       "project": null,
+      "notes": []
+    },
+    {
+      "id": "task-003",
+      "title": "Deploy tiered fork to GAS",
+      "description": "Push candid-labs-tiered scripts to GAS via clasp, validate parity with legacy outputs.",
+      "status": "backlog",
+      "priority": "high",
+      "assignee": "gas-dev",
+      "createdAt": "2026-02-05T23:51:00+07:00",
+      "updatedAt": "2026-02-05T23:51:00+07:00",
+      "dueDate": null,
+      "tags": ["candid", "gas", "data"],
+      "project": "candid-labs-tiered",
       "notes": []
     }
   ],

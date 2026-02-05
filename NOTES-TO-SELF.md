@@ -11,6 +11,9 @@ Observations, learnings, and patterns to review with Dee. If validated, promote 
 | 2026-02-05 | Verify file paths before spawning sub-agents | AGENTS.md / gas-dev instructions | Pending |
 | 2026-02-05 | Dee has vivid mental blueprints — ask clarifying questions before building | USER.md | Pending |
 | 2026-02-05 | I should assign tasks to agents (orchestrator role), not require Dee to specify | SOUL.md / task workflow | Pending |
+| 2026-02-05 | Dee used to multitask because brain > tools. Now tools are fast — help him focus on ONE thing, tag others for later | USER.md | Pending |
+| 2026-02-05 | Dee wants a journal/reflections process | Backlog | Pending |
+| 2026-02-05 | Create a "notes to self" list for Dee too (not just Torque) | New file | Pending |
 
 ---
 
