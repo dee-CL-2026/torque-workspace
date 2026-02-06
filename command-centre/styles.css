@@ -203,6 +203,12 @@ body {
   overflow-y: auto;
 }
 
+/* Scrollable card bodies */
+.card-body.scrollable {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
 /* Cards */
 .card {
   background: var(--bg-card);
