@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-06T08:24:00+07:00"
+    "lastUpdated": "2026-02-06T10:25:00+07:00"
   },
   "tasks": [
     {
@@ -26,6 +26,48 @@
       "createdAt": "2026-02-05T23:51:00+07:00",
       "tags": ["candid", "gas", "data"],
       "project": "candid-labs-tiered"
+    },
+    {
+      "id": "task-013",
+      "title": "Add Ideas section to dashboard",
+      "description": "Display ideas.md/IDEAS.md content on Command Centre. Separate from backlog - for discussion points and future possibilities.",
+      "status": "backlog",
+      "priority": "high",
+      "assignee": "frontend",
+      "createdAt": "2026-02-06T10:25:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
+    },
+    {
+      "id": "task-014",
+      "title": "Work context indicators (Candid vs Good Doctor)",
+      "description": "Add visual separation/tagging for tasks between Candid work and Good Doctor work. Different contexts, same system.",
+      "status": "backlog",
+      "priority": "high",
+      "assignee": "frontend",
+      "createdAt": "2026-02-06T10:25:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
+    },
+    {
+      "id": "task-015",
+      "title": "Meeting transcript processor agent",
+      "description": "Secretarial agent to process meeting transcripts from inbox → action items + summaries. Monitors vault/inbox for new .vtt/.txt files.",
+      "status": "backlog",
+      "priority": "high",
+      "assignee": "torque",
+      "createdAt": "2026-02-06T10:25:00+07:00",
+      "tags": ["agent", "automation", "meetings"]
+    },
+    {
+      "id": "task-016",
+      "title": "Daily idea generator",
+      "description": "Morning cron that generates one idea to push Dee or business forward. Not just tech - business ideas, initiatives, opportunities.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": "torque",
+      "createdAt": "2026-02-06T10:25:00+07:00",
+      "tags": ["cron", "ideas"]
     },
     {
       "id": "task-001",
@@ -164,6 +206,14 @@
       "assignee": "torque",
       "completedAt": "2026-02-06T08:14:00+07:00",
       "tags": ["command-centre", "fix"]
+    },
+    {
+      "id": "done-008",
+      "title": "WA Monitor added to roster + job description",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T10:20:00+07:00",
+      "tags": ["agent", "team"]
     }
   ],
   "statusOptions": ["backlog", "active", "blocked", "done", "archived"],
