@@ -99,6 +99,17 @@
       "tags": ["youtube", "research"]
     },
     {
+      "id": "task-012",
+      "title": "Agent roster stats (active/backlog per agent)",
+      "description": "Show task counts per agent in roster, e.g. 1/3 meaning 1 active, 3 backlog",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": "frontend",
+      "createdAt": "2026-02-06T08:26:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
+    },
+    {
       "id": "done-001",
       "title": "Morning report cron set up",
       "status": "done",

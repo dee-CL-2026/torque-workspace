@@ -16,6 +16,7 @@ Human-readable view. Source of truth: `tasks.json`
 - [ ] **Browser agent: Precoro auto-approvals** — @scraper
 - [ ] **Browser agent: Zoom summary extraction** — @scraper
 - [ ] **Process YouTube watchlist videos** — @analyst
+- [ ] **Agent roster stats (active/backlog per agent)** — @frontend
 
 ## Blocked
 *(none)*
