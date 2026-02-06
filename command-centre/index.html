@@ -52,26 +52,29 @@
           </div>
         </section>
 
-        <!-- Active Tasks -->
-        <section class="card">
-          <div class="card-header">
-            <h2>🔄 Active Tasks</h2>
-          </div>
-          <div class="card-body" id="active-tasks">
-            <div class="loading">Loading tasks...</div>
-          </div>
-        </section>
+        <!-- Tasks Row (2 columns) -->
+        <div class="tasks-row">
+          <!-- Active Tasks -->
+          <section class="card task-card">
+            <div class="card-header">
+              <h2>🔄 Active</h2>
+            </div>
+            <div class="card-body scrollable" id="active-tasks">
+              <div class="loading">Loading tasks...</div>
+            </div>
+          </section>
 
-        <!-- Backlog -->
-        <section class="card">
-          <div class="card-header">
-            <h2>📥 Backlog</h2>
-            <span class="badge" id="backlog-badge">0</span>
-          </div>
-          <div class="card-body" id="backlog-tasks">
-            <div class="loading">Loading...</div>
-          </div>
-        </section>
+          <!-- Backlog -->
+          <section class="card task-card">
+            <div class="card-header">
+              <h2>📥 Backlog</h2>
+              <span class="badge" id="backlog-badge">0</span>
+            </div>
+            <div class="card-body scrollable" id="backlog-tasks">
+              <div class="loading">Loading...</div>
+            </div>
+          </section>
+        </div>
 
       </div>
 

@@ -180,6 +180,29 @@ body {
   margin-top: 0.25rem;
 }
 
+/* Tasks Row - Side by Side */
+.tasks-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .tasks-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.task-card {
+  margin-bottom: 0;
+}
+
+.task-card .card-body.scrollable {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
 /* Cards */
 .card {
   background: var(--bg-card);
