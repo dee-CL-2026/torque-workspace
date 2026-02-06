@@ -14,9 +14,7 @@ Active tasks only. Completed tasks move to `tasks-done.md`.
 | Get Ferry involved in all groups | Dee | pending | 2026-02-07 | Internal team management |
 | Connect Google calendar | Torque | pending | 2026-02-07 | Calendar integration |
 | Connect Outlook calendar | Torque | pending | 2026-02-07 | Calendar integration |
-| Candid Labs - work on tiered/fork | gas-dev | done | 2026-02-07 | Phase 2 complete — production + inventory spokes, 57/184 metrics enabled |
 | Process YouTube watchlist (7 videos) | Torque | pending | 2026-02-07 | OpenClaw tutorials in vault/youtube-watchlist.md |
-| Command Centre improvements | frontend | done | 2026-02-07 | v2.0 complete — HUD bar, 3-column layout, blocked section, collapsible cards |
 | Get Finns co-branding contract | Dee | pending | 2026-02-07 | For budget data |
 
 ---
