@@ -6,6 +6,7 @@
 let tasksData = null;
 let heartbeatState = null;
 let ideasData = null;
+let agentsData = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -69,6 +70,19 @@ function setupViewToggle() {
 // Load all data
 async function loadData() {
   try {
+    // Load team roster from TEAM.md
+    try {
+      const teamResponse = await fetch(DATA_SOURCES.team + '?t=' + Date.now());
+      if (teamResponse.ok) {
+        const teamMd = await teamResponse.text();
+        agentsData = parseTeamMarkdown(teamMd);
+        if (agentsData.length === 0) agentsData = FALLBACK_AGENTS;
+      }
+    } catch (e) {
+      console.log('Team roster not available, using fallback');
+      agentsData = FALLBACK_AGENTS;
+    }
+    
     // Load tasks
     const tasksResponse = await fetch(DATA_SOURCES.tasks + '?t=' + Date.now());
     if (tasksResponse.ok) {
@@ -383,7 +397,8 @@ function renderAgentsWithCounts() {
     else if (task.status === 'blocked') agentCounts[assignee].blocked++;
   });
   
-  const html = AGENTS.map(agent => {
+  const agents = agentsData || FALLBACK_AGENTS;
+  const html = agents.map(agent => {
     const counts = agentCounts[agent.id] || agentCounts[agent.name.toLowerCase()] || { active: 0, backlog: 0, blocked: 0 };
     const hasWork = counts.active > 0 || counts.backlog > 0 || counts.blocked > 0;
     const status = counts.active > 0 ? 'active' : (counts.blocked > 0 ? 'blocked' : agent.status);
@@ -411,8 +426,9 @@ function renderAgentsWithCounts() {
 // Basic agent render (without counts)
 function renderAgents() {
   const container = document.getElementById('agent-roster');
+  const agents = agentsData || FALLBACK_AGENTS;
   
-  const html = AGENTS.map(agent => `
+  const html = agents.map(agent => `
     <div class="agent-item">
       <div class="agent-avatar">${agent.emoji}</div>
       <div class="agent-info">
