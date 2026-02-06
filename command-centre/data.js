@@ -18,7 +18,15 @@ const AGENTS = [
     emoji: '📋',
     role: 'Personal Assistant',
     status: 'ready',
-    model: 'sonnet'
+    model: 'haiku'
+  },
+  {
+    id: 'secretary',
+    name: 'Secretary',
+    emoji: '📝',
+    role: 'Meeting Notes & Scheduling',
+    status: 'ready',
+    model: 'flash'
   },
   {
     id: 'wa-monitor',
@@ -34,7 +42,7 @@ const AGENTS = [
     emoji: '🔧',
     role: 'Apps Script Developer',
     status: 'idle',
-    model: 'sonnet'
+    model: 'haiku'
   },
   {
     id: 'analyst',
@@ -42,7 +50,7 @@ const AGENTS = [
     emoji: '📊',
     role: 'Data & Research',
     status: 'ready',
-    model: 'flash'
+    model: 'haiku'
   },
   {
     id: 'frontend',
@@ -50,7 +58,7 @@ const AGENTS = [
     emoji: '🎨',
     role: 'UI/Dashboard Builder',
     status: 'ready',
-    model: 'sonnet'
+    model: 'haiku'
   },
   {
     id: 'scraper',
@@ -58,7 +66,7 @@ const AGENTS = [
     emoji: '🕷️',
     role: 'Browser Automation',
     status: 'idle',
-    model: 'sonnet'
+    model: 'haiku'
   }
 ];
 
