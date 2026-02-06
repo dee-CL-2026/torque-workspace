@@ -1,36 +1,20 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-06T00:41:00+07:00"
+    "lastUpdated": "2026-02-06T08:24:00+07:00"
   },
   "tasks": [
     {
-      "id": "task-001",
-      "title": "Token usage tracking for Command Centre",
-      "description": "Add OMC-style usage stats (5hr/1wk aggregates) to Command Centre dashboard. Check web UI, parse logs, or build custom tracker.",
-      "status": "backlog",
-      "priority": "medium",
-      "assignee": "frontend",
-      "createdAt": "2026-02-05T23:51:00+07:00",
-      "updatedAt": "2026-02-05T23:51:00+07:00",
-      "dueDate": null,
-      "tags": ["command-centre", "dashboard", "monitoring"],
-      "project": "command-centre",
-      "notes": []
-    },
-    {
-      "id": "task-002",
-      "title": "Watch button shortcut research",
-      "description": "Find way to remap Pixel Watch button to open WhatsApp or specific chat. Check settings, third-party apps, or ADB.",
-      "status": "backlog",
-      "priority": "low",
-      "assignee": "analyst",
-      "createdAt": "2026-02-05T23:51:00+07:00",
-      "updatedAt": "2026-02-05T23:51:00+07:00",
-      "dueDate": null,
-      "tags": ["pixel-watch", "research"],
-      "project": null,
-      "notes": []
+      "id": "task-010",
+      "title": "Improve Command Centre layout",
+      "description": "Side-by-side tasks, fixed height scrollable, add channel indicators, session stats",
+      "status": "active",
+      "priority": "high",
+      "assignee": "torque",
+      "createdAt": "2026-02-06T08:20:00+07:00",
+      "updatedAt": "2026-02-06T08:20:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
     },
     {
       "id": "task-003",
@@ -40,95 +24,135 @@
       "priority": "high",
       "assignee": "gas-dev",
       "createdAt": "2026-02-05T23:51:00+07:00",
-      "updatedAt": "2026-02-05T23:51:00+07:00",
-      "dueDate": null,
       "tags": ["candid", "gas", "data"],
-      "project": "candid-labs-tiered",
-      "notes": []
+      "project": "candid-labs-tiered"
+    },
+    {
+      "id": "task-001",
+      "title": "Token usage tracking for Command Centre",
+      "description": "Add usage stats (tokens, cost) to Command Centre dashboard.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": "frontend",
+      "createdAt": "2026-02-05T23:51:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
     },
     {
       "id": "task-004",
       "title": "Cloudflare tunnel setup",
-      "description": "Research and implement Cloudflare tunnel for remote access to Chromebook - discussed with Ryan",
+      "description": "Research and implement Cloudflare tunnel for remote access to Chromebook",
       "status": "backlog",
       "priority": "medium",
       "assignee": "torque",
       "createdAt": "2026-02-06T00:41:00+07:00",
-      "updatedAt": "2026-02-06T00:41:00+07:00",
-      "dueDate": null,
-      "tags": ["infrastructure", "remote-access"],
-      "project": null,
-      "notes": []
+      "tags": ["infrastructure", "remote-access"]
     },
     {
       "id": "task-005",
       "title": "Torque email address",
-      "description": "Set up email address for Torque - decide between Candid domain vs personal. Needed for automation (Precoro, Zoom).",
+      "description": "Set up email address for Torque - decide between Candid domain vs personal.",
       "status": "backlog",
       "priority": "medium",
       "assignee": "dee",
       "createdAt": "2026-02-06T00:41:00+07:00",
-      "updatedAt": "2026-02-06T00:41:00+07:00",
-      "dueDate": null,
-      "tags": ["setup", "comms"],
-      "project": null,
-      "notes": []
+      "tags": ["setup", "comms"]
+    },
+    {
+      "id": "task-002",
+      "title": "Watch button shortcut research",
+      "description": "Find way to remap Pixel Watch button to open WhatsApp or specific chat.",
+      "status": "backlog",
+      "priority": "low",
+      "assignee": "analyst",
+      "createdAt": "2026-02-05T23:51:00+07:00",
+      "tags": ["pixel-watch", "research"]
     },
     {
       "id": "task-006",
       "title": "Browser agent - Precoro auto-approvals",
-      "description": "Build browser automation agent to login to Precoro and approve items up to specified threshold value.",
+      "description": "Build browser automation agent to login to Precoro and approve items.",
       "status": "backlog",
       "priority": "low",
       "assignee": "scraper",
       "createdAt": "2026-02-06T00:41:00+07:00",
-      "updatedAt": "2026-02-06T00:41:00+07:00",
-      "dueDate": null,
-      "tags": ["automation", "browser", "candid"],
-      "project": null,
-      "notes": ["Claude Chrome extension has done this successfully"]
+      "tags": ["automation", "browser", "candid"]
     },
     {
       "id": "task-007",
       "title": "Browser agent - Zoom summary extraction",
-      "description": "Build browser automation to extract Zoom meeting summaries, share via email. Navigate to summaries, share, enter email, send.",
+      "description": "Build browser automation to extract Zoom meeting summaries.",
       "status": "backlog",
       "priority": "low",
       "assignee": "scraper",
       "createdAt": "2026-02-06T00:41:00+07:00",
-      "updatedAt": "2026-02-06T00:41:00+07:00",
-      "dueDate": null,
-      "tags": ["automation", "browser", "candid"],
-      "project": null,
-      "notes": ["Separate research task for Zoom transcript flow in progress"]
+      "tags": ["automation", "browser"]
     },
     {
-      "id": "task-008",
-      "title": "Command Centre - Usage tracker module",
-      "description": "Add token usage and cost tracking panel to Command Centre dashboard.",
-      "status": "active",
-      "priority": "high",
-      "assignee": "frontend",
-      "createdAt": "2026-02-06T00:41:00+07:00",
-      "updatedAt": "2026-02-06T00:41:00+07:00",
-      "dueDate": null,
-      "tags": ["dashboard", "monitoring", "command-centre"],
-      "project": "command-centre",
-      "notes": []
+      "id": "task-011",
+      "title": "Process YouTube watchlist videos",
+      "description": "Fetch transcripts, summarize, log to vault for the 7 queued videos.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": "analyst",
+      "createdAt": "2026-02-06T08:24:00+07:00",
+      "tags": ["youtube", "research"]
     },
     {
-      "id": "task-009",
-      "title": "Command Centre - Task/backlog module",
-      "description": "Add task list and backlog view to Command Centre dashboard, reading from data/tasks.json.",
-      "status": "active",
-      "priority": "high",
-      "assignee": "frontend",
-      "createdAt": "2026-02-06T00:41:00+07:00",
-      "updatedAt": "2026-02-06T00:41:00+07:00",
-      "dueDate": null,
-      "tags": ["dashboard", "tasks", "command-centre"],
-      "project": "command-centre",
-      "notes": []
+      "id": "done-001",
+      "title": "Morning report cron set up",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T06:33:00+07:00",
+      "tags": ["setup", "cron"]
+    },
+    {
+      "id": "done-002",
+      "title": "Sinead intro sent to family group",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T07:07:00+07:00",
+      "tags": ["family", "whatsapp"]
+    },
+    {
+      "id": "done-003",
+      "title": "Context folders created (family/, friends/, candid/)",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T07:08:00+07:00",
+      "tags": ["structure", "contacts"]
+    },
+    {
+      "id": "done-004",
+      "title": "Aaron & Ryan contact files created",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T07:08:00+07:00",
+      "tags": ["contacts", "friends"]
+    },
+    {
+      "id": "done-005",
+      "title": "Command Centre v0.1 built",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T06:40:00+07:00",
+      "tags": ["command-centre", "dashboard"]
+    },
+    {
+      "id": "done-006",
+      "title": "Cloudflare Pages deployed",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T08:10:00+07:00",
+      "tags": ["infrastructure", "deployment"]
+    },
+    {
+      "id": "done-007",
+      "title": "Data loading fixed (GitHub raw URLs)",
+      "status": "done",
+      "assignee": "torque",
+      "completedAt": "2026-02-06T08:14:00+07:00",
+      "tags": ["command-centre", "fix"]
     }
   ],
   "statusOptions": ["backlog", "active", "blocked", "done", "archived"],
