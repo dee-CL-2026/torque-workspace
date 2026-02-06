@@ -37,4 +37,15 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## WhatsApp Groups
+
+| JID | Name | Notes |
+|-----|------|-------|
+| `120363406964917087@g.us` | Synthetic Bros | Ryan's test group |
+| `120363423911298348@g.us` | AI Power Users Club | Friends, silent monitoring (requireMention: true) |
+| `120363426498709975@g.us` | It's All Torque | Family — Sinead |
+| `120363404970214457@g.us` | OpenClaw for Aaron | Ryan + Aaron |
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
