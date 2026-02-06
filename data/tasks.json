@@ -1,21 +1,9 @@
 {
   "meta": {
-    "version": "1.0",
-    "lastUpdated": "2026-02-06T10:25:00+07:00"
+    "version": "1.1",
+    "lastUpdated": "2026-02-07T06:35:00+07:00"
   },
   "tasks": [
-    {
-      "id": "task-010",
-      "title": "Improve Command Centre layout",
-      "description": "Side-by-side tasks, fixed height scrollable, add channel indicators, session stats",
-      "status": "active",
-      "priority": "high",
-      "assignee": "torque",
-      "createdAt": "2026-02-06T08:20:00+07:00",
-      "updatedAt": "2026-02-06T08:20:00+07:00",
-      "tags": ["command-centre", "dashboard"],
-      "project": "command-centre"
-    },
     {
       "id": "task-003",
       "title": "Deploy tiered fork to GAS",
@@ -26,28 +14,6 @@
       "createdAt": "2026-02-05T23:51:00+07:00",
       "tags": ["candid", "gas", "data"],
       "project": "candid-labs-tiered"
-    },
-    {
-      "id": "task-013",
-      "title": "Add Ideas section to dashboard",
-      "description": "Display ideas.md/IDEAS.md content on Command Centre. Separate from backlog - for discussion points and future possibilities.",
-      "status": "backlog",
-      "priority": "high",
-      "assignee": "frontend",
-      "createdAt": "2026-02-06T10:25:00+07:00",
-      "tags": ["command-centre", "dashboard"],
-      "project": "command-centre"
-    },
-    {
-      "id": "task-014",
-      "title": "Work context indicators (Candid vs Good Doctor)",
-      "description": "Add visual separation/tagging for tasks between Candid work and Good Doctor work. Different contexts, same system.",
-      "status": "backlog",
-      "priority": "high",
-      "assignee": "frontend",
-      "createdAt": "2026-02-06T10:25:00+07:00",
-      "tags": ["command-centre", "dashboard"],
-      "project": "command-centre"
     },
     {
       "id": "task-015",
@@ -141,17 +107,6 @@
       "tags": ["youtube", "research"]
     },
     {
-      "id": "task-012",
-      "title": "Agent roster stats (active/backlog per agent)",
-      "description": "Show task counts per agent in roster, e.g. 1/3 meaning 1 active, 3 backlog",
-      "status": "backlog",
-      "priority": "medium",
-      "assignee": "frontend",
-      "createdAt": "2026-02-06T08:26:00+07:00",
-      "tags": ["command-centre", "dashboard"],
-      "project": "command-centre"
-    },
-    {
       "id": "done-001",
       "title": "Morning report cron set up",
       "status": "done",
@@ -214,6 +169,43 @@
       "assignee": "torque",
       "completedAt": "2026-02-06T10:20:00+07:00",
       "tags": ["agent", "team"]
+    },
+    {
+      "id": "done-009",
+      "title": "Command Centre v2.0 - Major usability improvements",
+      "description": "Session HUD, 3-column layout, blocked tasks, ideas section, agent counts, project tags, collapsible sections, view toggle",
+      "status": "done",
+      "assignee": "frontend",
+      "completedAt": "2026-02-07T06:35:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
+    },
+    {
+      "id": "done-010",
+      "title": "Add Ideas section to dashboard",
+      "status": "done",
+      "assignee": "frontend",
+      "completedAt": "2026-02-07T06:35:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
+    },
+    {
+      "id": "done-011",
+      "title": "Work context indicators (Candid vs Good Doctor)",
+      "status": "done",
+      "assignee": "frontend",
+      "completedAt": "2026-02-07T06:35:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
+    },
+    {
+      "id": "done-012",
+      "title": "Agent roster stats (active/backlog per agent)",
+      "status": "done",
+      "assignee": "frontend",
+      "completedAt": "2026-02-07T06:35:00+07:00",
+      "tags": ["command-centre", "dashboard"],
+      "project": "command-centre"
     }
   ],
   "statusOptions": ["backlog", "active", "blocked", "done", "archived"],
