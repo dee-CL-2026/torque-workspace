@@ -19,12 +19,41 @@
         <span class="subtitle">Torque Operations Dashboard</span>
       </div>
       <div class="header-right">
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="all" title="All sections">All</button>
+          <button class="view-btn" data-view="work" title="Work focus">Work</button>
+          <button class="view-btn" data-view="compact" title="Compact view">⊟</button>
+        </div>
         <div class="pulse-indicator" id="pulse-indicator">
           <span class="pulse-dot"></span>
           <span class="pulse-text" id="pulse-text">Loading...</span>
         </div>
       </div>
     </header>
+
+    <!-- Session HUD Bar -->
+    <div class="session-hud" id="session-hud">
+      <div class="hud-item">
+        <span class="hud-icon">📡</span>
+        <span class="hud-label">Status</span>
+        <span class="hud-value" id="hud-status">—</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-icon">🕐</span>
+        <span class="hud-label">Last Beat</span>
+        <span class="hud-value" id="hud-heartbeat">—</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-icon">📊</span>
+        <span class="hud-label">Active/Total</span>
+        <span class="hud-value" id="hud-tasks">—</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-icon">⚠️</span>
+        <span class="hud-label">Blocked</span>
+        <span class="hud-value" id="hud-blocked">—</span>
+      </div>
+    </div>
 
     <!-- Main Grid -->
     <main class="main-grid">
@@ -52,12 +81,13 @@
           </div>
         </section>
 
-        <!-- Tasks Row (2 columns) -->
+        <!-- Tasks Row (3 columns: Active, Backlog, Blocked) -->
         <div class="tasks-row">
           <!-- Active Tasks -->
           <section class="card task-card">
-            <div class="card-header">
+            <div class="card-header collapsible" data-section="active-tasks">
               <h2>🔄 Active</h2>
+              <span class="collapse-icon">−</span>
             </div>
             <div class="card-body scrollable" id="active-tasks">
               <div class="loading">Loading tasks...</div>
@@ -66,11 +96,24 @@
 
           <!-- Backlog -->
           <section class="card task-card">
-            <div class="card-header">
+            <div class="card-header collapsible" data-section="backlog-tasks">
               <h2>📥 Backlog</h2>
               <span class="badge" id="backlog-badge">0</span>
+              <span class="collapse-icon">−</span>
             </div>
             <div class="card-body scrollable" id="backlog-tasks">
+              <div class="loading">Loading...</div>
+            </div>
+          </section>
+
+          <!-- Blocked Tasks -->
+          <section class="card task-card blocked-section">
+            <div class="card-header collapsible" data-section="blocked-tasks">
+              <h2>🚧 Blocked</h2>
+              <span class="badge warning" id="blocked-badge">0</span>
+              <span class="collapse-icon">−</span>
+            </div>
+            <div class="card-body scrollable" id="blocked-tasks">
               <div class="loading">Loading...</div>
             </div>
           </section>
@@ -83,18 +126,31 @@
 
         <!-- Agent Roster -->
         <section class="card">
-          <div class="card-header">
+          <div class="card-header collapsible" data-section="agent-roster">
             <h2>👥 Agent Roster</h2>
+            <span class="collapse-icon">−</span>
           </div>
           <div class="card-body" id="agent-roster">
             <div class="loading">Loading agents...</div>
           </div>
         </section>
 
+        <!-- Ideas Section (NEW) -->
+        <section class="card ideas-card">
+          <div class="card-header collapsible" data-section="ideas-list">
+            <h2>💡 Ideas & Future</h2>
+            <span class="collapse-icon">−</span>
+          </div>
+          <div class="card-body scrollable" id="ideas-list">
+            <div class="loading">Loading ideas...</div>
+          </div>
+        </section>
+
         <!-- Recent Activity -->
         <section class="card">
-          <div class="card-header">
-            <h2>📋 Recent Activity</h2>
+          <div class="card-header collapsible" data-section="recent-activity">
+            <h2>✅ Recently Done</h2>
+            <span class="collapse-icon">−</span>
           </div>
           <div class="card-body scrollable" id="recent-activity">
             <div class="loading">Loading...</div>
