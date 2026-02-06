@@ -52,10 +52,10 @@ Status key:
 
 | Role | Agent ID | Status | Model | Scope |
 |------|----------|--------|-------|-------|
-| **GAS Developer** | `gas-dev` | ✅ | flash | candid-labs-tiered, GAS scripts, Sheets automation, data pipelines |
-| **Frontend** | `frontend` | 📋 | flash | Dashboards, budget.html, project tracker, HTML/CSS/JS |
-| **Analyst** | `analyst` | 📋 | sonnet | Research, scoping docs, market analysis, competitive intel |
-| **Data Engineer** | `data-eng` | 💤 | sonnet | Schema design, data modeling, BigQuery (future) |
+| **GAS Developer** | `gas-dev` | ✅ | haiku | candid-labs-tiered, GAS scripts, Sheets automation, data pipelines |
+| **Frontend** | `frontend` | 📋 | haiku | Dashboards, budget.html, project tracker, HTML/CSS/JS |
+| **Analyst** | `analyst` | 📋 | haiku | Research, scoping docs, market analysis, competitive intel |
+| **Data Engineer** | `data-eng` | 💤 | haiku | Schema design, data modeling, BigQuery (future) |
 
 ---
 

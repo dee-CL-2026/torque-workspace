@@ -24,7 +24,7 @@ Tracking recurring and one-off events for the household.
 |-------|-----------|-----------|-----|----------|-------|
 | Mini soccer | Tuesdays | Weekly | Dee | — | Regular commitment |
 | Padel | Thursdays | Weekly | Dee | — | Regular commitment |
-| BBQ with Josh & Lisa (Harvey's parents) | Sat 7 Feb, 1pm | One-off | Dee & Sinead | — | 3 kids: 2 boys, 1 girl |
+| BBQ with Josh & Lisa (Harvey's parents) | Sat 7 Feb, 12pm | One-off | Dee & Sinead | — | 3 kids: 2 boys, 1 girl |
 | Wedding reception | Sat 7 Feb, ~7pm | One-off | Dee & Sinead | — | — |
 | Girls night out | Fri 13 Feb | One-off | Sinead | — | — |
 | Lorenzos arrive from BKK | Sat 14 Feb | One-off | Family | — | Guests arriving |

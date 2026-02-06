@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candid Daily Cockpit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --success: #00d9a5;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --card-bg: linear-gradient(135deg, #1e2a4a 0%, #16213e 100%);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0f0f23 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--highlight) 0%, #ff6b6b 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--highlight);
+        }
+
+        .header-meta {
+            text-align: right;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(0, 217, 165, 0.15);
+            border: 1px solid rgba(0, 217, 165, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--success);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .phase-label {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(233, 69, 96, 0.15);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--highlight);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .metric-card.revenue::before { background: linear-gradient(90deg, #00d9a5, #00b894); }
+        .metric-card.margin::before { background: linear-gradient(90deg, #e94560, #ff6b6b); }
+        .metric-card.outlets::before { background: linear-gradient(90deg, #6c5ce7, #a29bfe); }
+        .metric-card.cash::before { background: linear-gradient(90deg, #ffc107, #ffdb4d); }
+        .metric-card.ar::before { background: linear-gradient(90deg, #00cec9, #81ecec); }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .revenue .metric-icon { background: rgba(0, 217, 165, 0.15); }
+        .margin .metric-icon { background: rgba(233, 69, 96, 0.15); }
+        .outlets .metric-icon { background: rgba(108, 92, 231, 0.15); }
+        .cash .metric-icon { background: rgba(255, 193, 7, 0.15); }
+        .ar .metric-icon { background: rgba(0, 206, 201, 0.15); }
+
+        .metric-id {
+            font-size: 11px;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .revenue .metric-value { color: #00d9a5; }
+        .margin .metric-value { color: #e94560; }
+        .outlets .metric-value { color: #a29bfe; }
+        .cash .metric-value { color: #ffc107; }
+        .ar .metric-value { color: #00cec9; }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .trend-positive {
+            color: var(--success);
+        }
+
+        .trend-negative {
+            color: var(--danger);
+        }
+
+        .trend-neutral {
+            color: var(--text-secondary);
+        }
+
+        .trend-label {
+            color: var(--text-secondary);
+        }
+
+        .metric-source {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--card-border);
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .source-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+        }
+
+        footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--highlight);
+        }
+
+        .refresh-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(233, 69, 96, 0.15);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            border-radius: 8px;
+            color: var(--highlight);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(233, 69, 96, 0.25);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .header-meta {
+                text-align: center;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-value {
+                font-size: 28px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <h1>Candid <span>Cockpit</span></h1>
+            </div>
+            <div class="header-meta">
+                <div class="last-updated">Last updated: <span id="lastUpdated">--</span></div>
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Live Data
+                </div>
+            </div>
+        </header>
+
+        <div class="phase-label">Phase 1 • Must-Have Metrics</div>
+
+        <div class="metrics-grid">
+            <!-- M016: Revenue YTD -->
+            <div class="metric-card revenue">
+                <div class="metric-header">
+                    <div class="metric-icon">📈</div>
+                    <span class="metric-id">M016</span>
+                </div>
+                <div class="metric-label">Revenue YTD</div>
+                <div class="metric-value" id="revenueYtd">Rp 0</div>
+                <div class="metric-trend">
+                    <span class="trend-positive" id="revenueTrend">↑ 0%</span>
+                    <span class="trend-label">vs last year</span>
+                </div>
+                <div class="metric-source">
+                    <span class="source-dot"></span>
+                    SALES_REVENUE_MASTER → DECK_METRICS
+                </div>
+            </div>
+
+            <!-- M105: Gross Margin % -->
+            <div class="metric-card margin">
+                <div class="metric-header">
+                    <div class="metric-icon">💰</div>
+                    <span class="metric-id">M105</span>
+                </div>
+                <div class="metric-label">Gross Margin %</div>
+                <div class="metric-value" id="grossMargin">0%</div>
+                <div class="metric-trend">
+                    <span class="trend-neutral" id="marginTrend">— 0pp</span>
+                    <span class="trend-label">vs target 45%</span>
+                </div>
+                <div class="metric-source">
+                    <span class="source-dot"></span>
+                    DECK_METRICS.Gross_Margin_Pct
+                </div>
+            </div>
+
+            <!-- M039: Total Outlets -->
+            <div class="metric-card outlets">
+                <div class="metric-header">
+                    <div class="metric-icon">🏪</div>
+                    <span class="metric-id">M039</span>
+                </div>
+                <div class="metric-label">Total Outlets</div>
+                <div class="metric-value" id="totalOutlets">0</div>
+                <div class="metric-trend">
+                    <span class="trend-positive" id="outletsTrend">↑ 0</span>
+                    <span class="trend-label">new this month</span>
+                </div>
+                <div class="metric-source">
+                    <span class="source-dot"></span>
+                    ACCOUNT_STATUS (distinct)
+                </div>
+            </div>
+
+            <!-- M115: Cash on Hand -->
+            <div class="metric-card cash">
+                <div class="metric-header">
+                    <div class="metric-icon">🏦</div>
+                    <span class="metric-id">M115</span>
+                </div>
+                <div class="metric-label">Cash on Hand</div>
+                <div class="metric-value" id="cashOnHand">Rp 0</div>
+                <div class="metric-trend">
+                    <span class="trend-neutral" id="cashTrend">— Rp 0</span>
+                    <span class="trend-label">vs last week</span>
+                </div>
+                <div class="metric-source">
+                    <span class="source-dot"></span>
+                    Cash in Hand (Xero/Bank)
+                </div>
+            </div>
+
+            <!-- M123: Total AR Outstanding -->
+            <div class="metric-card ar">
+                <div class="metric-header">
+                    <div class="metric-icon">📋</div>
+                    <span class="metric-id">M123</span>
+                </div>
+                <div class="metric-label">Total AR Outstanding</div>
+                <div class="metric-value" id="arOutstanding">Rp 0</div>
+                <div class="metric-trend">
+                    <span class="trend-negative" id="arTrend">↓ 0%</span>
+                    <span class="trend-label">overdue (>30d)</span>
+                </div>
+                <div class="metric-source">
+                    <span class="source-dot"></span>
+                    AGED_RECEIVABLES_RAW → AR_AP_SUMMARY
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div>© 2026 Candid Beverages • Daily Cockpit v1.0</div>
+            <div class="footer-links">
+                <a href="#">View Full Metrics (184)</a>
+                <a href="#">Data Sources</a>
+                <a href="#">Export</a>
+            </div>
+            <button class="refresh-btn" onclick="refreshData()">
+                🔄 Refresh Data
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        // Mock data - Replace with actual API calls to Looker/Google Sheets
+        const MOCK_DATA = {
+            revenueYtd: 4250000000,           // Rp 4.25B
+            revenueYoyChange: 23.5,           // +23.5% YoY
+            grossMargin: 42.3,                // 42.3%
+            marginVsTarget: -2.7,             // -2.7pp vs 45% target
+            totalOutlets: 847,                // 847 outlets
+            newOutletsMonth: 12,              // +12 new this month
+            cashOnHand: 1850000000,           // Rp 1.85B
+            cashWowChange: 125000000,         // +Rp 125M vs last week
+            arOutstanding: 2340000000,        // Rp 2.34B
+            arOverduePercent: 18.2            // 18.2% overdue
+        };
+
+        // Format currency in Indonesian Rupiah
+        function formatRupiah(amount) {
+            if (amount >= 1000000000) {
+                return `Rp ${(amount / 1000000000).toFixed(2)}B`;
+            } else if (amount >= 1000000) {
+                return `Rp ${(amount / 1000000).toFixed(1)}M`;
+            } else if (amount >= 1000) {
+                return `Rp ${(amount / 1000).toFixed(0)}K`;
+            }
+            return `Rp ${amount.toLocaleString('id-ID')}`;
+        }
+
+        // Format percentage
+        function formatPercent(value) {
+            return `${value.toFixed(1)}%`;
+        }
+
+        // Format trend with arrow
+        function formatTrend(value, prefix = '', suffix = '') {
+            const arrow = value > 0 ? '↑' : value < 0 ? '↓' : '—';
+            const absValue = Math.abs(value);
+            return `${arrow} ${prefix}${absValue}${suffix}`;
+        }
+
+        // Get trend class
+        function getTrendClass(value, invertPositive = false) {
+            if (value > 0) return invertPositive ? 'trend-negative' : 'trend-positive';
+            if (value < 0) return invertPositive ? 'trend-positive' : 'trend-negative';
+            return 'trend-neutral';
+        }
+
+        // Update dashboard with data
+        function updateDashboard(data) {
+            // Revenue YTD
+            document.getElementById('revenueYtd').textContent = formatRupiah(data.revenueYtd);
+            const revenueTrend = document.getElementById('revenueTrend');
+            revenueTrend.textContent = formatTrend(data.revenueYoyChange, '', '%');
+            revenueTrend.className = getTrendClass(data.revenueYoyChange);
+
+            // Gross Margin
+            document.getElementById('grossMargin').textContent = formatPercent(data.grossMargin);
+            const marginTrend = document.getElementById('marginTrend');
+            marginTrend.textContent = formatTrend(data.marginVsTarget, '', 'pp');
+            marginTrend.className = getTrendClass(data.marginVsTarget);
+
+            // Total Outlets
+            document.getElementById('totalOutlets').textContent = data.totalOutlets.toLocaleString();
+            const outletsTrend = document.getElementById('outletsTrend');
+            outletsTrend.textContent = formatTrend(data.newOutletsMonth, '+', '');
+            outletsTrend.className = getTrendClass(data.newOutletsMonth);
+
+            // Cash on Hand
+            document.getElementById('cashOnHand').textContent = formatRupiah(data.cashOnHand);
+            const cashTrend = document.getElementById('cashTrend');
+            cashTrend.textContent = formatTrend(data.cashWowChange / 1000000, 'Rp ', 'M');
+            cashTrend.className = getTrendClass(data.cashWowChange);
+
+            // AR Outstanding
+            document.getElementById('arOutstanding').textContent = formatRupiah(data.arOutstanding);
+            const arTrend = document.getElementById('arTrend');
+            arTrend.textContent = formatTrend(data.arOverduePercent, '', '%');
+            arTrend.className = 'trend-negative'; // Overdue is always negative signal
+
+            // Update timestamp
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Asia/Jakarta'
+            }) + ' WIB';
+        }
+
+        // Fetch data from API (placeholder - implement actual API calls)
+        async function fetchData() {
+            // TODO: Replace with actual API calls to:
+            // - Google Sheets API for DECK_METRICS
+            // - Looker API for real-time data
+            // - Direct database queries
+            
+            // Example structure for real implementation:
+            // const response = await fetch('/api/candid/metrics');
+            // const data = await response.json();
+            // return data;
+
+            // For now, return mock data with slight random variation
+            return {
+                ...MOCK_DATA,
+                revenueYtd: MOCK_DATA.revenueYtd * (0.98 + Math.random() * 0.04),
+                cashOnHand: MOCK_DATA.cashOnHand * (0.95 + Math.random() * 0.1)
+            };
+        }
+
+        // Refresh data
+        async function refreshData() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.innerHTML = '⏳ Loading...';
+            btn.disabled = true;
+
+            try {
+                const data = await fetchData();
+                updateDashboard(data);
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+            } finally {
+                btn.innerHTML = '🔄 Refresh Data';
+                btn.disabled = false;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDashboard(MOCK_DATA);
+        });
+
+        // Auto-refresh every 5 minutes
+        setInterval(refreshData, 5 * 60 * 1000);
+    </script>
+</body>
+</html>

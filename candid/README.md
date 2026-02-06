@@ -4,6 +4,27 @@ Candid Mixers team and work contacts.
 
 ---
 
+## Projects
+
+### candid-labs-tiered
+
+**Location:** `~/candid-labs-tiered`  
+**Branch:** `phase-1-tier-refactor`
+
+Tiered data architecture for Candid's Google Apps Script pipelines.
+
+**Architecture:** Raw → Cleaned → Ready
+
+**Implemented Spokes:**
+| Spoke | Phase | Ready Tables | Status |
+|-------|-------|--------------|--------|
+| sales_master | 1 | SALES_REVENUE_MASTER | ✅ Complete |
+| production_master | 2 | PRODUCTION_VOLUME_MASTER, INVENTORY_STATUS_MASTER | ✅ Implemented |
+
+**See:** `~/candid-labs-tiered/00_DOCTRINE/` for rules, `docs/runbook*.md` for execution guides.
+
+---
+
 ## JIDs
 
 *(Add Candid-related WhatsApp groups here)*
@@ -43,4 +64,4 @@ When responding in groups with JIDs from this folder:
 
 ---
 
-*Last updated: 2026-02-06*
+*Last updated: 2026-02-07*

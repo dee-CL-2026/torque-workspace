@@ -19,6 +19,13 @@ Keeping track of who's who so Dee doesn't have to.
 
 ---
 
+## Sinead's Friends
+
+### Kourtney
+- Art teacher at AIS Jakarta
+
+---
+
 ## School Contacts
 
 *(TBD)*
