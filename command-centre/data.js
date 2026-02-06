@@ -21,6 +21,14 @@ const AGENTS = [
     model: 'sonnet'
   },
   {
+    id: 'wa-monitor',
+    name: 'WA Monitor',
+    emoji: '📱',
+    role: 'WhatsApp Monitor',
+    status: 'ready',
+    model: 'flash'
+  },
+  {
     id: 'gas-dev',
     name: 'GAS Dev',
     emoji: '🔧',
