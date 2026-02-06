@@ -65,4 +65,18 @@ Upgrade to sonnet/opus only when task complexity requires it.
 
 ---
 
-*Updated: 2026-02-07 06:13*
+---
+
+## 4. Update heartbeat-state.json
+
+After completing checks, update `data/heartbeat-state.json` with:
+- `lastHeartbeat`: current timestamp (ISO 8601)
+- `lastChecks`: what was checked this cycle
+- `stats.heartbeatsToday`: increment if same day
+- `stats.lastProactiveAction`: brief note of what was done
+
+Then commit and push so Command Centre dashboard stays current.
+
+---
+
+*Updated: 2026-02-07 06:49*
