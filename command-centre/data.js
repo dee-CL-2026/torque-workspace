@@ -48,10 +48,8 @@ const AGENTS = [
 
 // Data source URLs (GitHub raw content)
 const DATA_SOURCES = {
-  tasks: 'data/tasks.json',
-  heartbeat: 'data/heartbeat-state.json',
-  // For GitHub Pages, use raw.githubusercontent.com
-  // tasks: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/main/data/tasks.json'
+  tasks: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/data/tasks.json',
+  heartbeat: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/data/heartbeat-state.json'
 };
 
 // Config

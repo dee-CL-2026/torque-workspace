@@ -1,3 +1,15 @@
+# USER.md - About the Household
+
+---
+
+## Sinead
+
+- **Role:** Deputy Head at AIS Jakarta
+- **Phone habits:** Often away from phone during school day — messages pile up
+- **Preference:** @ mention her for important things so they don't get skipped
+
+---
+
 # USER.md - About Dee
 
 - **Name:** Dee

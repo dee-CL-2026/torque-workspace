@@ -14,6 +14,7 @@
 - **Heritage:** English, Ghanaian, Welsh, German(?), Hungarian, Scottish (step)
 - **Spouse:** Sinead (British, born South Africa) — Deputy Head at international school
 - **Kids:** Evie & Connie
+- **Dog:** Marley 🐕 (golden retriever)
 
 ### Personality & Working Style
 
