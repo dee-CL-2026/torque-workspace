@@ -1,6 +1,16 @@
 # HEARTBEAT.md
 
-Checked every 5 minutes (test mode). Follow it strictly.
+Checked every 15 minutes. Follow it strictly.
+
+---
+
+## 0. Check Conversation State
+
+Before doing heavy work, check: **Am I in active conversation with Dee?**
+
+- **Active conversation** (message in last 10 min): Stay responsive. Do quick housekeeping only.
+- **Quiet period** (no message for 10+ min): Pick up pending Torque tasks.
+- **Downtime** (23:00-07:00 or Dee marked away): Work through task backlog.
 
 ---
 
@@ -18,6 +28,19 @@ Checked every 5 minutes (test mode). Follow it strictly.
    - **done** → Move row to `tasks-done.md`, remove from `tasks.md`
 
 3. If ALL tasks are in-progress or blocked with nothing actionable → HEARTBEAT_OK
+
+### Torque Task Delegation Rule
+
+For any task assigned to Torque that takes >30 seconds:
+
+1. **Can a sub-agent do it?** (no main-session context needed)
+   → Spawn sub-agent, reassign task, mark in-progress
+
+2. **Needs main session context?** (memory, conversation history, Dee interaction)
+   → Mark with `[downtime]` tag in Notes, do during quiet period
+
+3. **Quick task?** (<30s)
+   → Just do it inline
 
 ### Spawning sub-agents
 When spawning, use:
