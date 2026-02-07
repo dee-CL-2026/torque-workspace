@@ -30,6 +30,7 @@
 |---------|--------|----------------|----------|
 | **Daily morning brief** | Video 2 (Alex Finn), Video 5 (10 Use Cases), Video 6 (9 automations) | Already have 07:00 morning report in heartbeat. Enhance with: overnight activity, email summary, calendar, weather, news | 🔴 P1 |
 | **Customize to interests** | Video 5 (10 Use Cases) | Add Arsenal scores/news, Candid metrics, personal priorities to morning brief | 🟠 P2 |
+| **Daily idea generator** | Video 5 (10 Use Cases) | Give Dee one fresh idea every morning — business, automation, or personal | 🟠 P2 |
 
 **Next Step:** Enhance HEARTBEAT.md morning routine once email/calendar connected.
 
@@ -41,6 +42,7 @@
 |---------|--------|----------------|----------|
 | **Explicitly set proactive expectations** | Video 2 (Alex Finn), Video 5 (10 Use Cases) | Update SOUL.md/AGENTS.md with clear "be proactive, don't wait" instructions | 🟠 P2 |
 | **Overnight autonomy** | Video 5 (10 Use Cases) | Define tasks for overnight: research, drafts, analysis. Check in morning | 🟠 P2 |
+| **Scope → Build → Ship (nightly)** | Video 2 (Alex Finn) | Each night: scope tomorrow's work, build overnight, ship for morning review | 🟠 P2 |
 | **PR-based work delivery** | Video 2 (Alex Finn) | Already doing this with GitHub commits. Continue pattern. | ✅ Done |
 
 **Next Step:** Review and strengthen proactive instructions in workspace files.
