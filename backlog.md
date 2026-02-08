@@ -69,3 +69,13 @@ Items here are not assigned or scheduled. Promote to tasks.md when ready.
 - Mindstax: use for one week, track 3 habits before designing 2.0
 - Obsidian graph view exploration (janky on Chromebook)
 - Google Recorder → transcript pipeline for long voice notes
+- Add multi-chat selection to Telegram export script (restore old capability)
+
+## Feb 8 Evening Additions
+- Supervisor agent on Gemini (cheaper alternative to Opus heartbeat)
+- Session self-management (auto-compact at >80% context)
+- Candidlabs Command Centre fork (same core, human team assignees, auth)
+- TSLC domain for Cloudflare Tunnel
+- Brave usage tracker + Command Centre widget
+- Command Centre task CRUD (create/edit/assign from UI)
+- Command Centre pages/tabs for detail views

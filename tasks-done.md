@@ -52,3 +52,12 @@
 | D048 | Cost discipline rules written | Torque | 2026-02-08 | HEARTBEAT.md |
 | D049 | Job descs updated for single-list system | Torque | 2026-02-08 | Staff/Consultant split |
 | D050 | TG export chunked + processed | Torque | 2026-02-08 | 11 chunks, all findings extracted |
+| D051 | Task merge completed (3 batches → tasks.md) | Torque | 2026-02-08 | 71+54+71 lines |
+| D052 | SOUL.md updated with responsiveness rules | Torque | 2026-02-08 | Always acknowledge, reply tags |
+| D053 | Per-agent task files deleted, single-list live | Torque | 2026-02-08 | |
+| D054 | 12 idle agent crons disabled | Dee | 2026-02-08 | Were blocking queue |
+| D055 | Git push protection resolved | Dee | 2026-02-08 | Unblocked secrets |
+| D056 | .gitignore updated + sensitive files removed from tracking | ops | 2026-02-08 | |
+| D057 | GitHub CLI installed and authenticated | Dee | 2026-02-08 | gh auth login |
+| D058 | Full TG re-export completed | Dee | 2026-02-08 | 2,646 messages |
+| D059 | New messages extracted (589 msgs, Feb 8 afternoon) | Torque | 2026-02-08 | tmp/tg-findings/new-messages.md |

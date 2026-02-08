@@ -15,7 +15,7 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T008 | Get Finns co-branding contract | Dee | pending | 2026-02-06 | For budget data |
 | T009 | Share historical data from SKD | Dee | pending | 2026-02-05 | For Modern Trade assessment |
 | T010 | Get second SIM for WhatsApp bot | Dee | pending | 2026-02-02 | Dedicated bot number |
-| T011 | Set up Obsidian mobile + Git sync | Dee | pending | 2026-02-07 | [desk] |
+| T011 | Set up Obsidian mobile + Git sync | Dee | pending | 2026-02-07 | [desk] Deprioritised — using GitHub web + VS Code |
 | T012 | Install OpenClaw Browser Relay extension | Dee | pending | 2026-02-08 | [desk] Chrome Web Store |
 | T013 | Introduce Torque in Pizza Pasta Prosecco group | Dee | pending | 2026-02-08 | Mention @Torque to intro |
 | T014 | Get Anthropic pay-per-use API key | Dee | pending | 2026-02-07 | console.anthropic.com, unlocks Sonnet/Haiku |
@@ -45,6 +45,16 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T038 | Create WORKING.md template & wire into heartbeat | Torque | pending | 2026-02-08 | From Mission Control guide |
 | T039 | Update TG export script for delta mode | Torque | pending | 2026-02-08 | Track last msg ID, only export new |
 | T040 | Fix cross-channel messaging | analyst | pending | 2026-02-08 | TG→WA and vice versa |
+| T043 | Set up Cloudflare Tunnel for remote SSH | ops | pending | 2026-02-08 | Scope: transfer/point TSLC domain to Cloudflare, configure tunnel, test SSH from mobile. Dep: Dee to provide Squarespace login or transfer domain |
+| T044 | Set up mobile terminal access | ops | blocked | 2026-02-08 | Blocked on T043. Install Termux/JuiceSSH on phone, configure SSH to Chromebook via tunnel |
+| T045 | Confirm Cloudflare Pages deploy path (git-linked or wrangler) | ops | pending | 2026-02-08 | Need to verify torque-works.pages.dev connection |
+| T046 | Clone candidlabs-site repo locally | ops | pending | 2026-02-08 | Lost in powerwash |
+| T047 | Migrate candidlabs-site to Cloudflare Pages + Access | frontend | pending | 2026-02-08 | Business data shouldn't be public on GH Pages |
+| T048 | Command Centre layout fixes | frontend | pending | 2026-02-08 | Scroll, collapse empty, filter by assignee, links |
+| T049 | Build supervisor/ops-monitor agent | ops | pending | 2026-02-08 | Gemini, checks sessions_list, flags stuck tasks |
+| T050 | Investigate main heartbeat model routing | analyst | pending | 2026-02-08 | Config says gemini but heartbeat still polls Opus |
+| T051 | Update secretary cron for single-list system | secretary | pending | 2026-02-08 | Still referencing old per-agent task files |
+| T052 | Update TG export script for delta mode improvements | ops | pending | 2026-02-08 | Track last msg ID, incremental exports |
 
 ## Status Key
 - **pending** — not yet started
