@@ -6,16 +6,56 @@
     "done": 59,
     "backlog": 63
   },
-  "lastUpdated": "2026-02-08T21:52:03.624020",
+  "lastUpdated": "2026-02-08T21:53:34.701351",
   "byAssignee": {
-    "Dee": 17,
-    "Torque": 13,
-    "frontend": 7,
-    "gas-dev": 1,
-    "pa": 1,
-    "secretary": 3,
-    "analyst": 3,
-    "ops": 7
+    "Dee": {
+      "pending": 17,
+      "in-progress": 0,
+      "blocked": 0,
+      "total": 17
+    },
+    "Torque": {
+      "pending": 10,
+      "in-progress": 0,
+      "blocked": 3,
+      "total": 13
+    },
+    "frontend": {
+      "pending": 7,
+      "in-progress": 0,
+      "blocked": 0,
+      "total": 7
+    },
+    "gas-dev": {
+      "pending": 1,
+      "in-progress": 0,
+      "blocked": 0,
+      "total": 1
+    },
+    "pa": {
+      "pending": 1,
+      "in-progress": 0,
+      "blocked": 0,
+      "total": 1
+    },
+    "secretary": {
+      "pending": 2,
+      "in-progress": 0,
+      "blocked": 1,
+      "total": 3
+    },
+    "analyst": {
+      "pending": 3,
+      "in-progress": 0,
+      "blocked": 0,
+      "total": 3
+    },
+    "ops": {
+      "pending": 6,
+      "in-progress": 0,
+      "blocked": 1,
+      "total": 7
+    }
   },
   "byStatus": {
     "pending": 47,
