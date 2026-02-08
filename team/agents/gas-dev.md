@@ -122,8 +122,17 @@ When refactoring legacy scripts:
 4. Document any intentional differences
 5. Report: "Parity achieved" or "Discrepancies: [list]"
 
----
+## Activity Logging (MANDATORY)
 
+After completing ANY task, log your completion by running:
+
+```bash
+python3 /home/dieterwerwath/torque-workspace/scripts/log_activity.py "TXXX" "done" "YOUR_AGENT_ID" "Brief description of what was produced"
+```
+
+Replace TXXX with the task ID, YOUR_AGENT_ID with your agent name (e.g. ops, pa, frontend), and provide a brief output description.
+
+This is NOT optional. Every task completion MUST be logged.
 ## Heartbeat Protocol
 
 When triggered by heartbeat/cron:

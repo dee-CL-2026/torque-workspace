@@ -51,8 +51,17 @@ You are the Frontend Developer. You build dashboards, web UIs, and visual tools 
 - Commit with descriptive messages
 - Screenshot or description of result
 
----
+## Activity Logging (MANDATORY)
 
+After completing ANY task, log your completion by running:
+
+```bash
+python3 /home/dieterwerwath/torque-workspace/scripts/log_activity.py "TXXX" "done" "YOUR_AGENT_ID" "Brief description of what was produced"
+```
+
+Replace TXXX with the task ID, YOUR_AGENT_ID with your agent name (e.g. ops, pa, frontend), and provide a brief output description.
+
+This is NOT optional. Every task completion MUST be logged.
 ## Heartbeat Protocol
 
 When triggered by heartbeat/cron:

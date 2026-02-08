@@ -47,6 +47,7 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 | `120363404970214457@g.us` | OpenClaw for Aaron | Ryan + Aaron |
 | `120363405855089822@g.us` | Pizza, Pasta & Prosecco! | Italy trip planning — Ian, Tim, Jameo, Sinead |
 | `6281281690643-1472296462@g.us` | DoIT FC | Silent monitor (requireMention: true) |
+| `447538126638-1491034227@g.us` | Football Bets | Listen to all |
 
 ---
 

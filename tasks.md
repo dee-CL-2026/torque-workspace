@@ -22,7 +22,6 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T015 | Create YouTube playlist for Watch List | general | Dee | pending | 2026-02-05 | Public or unlisted |
 | T016 | Get email address for Torque | general | Dee | pending | 2026-02-05 | Candid or personal? |
 | T017 | Test-drive PA with a quick task | general | Dee | pending | 2026-02-05 |  |
-| T018 | Connect Google calendar | general | Torque | blocked | 2026-02-06 | Needs interactive auth [desk] |
 | T019 | Connect Outlook calendar | general | Torque | blocked | 2026-02-06 | Needs interactive auth [desk] |
 | T020 | Configure Anthropic Haiku/Sonnet as fallback | torque | Torque | blocked | 2026-02-08 | Blocked on T014 |
 | T021 | Italy trip planning support | general | Torque | pending | 2026-02-08 | Rome→Naples→Pompeii→Amalfi. Jun 22-Jul 13 |
@@ -33,7 +32,6 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T026 | Wire Command Centre to read from tasks.md | torque | frontend | pending | 2026-02-06 | Replace data/tasks.json |
 | T027 | Token usage tracking for Command Centre | torque | frontend | pending | 2026-02-05 |  |
 | T028 | Build Family Command Centre | torque | frontend | pending | 2026-02-07 | Watchlist, reading list, chat gateway |
-| T029 | Make Command Centre dynamic | torque | frontend | pending | 2026-02-07 | Live status, desk/mobile filter, rate limit HUD |
 | T030 | Deploy tiered scripts to GAS | candid | gas-dev | pending | 2026-02-05 | Via clasp, compare to legacy |
 | T031 | Set up daily morning briefing cron | torque | pa | pending | 2026-02-08 | 7-8am Jakarta, weather + tasks + urgent |
 | T032 | Scope nightly build workflow | general | Torque | pending | 2026-02-08 | Scope before bed, agent builds overnight, morning review |
@@ -42,7 +40,6 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T035 | Draft daily value-add idea prompt | general | Torque | pending | 2026-02-05 | Rotating: Candid/GoodDoctor/personal/family |
 | T036 | Activity log file creation | general | Torque | pending | 2026-02-06 | data/activity.json |
 | T037 | Set up scheduled messages in family chat | personal | Torque | pending | 2026-02-05 | Cron jobs |
-| T038 | Create WORKING.md template & wire into heartbeat | torque | Torque | pending | 2026-02-08 | From Mission Control guide |
 | T039 | Update TG export script for delta mode | torque | Torque | pending | 2026-02-08 | Track last msg ID, only export new |
 | T040 | Fix cross-channel messaging | general | analyst | pending | 2026-02-08 | TG→WA and vice versa |
 | T043 | Set up Cloudflare Tunnel for remote SSH | infra | ops | pending | 2026-02-08 | Scope: transfer/point TSLC domain to Cloudflare, configure tunnel, test SSH from mobile. Dep: Dee to provide Squarespace login or transfer domain |
@@ -78,6 +75,4 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 3. Secretary triages inbox and assigns
 4. Done tasks move to tasks-done.md
 5. IDs are sequential: T001, T002, etc.
-
-| T053 | Investigate Gemini sub-agent file write failures | torque | analyst | pending | 2026-02-08 | Agents process content but fail to call write tool. Need root cause + fix. |
 
