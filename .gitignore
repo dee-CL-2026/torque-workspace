@@ -1,1 +1,9 @@
 data/api-keys.md
+# Raw exports and chunks (contain API keys in chat history)
+tmp/
+vault/inbox/*.json
+vault/inbox/*.txt
+vault/inbox/batches/
+
+# API keys
+data/api-keys.md
