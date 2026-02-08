@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Family Command Centre</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="title-wrap">
+      <p class="eyebrow">Torque • Family</p>
+      <h1>Family Command Centre</h1>
+      <p class="subtitle">Shared watchlist, reading list, activities, and the chat gateway.</p>
+    </div>
+    <div class="status-card">
+      <div>
+        <p class="label">Household mode</p>
+        <p class="value" id="activeFilterLabel">All</p>
+      </div>
+      <div>
+        <p class="label">Items shown</p>
+        <p class="value" id="visibleCount">0</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="kids">Kids</button>
+    <button class="filter-btn" data-filter="adults">Adults</button>
+  </section>
+
+  <main class="grid">
+    <section class="card" id="watchlist">
+      <header>
+        <h2>Watchlist</h2>
+        <p>Family-friendly + adult-only picks.</p>
+      </header>
+      <div class="card-body" id="watchlistItems"></div>
+    </section>
+
+    <section class="card" id="reading">
+      <header>
+        <h2>Reading List</h2>
+        <p>Books, articles, and bedtime reads.</p>
+      </header>
+      <div class="card-body" id="readingItems"></div>
+    </section>
+
+    <section class="card" id="activities">
+      <header>
+        <h2>Activities</h2>
+        <p>Upcoming ideas for the week.</p>
+      </header>
+      <div class="card-body" id="activityItems"></div>
+    </section>
+
+    <section class="card" id="chat-gateway">
+      <header>
+        <h2>Chat Gateway</h2>
+        <p>Torque ↔ Kids via email (guardrails on).</p>
+      </header>
+      <div class="card-body" id="chatGateway"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Built for Dee + Sinead • Lightweight, mobile-first.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

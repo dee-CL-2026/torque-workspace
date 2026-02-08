@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0d1117; color: #e6edf3; width: 1080px; padding: 48px; }
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { font-size: 42px; font-weight: 900; background: linear-gradient(135deg, #58a6ff, #bc8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; }
+.header .sub { font-size: 16px; color: #8b949e; margin-top: 8px; }
+.header .credit { font-size: 13px; color: #6e7681; margin-top: 4px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 28px; }
+.card.full { grid-column: 1 / -1; }
+.card .num { font-size: 13px; font-weight: 700; color: #58a6ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.card h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+.card p { font-size: 15px; color: #8b949e; line-height: 1.6; }
+.card .emoji { font-size: 32px; margin-bottom: 12px; }
+.pill { display: inline-block; background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 14px; font-size: 13px; font-weight: 600; margin: 3px 4px 3px 0; }
+.highlight { color: #e6edf3; font-weight: 600; }
+.flow { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.flow-item { background: #1f6feb22; border: 1px solid #1f6feb44; border-radius: 12px; padding: 12px 20px; text-align: center; font-size: 14px; font-weight: 600; color: #58a6ff; }
+.flow-arrow { color: #30363d; font-size: 24px; }
+.secret { text-align: center; margin-top: 32px; padding: 32px; background: linear-gradient(135deg, #1f6feb11, #bc8cff11); border: 1px solid #bc8cff33; border-radius: 16px; }
+.secret h2 { font-size: 28px; background: linear-gradient(135deg, #58a6ff, #bc8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.secret p { color: #8b949e; font-size: 16px; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏗️ Mission Control Blueprint</h1>
+  <div class="sub">How to Build an AI Agent Squad with OpenClaw</div>
+  <div class="credit">Based on @pbteja1998's guide — Feb 2026</div>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="emoji">🧠</div>
+    <div class="num">Principle 1</div>
+    <h2>Identity & Roles</h2>
+    <p>Each agent gets a <span class="highlight">SOUL.md</span> — personality, skills, boundaries. Not generic assistants. <span class="highlight">Specialists</span> with clear responsibilities.</p>
+    <div style="margin-top:12px">
+      <span class="pill">Coordinator</span><span class="pill">Researcher</span><span class="pill">Writer</span><span class="pill">SEO</span><span class="pill">Analyst</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">💾</div>
+    <div class="num">Principle 2</div>
+    <h2>Persistent Memory</h2>
+    <p>Files > mental notes. Every agent wakes fresh — <span class="highlight">files ARE their memory</span>.</p>
+    <div style="margin-top:12px">
+      <span class="pill">WORKING.md</span><span class="pill">Daily Notes</span><span class="pill">MEMORY.md</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">💓</div>
+    <div class="num">Principle 3</div>
+    <h2>Heartbeat System</h2>
+    <p>Agents wake every <span class="highlight">15 minutes</span> via cron. Check for work → do it → sleep. <span class="highlight">Stagger</span> schedules so they don't collide.</p>
+    <div style="margin-top:12px">
+      <span class="pill">:00 Agent A</span><span class="pill">:05 Agent B</span><span class="pill">:10 Agent C</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">📋</div>
+    <div class="num">Principle 4</div>
+    <h2>Shared Task Board</h2>
+    <p>Central place for tasks with <span class="highlight">status, assignee, comments</span>. Agents claim work, update progress. Full history preserved.</p>
+    <div style="margin-top:12px">
+      <span class="pill">Pending</span><span class="pill">In Progress</span><span class="pill">Review</span><span class="pill">Done</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">📣</div>
+    <div class="num">Principle 5</div>
+    <h2>@Mentions & Collaboration</h2>
+    <p>Agents can <span class="highlight">ping each other</span>. Research agent finds data → mentions writer. Writer drafts → mentions reviewer. <span class="highlight">Async teamwork</span>.</p>
+  </div>
+
+  <div class="card">
+    <div class="emoji">💰</div>
+    <div class="num">Principle 6</div>
+    <h2>Smart Model Routing</h2>
+    <p>Expensive models for <span class="highlight">creative work</span>. Cheap/free models for <span class="highlight">heartbeats & routine</span>. Don't burn Opus tokens on "nothing to do".</p>
+    <div style="margin-top:12px">
+      <span class="pill">Opus → Strategy</span><span class="pill">Gemini Flash → Heartbeats</span>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="num">The Flow</div>
+    <div class="flow">
+      <div class="flow-item">⏰ Cron fires</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">🤖 Agent wakes</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">📖 Reads memory</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">📋 Checks tasks</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">⚡ Does work</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">💾 Updates files</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">😴 Sleeps</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="secret">
+  <h2>🔑 The Real Secret</h2>
+  <p>Treat AI agents like team members.<br>Roles. Memory. Heartbeats. Accountability.</p>
+</div>
+
+<div style="text-align:center; margin-top:20px; color:#6e7681; font-size:12px;">
+  Built on OpenClaw (open source) — openclaw.ai
+</div>
+
+</body>
+</html>

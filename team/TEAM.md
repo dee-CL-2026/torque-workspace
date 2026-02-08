@@ -9,6 +9,29 @@ Status key:
 - 💤 **Dormant** — Low priority, build when needed
 
 ---
+## Agent Roster & Type
+
+### Staff Agents
+These agents have cron heartbeats and are always active, performing routine checks and maintenance.
+- `secretary`
+- `ops`
+- `pa`
+
+### Consultant Agents
+These agents are spawned on-demand for specific tasks and do not have continuous cron heartbeats.
+- `analyst`
+- `customer-success`
+- `data-eng`
+- `docs-bot`
+- `finance`
+- `frontend`
+- `gas-dev`
+- `hr-ga`
+- `marketing`
+- `product`
+- `sales-ops`
+
+---
 
 ## Leadership
 

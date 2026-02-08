@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="dashboard">
-    
+
     <!-- Header -->
     <header class="header">
       <div class="header-left">
@@ -45,7 +45,7 @@
       </div>
       <div class="hud-item">
         <span class="hud-icon">📊</span>
-        <span class="hud-label">Active/Total</span>
+        <span class="hud-label">In-Progress/Total</span>
         <span class="hud-value" id="hud-tasks">—</span>
       </div>
       <div class="hud-item">
@@ -57,19 +57,19 @@
 
     <!-- Main Grid -->
     <main class="main-grid">
-      
+
       <!-- Left Column -->
       <div class="column-left">
-        
+
         <!-- Task Summary Cards -->
         <section class="task-summary">
-          <div class="summary-card active">
-            <div class="summary-number" id="active-count">-</div>
-            <div class="summary-label">Active</div>
+          <div class="summary-card pending">
+            <div class="summary-number" id="pending-count">-</div>
+            <div class="summary-label">Pending</div>
           </div>
-          <div class="summary-card backlog">
-            <div class="summary-number" id="backlog-count">-</div>
-            <div class="summary-label">Backlog</div>
+          <div class="summary-card inprogress">
+            <div class="summary-number" id="inprogress-count">-</div>
+            <div class="summary-label">In Progress</div>
           </div>
           <div class="summary-card blocked">
             <div class="summary-number" id="blocked-count">-</div>
@@ -79,29 +79,34 @@
             <div class="summary-number" id="done-count">-</div>
             <div class="summary-label">Done</div>
           </div>
+          <div class="summary-card backlog">
+            <div class="summary-number" id="backlog-count">-</div>
+            <div class="summary-label">Backlog</div>
+          </div>
         </section>
 
-        <!-- Tasks Row (3 columns: Active, Backlog, Blocked) -->
+        <!-- Tasks Row (3 columns: Pending, In Progress, Blocked) -->
         <div class="tasks-row">
-          <!-- Active Tasks -->
+          <!-- Pending Tasks -->
           <section class="card task-card">
-            <div class="card-header collapsible" data-section="active-tasks">
-              <h2>🔄 Active</h2>
+            <div class="card-header collapsible" data-section="pending-tasks">
+              <h2>📌 Pending</h2>
+              <span class="badge" id="pending-badge">0</span>
               <span class="collapse-icon">−</span>
             </div>
-            <div class="card-body scrollable" id="active-tasks">
+            <div class="card-body scrollable" id="pending-tasks">
               <div class="loading">Loading tasks...</div>
             </div>
           </section>
 
-          <!-- Backlog -->
+          <!-- In Progress Tasks -->
           <section class="card task-card">
-            <div class="card-header collapsible" data-section="backlog-tasks">
-              <h2>📥 Backlog</h2>
-              <span class="badge" id="backlog-badge">0</span>
+            <div class="card-header collapsible" data-section="inprogress-tasks">
+              <h2>🚧 In Progress</h2>
+              <span class="badge" id="inprogress-badge">0</span>
               <span class="collapse-icon">−</span>
             </div>
-            <div class="card-body scrollable" id="backlog-tasks">
+            <div class="card-body scrollable" id="inprogress-tasks">
               <div class="loading">Loading...</div>
             </div>
           </section>
@@ -109,7 +114,7 @@
           <!-- Blocked Tasks -->
           <section class="card task-card blocked-section">
             <div class="card-header collapsible" data-section="blocked-tasks">
-              <h2>🚧 Blocked</h2>
+              <h2>🚫 Blocked</h2>
               <span class="badge warning" id="blocked-badge">0</span>
               <span class="collapse-icon">−</span>
             </div>
@@ -124,25 +129,36 @@
       <!-- Right Column -->
       <div class="column-right">
 
-        <!-- Agent Roster -->
+        <!-- Assignee Breakdown -->
         <section class="card">
-          <div class="card-header collapsible" data-section="agent-roster">
-            <h2>👥 Agent Roster</h2>
+          <div class="card-header collapsible" data-section="assignee-breakdown">
+            <h2>🧑‍🤝‍🧑 Assignees</h2>
             <span class="collapse-icon">−</span>
           </div>
-          <div class="card-body" id="agent-roster">
-            <div class="loading">Loading agents...</div>
+          <div class="card-body" id="assignee-breakdown">
+            <div class="loading">Loading assignees...</div>
           </div>
         </section>
 
-        <!-- Ideas Section (NEW) -->
-        <section class="card ideas-card">
-          <div class="card-header collapsible" data-section="ideas-list">
-            <h2>💡 Ideas & Future</h2>
+        <!-- Staff vs Consultant Roster -->
+        <section class="card">
+          <div class="card-header collapsible" data-section="agent-roster">
+            <h2>👥 Roster</h2>
             <span class="collapse-icon">−</span>
           </div>
-          <div class="card-body scrollable" id="ideas-list">
-            <div class="loading">Loading ideas...</div>
+          <div class="card-body" id="agent-roster">
+            <div class="loading">Loading roster...</div>
+          </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="card">
+          <div class="card-header collapsible" data-section="quick-links">
+            <h2>🔗 Raw Files</h2>
+            <span class="collapse-icon">−</span>
+          </div>
+          <div class="card-body" id="quick-links">
+            <div class="loading">Loading links...</div>
           </div>
         </section>
 
@@ -154,6 +170,17 @@
           </div>
           <div class="card-body scrollable" id="recent-activity">
             <div class="loading">Loading...</div>
+          </div>
+        </section>
+
+        <!-- Rate Limit HUD -->
+        <section class="card">
+          <div class="card-header collapsible" data-section="rate-limits">
+            <h2>📈 Rate Limit HUD</h2>
+            <span class="collapse-icon">−</span>
+          </div>
+          <div class="card-body" id="rate-limits">
+            <div class="loading">Loading limits...</div>
           </div>
         </section>
 

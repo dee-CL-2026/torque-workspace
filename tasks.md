@@ -1,52 +1,69 @@
-# Tasks
+# Tasks — Single Source of Truth
 
-Active tasks only. Completed tasks move to `tasks-done.md`.
+All tasks live here. Agents filter by their name in the Assigned column.
+Secretary triages and assigns. Done tasks move to tasks-done.md.
 
-| Task | Assigned | Status | Added | Notes |
-|------|----------|--------|-------|-------|
-| Get Anthropic pay-per-use API key | Dee | pending | 2026-02-07 | [desk] console.anthropic.com — unlocks Haiku/Sonnet for sub-agents |
-| Send 2024-2025 financial data to Anders | Dee | pending | 2026-02-07 | From Anders call action items |
-| Ask Ryan for pitch deck + 3 marketing scenarios | Dee | pending | 2026-02-07 | From Anders call |
-| Follow up: Teddy (KKS) | Dee | pending | 2026-02-07 | From Anders call |
-| Follow up: PKF (Cheryl) | Dee | pending | 2026-02-07 | From Anders call |
-| Follow up: Jules (zero cap accounts) | Dee | pending | 2026-02-07 | From Anders call |
-| Push SKD for sales data + road show data | Dee | pending | 2026-02-07 | From Anders call |
-| Get Ferry involved in all groups | Dee | pending | 2026-02-07 | Internal team management |
-| Connect Google calendar | Torque | pending | 2026-02-07 | [downtime] Needs interactive auth setup |
-| Connect Outlook calendar | Torque | pending | 2026-02-07 | [downtime] Needs interactive auth setup |
-| Get Finns co-branding contract | Dee | pending | 2026-02-07 | For budget data |
-| Set up Obsidian mobile + Git sync | Dee | pending | 2026-02-07 | [desk] For vault access from phone |
-| Set up Brave Search API | Dee | pending | 2026-02-07 | [desk] https://api.search.brave.com/ — needs card even for free tier |
-| Research GPT/Codex integration options | Torque | in-progress | 2026-02-07 | Reassigned from analyst — doing via web research |
-| Analyze YouTube: Command Centre patterns | Torque | pending | 2026-02-07 | Reassigned from analyst — need video link |
-| Make Command Centre dynamic | frontend | pending | 2026-02-07 | Requirements: 1) Live subagent status, 2) tasks.md integration, 3) desk/mobile filter, 4) Rate limit HUD, 5) Quick access links, 6) Output file links on task completion |
-| Set up meeting prep automation | secretary | pending | 2026-02-07 | Blocked on calendar integration. See team/agents/secretary.md |
-| Build Family Command Centre | frontend | pending | 2026-02-07 | Modules: watchlist, reading list, activities, **chat gateway** (Torque↔kids via email w/ guardrails). Family filters (kids vs adults). Simpler than main CC |
-| Complete Telegram export for chat history | Dee | pending | 2026-02-07 | [desk] In progress — auth blocked when code sent via Telegram. Run manually in terminal |
-| Get second SIM for WhatsApp bot | Dee | pending | 2026-02-07 | Dedicated bot number — avoids conflicts with personal WhatsApp |
-
----
+| ID | Task | Assigned | Status | Added | Notes |
+|----|------|----------|--------|-------|-------|
+| T001 | Send 2024-2025 financial data to Anders | Dee | pending | 2026-02-06 | From Anders call |
+| T002 | Ask Ryan for pitch deck + 3 marketing scenarios | Dee | pending | 2026-02-06 | From Anders call |
+| T003 | Follow up: Teddy (KKS) | Dee | pending | 2026-02-06 | |
+| T004 | Follow up: PKF (Cheryl) | Dee | pending | 2026-02-06 | |
+| T005 | Follow up: Jules (zero cap accounts) | Dee | pending | 2026-02-06 | |
+| T006 | Push SKD for sales data + road show data | Dee | pending | 2026-02-06 | |
+| T007 | Get Ferry involved in all groups | Dee | pending | 2026-02-06 | |
+| T008 | Get Finns co-branding contract | Dee | pending | 2026-02-06 | For budget data |
+| T009 | Share historical data from SKD | Dee | pending | 2026-02-05 | For Modern Trade assessment |
+| T010 | Get second SIM for WhatsApp bot | Dee | pending | 2026-02-02 | Dedicated bot number |
+| T011 | Set up Obsidian mobile + Git sync | Dee | pending | 2026-02-07 | [desk] |
+| T012 | Install OpenClaw Browser Relay extension | Dee | pending | 2026-02-08 | [desk] Chrome Web Store |
+| T013 | Introduce Torque in Pizza Pasta Prosecco group | Dee | pending | 2026-02-08 | Mention @Torque to intro |
+| T014 | Get Anthropic pay-per-use API key | Dee | pending | 2026-02-07 | console.anthropic.com, unlocks Sonnet/Haiku |
+| T015 | Create YouTube playlist for Watch List | Dee | pending | 2026-02-05 | Public or unlisted |
+| T016 | Get email address for Torque | Dee | pending | 2026-02-05 | Candid or personal? |
+| T017 | Test-drive PA with a quick task | Dee | pending | 2026-02-05 | |
+| T018 | Connect Google calendar | Torque | blocked | 2026-02-06 | Needs interactive auth [desk] |
+| T019 | Connect Outlook calendar | Torque | blocked | 2026-02-06 | Needs interactive auth [desk] |
+| T020 | Configure Anthropic Haiku/Sonnet as fallback | Torque | blocked | 2026-02-08 | Blocked on T014 |
+| T021 | Italy trip planning support | Torque | pending | 2026-02-08 | Rome→Naples→Pompeii→Amalfi. Jun 22-Jul 13 |
+| T022 | Process YouTube watchlist (7 videos) | Torque | pending | 2026-02-06 | Pull transcripts, summarize |
+| T023 | Set up Whisper transcription reliably | Torque | pending | 2026-02-08 | whisper-cli keeps failing between sessions |
+| T024 | Create Mission Control infographic (PNG) | Torque | pending | 2026-02-08 | Chromium now installed, HTML at tmp/infographic.html |
+| T025 | Improve Command Centre layout | frontend | pending | 2026-02-06 | Side-by-side, scrollable, channel bar |
+| T026 | Wire Command Centre to read from tasks.md | frontend | pending | 2026-02-06 | Replace data/tasks.json |
+| T027 | Token usage tracking for Command Centre | frontend | pending | 2026-02-05 | |
+| T028 | Build Family Command Centre | frontend | pending | 2026-02-07 | Watchlist, reading list, chat gateway |
+| T029 | Make Command Centre dynamic | frontend | pending | 2026-02-07 | Live status, desk/mobile filter, rate limit HUD |
+| T030 | Deploy tiered scripts to GAS | gas-dev | pending | 2026-02-05 | Via clasp, compare to legacy |
+| T031 | Set up daily morning briefing cron | pa | pending | 2026-02-08 | 7-8am Jakarta, weather + tasks + urgent |
+| T032 | Scope nightly build workflow | Torque | pending | 2026-02-08 | Scope before bed, agent builds overnight, morning review |
+| T033 | Set up meeting prep automation | secretary | blocked | 2026-02-07 | Blocked on calendar integration |
+| T034 | Audit Drive structure and consolidate | secretary | pending | 2026-02-05 | |
+| T035 | Draft daily value-add idea prompt | Torque | pending | 2026-02-05 | Rotating: Candid/GoodDoctor/personal/family |
+| T036 | Activity log file creation | Torque | pending | 2026-02-06 | data/activity.json |
+| T037 | Set up scheduled messages in family chat | Torque | pending | 2026-02-05 | Cron jobs |
+| T038 | Create WORKING.md template & wire into heartbeat | Torque | pending | 2026-02-08 | From Mission Control guide |
+| T039 | Update TG export script for delta mode | Torque | pending | 2026-02-08 | Track last msg ID, only export new |
+| T040 | Fix cross-channel messaging | analyst | pending | 2026-02-08 | TG→WA and vice versa |
 
 ## Status Key
-- **pending** — assigned, not yet started
+- **pending** — not yet started
 - **in-progress** — actively being worked
-- **blocked** — waiting on something (note blocker in Notes)
+- **blocked** — waiting on something
 - **done** — ready to move to tasks-done.md
 
 ## Assignees
 - **Dee** — Human tasks, relationships, approvals
-- **Torque** — Orchestration, direct work
-- **gas-dev** — GAS scripts, Candid Labs, data pipelines
-- **frontend** — Dashboards, HTML/CSS/JS
-- **analyst** — Research, data analysis, mapping
-- **secretary** — Meeting notes, scheduling
-- *Others from team/TEAM.md as needed*
+- **Torque** — Orchestration, spawning, decisions
+- **secretary** — Triage, scheduling
+- **pa** — Briefings, memory, personal tasks
+- **ops** — System health, git, monitoring
+- **docs-bot** — OpenClaw documentation lookup
+- **Consultants** (spawned on-demand): analyst, frontend, gas-dev, data-eng, finance, hr-ga, sales-ops, marketing, customer-success, product
 
 ## Rules
-1. New tasks go here, assign immediately
-2. When complete, move entire row to `tasks-done.md`
-3. Keep this file lean — only active work
-
----
-
-*Updated: 2026-02-07 06:30*
+1. Single source of truth — no per-agent task files
+2. Each agent reads this file and filters by their name
+3. Secretary triages inbox and assigns
+4. Done tasks move to tasks-done.md
+5. IDs are sequential: T001, T002, etc.

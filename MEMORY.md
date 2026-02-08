@@ -204,6 +204,54 @@ If OpenClaw stops responding after model change:
 
 **Get API key:** https://aistudio.google.com/app/apikey
 
+**CRITICAL: Base URL must include /v1beta:**
+```
+"baseUrl": "https://generativelanguage.googleapis.com/v1beta"
+```
+Without `/v1beta` → 404 errors. Models array must be objects `{id, name}` not strings.
+
+**Current API key (Feb 8):** AIzaSyDE1V8i1yLpbrMoFayHM0kVFeX6hRhBSIc
+(Previous key leaked via chat export — Google auto-blocks leaked keys)
+**Gemini billing enabled (Feb 8):** Wise virtual card linked, £5/month budget alert set.
+
+### OpenAI Provider (Added Feb 8)
+- Built-in provider — no `models.providers` entry needed
+- Auth: `openai:manual` profile (via `openclaw models auth paste-token --provider openai`)
+- Models in allowlist: `openai/gpt-4o`, `openai/gpt-4.1`
+- Budget: $5 initial, auto-recharge to $10, $5/month cap
+- Use for: coding tasks (gas-dev, frontend, data-eng agents)
+
+### Brave Search API (Added Feb 8)
+- Key: `BSAWQWDjfYZwPulBdepvN0GwQBQz7qq`
+- Added via `~/.openclaw/.env` (not config file)
+- Free tier: 2,000 queries/month
+
+### Three-Engine Architecture
+- 🧠 Opus — main session (MAX subscription)
+- ⚡ Gemini Flash — sub-agents & heartbeats (paid tier, pennies)
+- 🤖 GPT-4o — coding tasks ($5/month cap)
+- 🔍 Brave Search — web research (free, 2K/month)
+
+### Task Bucket System (Built Feb 8)
+- `tasks.md` → master inbox (all tasks land here)
+- `team/tasks/{agent-id}.md` → per-agent buckets (14 files)
+- `backlog.md` → unprioritized ideas
+- `tasks-done.md` → archive
+- Secretary agent triages: reads tasks.md → distributes to buckets
+- Flow: Intake → tasks.md → team/tasks/ → tasks-done.md
+
+### Cross-Channel Messaging Limitation
+- Cannot send WA from TG session (or vice versa) — "Cross-context messaging denied"
+- Sub-agents inherit parent channel binding
+- Workaround: Dee messages on target channel when cross-channel action needed
+- Research task assigned to analyst
+
+### Safe Config Commands
+- `openclaw models auth paste-token --provider {name}` — auth only, safe
+- `echo 'KEY=val' >> ~/.openclaw/.env` — env var, safe
+- `gateway config.patch` (tool) — surgical, safe
+- **AVOID**: `openclaw onboard` (full wizard), direct file copy, `config.apply` with full JSON
+
 ---
 
 *Last updated: 2026-02-07*
