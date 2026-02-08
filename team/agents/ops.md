@@ -36,7 +36,7 @@ You handle operations for Candid Mixers. Supply chain, production coordination, 
 After completing ANY task, log your completion by running:
 
 ```bash
-python3 /home/dieterwerwath/torque-workspace/scripts/log_activity.py "TXXX" "done" "YOUR_AGENT_ID" "Brief description of what was produced"
+python3 /home/dieterwerwath/torque-workspace/scripts/log_activity.py "TXXX" "done" "YOUR_AGENT_ID" "Brief description" "/path/to/deliverable"
 ```
 
 Replace TXXX with the task ID, YOUR_AGENT_ID with your agent name (e.g. ops, pa, frontend), and provide a brief output description.

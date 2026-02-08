@@ -1,12 +1,12 @@
 {
   "summary": {
-    "pending": 25,
+    "pending": 21,
     "in-progress": 0,
     "blocked": 4,
-    "done": 17,
+    "done": 25,
     "backlog": 0
   },
-  "lastUpdated": "2026-02-09T00:38:13.218466",
+  "lastUpdated": "2026-02-09T00:50:51.021715",
   "tasks": [
     {
       "id": "T001",
@@ -126,15 +126,6 @@
       "notes": "Blocked on T014"
     },
     {
-      "id": "T021",
-      "title": "Italy trip planning support",
-      "project": "general",
-      "assigned": "Torque",
-      "status": "pending",
-      "added": "2026-02-08",
-      "notes": "Rome\u2192Naples\u2192Pompeii\u2192Amalfi. Jun 22-Jul 13"
-    },
-    {
       "id": "T022",
       "title": "Process YouTube watchlist (7 videos)",
       "project": "general",
@@ -151,24 +142,6 @@
       "status": "pending",
       "added": "2026-02-08",
       "notes": "whisper-cli keeps failing between sessions"
-    },
-    {
-      "id": "T024",
-      "title": "Create Mission Control infographic (PNG)",
-      "project": "general",
-      "assigned": "Torque",
-      "status": "pending",
-      "added": "2026-02-08",
-      "notes": "Chromium now installed, HTML at tmp/infographic.html"
-    },
-    {
-      "id": "T025",
-      "title": "Improve Command Centre layout",
-      "project": "torque",
-      "assigned": "frontend",
-      "status": "pending",
-      "added": "2026-02-06",
-      "notes": "Side-by-side, scrollable, channel bar"
     },
     {
       "id": "T026",
@@ -225,15 +198,6 @@
       "notes": "Cron jobs"
     },
     {
-      "id": "T039",
-      "title": "Update TG export script for delta mode",
-      "project": "torque",
-      "assigned": "Torque",
-      "status": "pending",
-      "added": "2026-02-08",
-      "notes": "Track last msg ID, only export new"
-    },
-    {
       "id": "T043",
       "title": "Set up Cloudflare Tunnel for remote SSH",
       "project": "infra",
@@ -268,6 +232,30 @@
       "status": "pending",
       "added": "2026-02-08",
       "notes": "Track last msg ID, incremental exports"
+    },
+    {
+      "id": "ID",
+      "title": "Task",
+      "project": "Project",
+      "assigned": "Assigned",
+      "status": "Status",
+      "completed": "Completed"
+    },
+    {
+      "id": "---",
+      "title": "---",
+      "project": "---",
+      "assigned": "---",
+      "status": "---",
+      "completed": "---"
+    },
+    {
+      "id": "T061",
+      "title": "Dashboard: Spawn Codex to fix `dash-metrics.json` and `app.js` to populate task arrays and fix assignee display.",
+      "project": "dashboard",
+      "assigned": "Codex",
+      "status": "done",
+      "completed": "2026-02-08"
     },
     {
       "id": "T018",
@@ -323,7 +311,7 @@
       "project": "torque",
       "assigned": "secretary",
       "status": "done",
-      "completed": "2026-02-08"
+      "completed": "2026-02-09"
     },
     {
       "id": "T046",
@@ -331,7 +319,7 @@
       "project": "candid",
       "assigned": "ops",
       "status": "done",
-      "completed": "2026-02-08"
+      "completed": "2026-02-09"
     },
     {
       "id": "T045",
@@ -339,7 +327,7 @@
       "project": "infra",
       "assigned": "ops",
       "status": "done",
-      "completed": "2026-02-08"
+      "completed": "2026-02-09"
     },
     {
       "id": "T048",
@@ -347,7 +335,7 @@
       "project": "torque",
       "assigned": "frontend",
       "status": "done",
-      "completed": "2026-02-08"
+      "completed": "2026-02-09"
     },
     {
       "id": "T031",
@@ -371,7 +359,7 @@
       "project": "general",
       "assigned": "Torque",
       "status": "pending",
-      "completed": "2026-02-05"
+      "completed": "2026-02-08"
     },
     {
       "id": "T040",
@@ -404,6 +392,46 @@
       "assigned": "ops",
       "status": "pending",
       "completed": "2026-02-08"
+    },
+    {
+      "id": "T021",
+      "title": "Italy trip planning support",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "done",
+      "completed": "2026-02-09"
+    },
+    {
+      "id": "T024",
+      "title": "Create Mission Control infographic (PNG)",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "done",
+      "completed": "2026-02-09"
+    },
+    {
+      "id": "T025",
+      "title": "Improve Command Centre layout",
+      "project": "torque",
+      "assigned": "frontend",
+      "status": "done",
+      "completed": "2026-02-09"
+    },
+    {
+      "id": "T034",
+      "title": "Audit Drive structure and consolidate",
+      "project": "general",
+      "assigned": "secretary",
+      "status": "done",
+      "completed": "2026-02-09"
+    },
+    {
+      "id": "T039",
+      "title": "Update TG export script for delta mode",
+      "project": "torque",
+      "assigned": "Torque",
+      "status": "done",
+      "completed": "2026-02-09"
     }
   ],
   "assignee_counts": {
@@ -411,8 +439,11 @@
     "Torque": 12,
     "frontend": 5,
     "gas-dev": 1,
-    "secretary": 2,
+    "secretary": 3,
     "ops": 9,
+    "Assigned": 1,
+    "---": 1,
+    "Codex": 1,
     "analyst": 3,
     "pa": 2,
     "docs-bot": 1

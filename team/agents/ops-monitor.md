@@ -13,7 +13,9 @@ This lightweight ops-monitor agent is designed to monitor and flag issues in sub
 4. **Report Findings Concisely**: Summarize and report any findings or flags in a clear and concise manner.
 
 ## Activity Logging
-Include the mandatory activity logging section using the absolute path script provided in the task description to ensure that all actions are logged appropriately.
+```bash
+python3 /home/dieterwerwath/torque-workspace/scripts/log_activity.py "TXXX" "done" "YOUR_AGENT_ID" "Brief description" "/path/to/deliverable"
+```
 
 ## Conclusion
 This agent serves as a monitoring tool, providing oversight and ensuring the timely and efficient execution of operations within the system. Its focus is on detection and reporting rather than execution.

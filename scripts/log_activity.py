@@ -8,10 +8,11 @@ if not path.exists():
     path.write_text("[]")
 
 if len(sys.argv) < 5:
-    print(f"Usage: {sys.argv[0]} TASK_ID STATUS AGENT_ID OUTPUT")
+    print(f"Usage: {sys.argv[0]} TASK_ID STATUS AGENT_ID OUTPUT [DELIVERABLE]")
     sys.exit(1)
 
 task, status, agent, output = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+deliverable = sys.argv[5] if len(sys.argv) >= 6 else ""
 with path.open("r+") as f:
     fcntl.flock(f, fcntl.LOCK_EX)
     try:
@@ -21,7 +22,8 @@ with path.open("r+") as f:
     log.append({
         "task": task, "status": status, "agent": agent,
         "timestamp": datetime.datetime.now().isoformat(),
-        "output": output
+        "output": output,
+        "deliverable": deliverable
     })
     f.seek(0)
     f.truncate()

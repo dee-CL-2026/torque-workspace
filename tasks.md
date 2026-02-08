@@ -24,20 +24,15 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T017 | Test-drive PA with a quick task | general | Dee | pending | 2026-02-05 |  |
 | T019 | Connect Outlook calendar | general | Torque | blocked | 2026-02-06 | Needs interactive auth [desk] |
 | T020 | Configure Anthropic Haiku/Sonnet as fallback | torque | Torque | blocked | 2026-02-08 | Blocked on T014 |
-| T021 | Italy trip planning support | general | Torque | pending | 2026-02-08 | Rome→Naples→Pompeii→Amalfi. Jun 22-Jul 13 |
 | T022 | Process YouTube watchlist (7 videos) | general | Torque | pending | 2026-02-06 | Pull transcripts, summarize |
 | T023 | Set up Whisper transcription reliably | general | Torque | pending | 2026-02-08 | whisper-cli keeps failing between sessions |
-| T024 | Create Mission Control infographic (PNG) | general | Torque | pending | 2026-02-08 | Chromium now installed, HTML at tmp/infographic.html |
-| T025 | Improve Command Centre layout | torque | frontend | pending | 2026-02-06 | Side-by-side, scrollable, channel bar |
 | T026 | Wire Command Centre to read from tasks.md | torque | frontend | pending | 2026-02-06 | Replace data/tasks.json |
 | T027 | Token usage tracking for Command Centre | torque | frontend | pending | 2026-02-05 |  |
 | T028 | Build Family Command Centre | torque | frontend | pending | 2026-02-07 | Watchlist, reading list, chat gateway |
 | T030 | Deploy tiered scripts to GAS | candid | gas-dev | pending | 2026-02-05 | Via clasp, compare to legacy |
 | T033 | Set up meeting prep automation | general | secretary | blocked | 2026-02-07 | Blocked on calendar integration |
-| T034 | Audit Drive structure and consolidate | general | secretary | pending | 2026-02-05 |  |
 | T036 | Activity log file creation | general | Torque | pending | 2026-02-06 | data/activity.json |
 | T037 | Set up scheduled messages in family chat | personal | Torque | pending | 2026-02-05 | Cron jobs |
-| T039 | Update TG export script for delta mode | torque | Torque | pending | 2026-02-08 | Track last msg ID, only export new |
 | T043 | Set up Cloudflare Tunnel for remote SSH | infra | ops | pending | 2026-02-08 | Scope: transfer/point TSLC domain to Cloudflare, configure tunnel, test SSH from mobile. Dep: Dee to provide Squarespace login or transfer domain |
 | T044 | Set up mobile terminal access | infra | ops | blocked | 2026-02-08 | Blocked on T043. Install Termux/JuiceSSH on phone, configure SSH to Chromebook via tunnel |
 | T047 | Migrate candidlabs-site to Cloudflare Pages + Access | candid | frontend | pending | 2026-02-08 | Business data shouldn't be public on GH Pages |
