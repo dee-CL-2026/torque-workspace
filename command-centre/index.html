@@ -84,6 +84,11 @@
         <span class="hud-label">Blocked</span>
         <span class="hud-value" id="hud-blocked">—</span>
       </div>
+      <div class="hud-item">
+        <span class="hud-icon">⏱️</span>
+        <span class="hud-label">Last Updated</span>
+        <span class="hud-value" id="hud-updated">—</span>
+      </div>
     </div>
 
     <!-- Main Grid -->
@@ -94,32 +99,43 @@
 
         <!-- Task Summary Cards -->
         <section class="task-summary">
-          <div class="summary-card pending">
+          <div class="summary-card pending" data-scroll-target="pending-section">
             <div class="summary-number" id="pending-count">-</div>
             <div class="summary-label">Pending</div>
           </div>
-          <div class="summary-card inprogress">
+          <div class="summary-card inprogress" data-scroll-target="inprogress-section">
             <div class="summary-number" id="inprogress-count">-</div>
             <div class="summary-label">In Progress</div>
           </div>
-          <div class="summary-card blocked">
+          <div class="summary-card blocked" data-scroll-target="blocked-section">
             <div class="summary-number" id="blocked-count">-</div>
             <div class="summary-label">Blocked</div>
           </div>
-          <div class="summary-card done">
+          <div class="summary-card done" data-scroll-target="recent-activity">
             <div class="summary-number" id="done-count">-</div>
             <div class="summary-label">Done</div>
           </div>
-          <div class="summary-card backlog">
+          <div class="summary-card backlog" data-scroll-target="ideas-backlog">
             <div class="summary-number" id="backlog-count">-</div>
             <div class="summary-label">Backlog</div>
           </div>
         </section>
 
+        <!-- Project Filter -->
+        <section class="project-filter" id="project-filter">
+          <button class="filter-chip active" data-project="all">All</button>
+          <button class="filter-chip" data-project="torque">Torque</button>
+          <button class="filter-chip" data-project="candid">Candid</button>
+          <button class="filter-chip" data-project="tslc">TSLC</button>
+          <button class="filter-chip" data-project="infra">Infra</button>
+          <button class="filter-chip" data-project="personal">Personal</button>
+          <button class="filter-chip" data-project="general">General</button>
+        </section>
+
         <!-- Tasks Row (3 columns: Pending, In Progress, Blocked) -->
         <div class="tasks-row">
           <!-- Pending Tasks -->
-          <section class="card task-card">
+          <section class="card task-card" id="pending-section">
             <div class="card-header collapsible" data-section="pending-tasks">
               <h2>📌 Pending</h2>
               <span class="badge" id="pending-badge">0</span>
@@ -131,7 +147,7 @@
           </section>
 
           <!-- In Progress Tasks -->
-          <section class="card task-card">
+          <section class="card task-card" id="inprogress-section">
             <div class="card-header collapsible" data-section="inprogress-tasks">
               <h2>🚧 In Progress</h2>
               <span class="badge" id="inprogress-badge">0</span>
@@ -143,7 +159,7 @@
           </section>
 
           <!-- Blocked Tasks -->
-          <section class="card task-card blocked-section">
+          <section class="card task-card blocked-section" id="blocked-section">
             <div class="card-header collapsible" data-section="blocked-tasks">
               <h2>🚫 Blocked</h2>
               <span class="badge warning" id="blocked-badge">0</span>
@@ -182,6 +198,28 @@
           </div>
         </section>
 
+        <!-- Ideas / Backlog Panel -->
+        <section class="card" id="ideas-backlog">
+          <div class="card-header collapsible" data-section="backlog-panel">
+            <h2>💡 Ideas & Backlog</h2>
+            <span class="collapse-icon">−</span>
+          </div>
+          <div class="card-body" id="backlog-panel">
+            <div class="loading">Loading backlog...</div>
+          </div>
+        </section>
+
+        <!-- Activity Feed Placeholder -->
+        <section class="card">
+          <div class="card-header">
+            <h2>🧭 Activity Feed</h2>
+          </div>
+          <div class="card-body" id="activity-feed">
+            <div class="activity-placeholder">Activity Feed — coming soon</div>
+            <div class="activity-placeholder-time" id="activity-updated">Last updated: —</div>
+          </div>
+        </section>
+
         <!-- Staff vs Consultant Roster -->
         <section class="card">
           <div class="card-header collapsible" data-section="agent-roster">
@@ -207,7 +245,7 @@
         <!-- Recent Activity -->
         <section class="card">
           <div class="card-header collapsible" data-section="recent-activity">
-            <h2>✅ Recently Done (Last 5)</h2>
+            <h2>✅ Recently Done (Last 10)</h2>
             <span class="collapse-icon">−</span>
           </div>
           <div class="card-body scrollable fixed-scroll" id="recent-activity">

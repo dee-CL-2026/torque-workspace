@@ -4,7 +4,11 @@
 
 let tasks = [];
 let tasksDone = [];
+let allTasks = [];
 let backlogCount = 0;
+let backlogBreakdown = [];
+let backlogByProject = null;
+let activeProject = 'all';
 let teamRoster = { staff: [], consultants: [], roles: {} };
 let heartbeatState = null;
 let rateLimitData = null;
@@ -24,6 +28,8 @@ async function init() {
 
   setupCollapsibleSections();
   setupViewToggle();
+  setupProjectFilter();
+  setupSummaryScroll();
   renderQuickLinks();
   renderRateLimits();
   await loadData();
@@ -60,6 +66,35 @@ function setupViewToggle() {
 
   const savedView = localStorage.getItem('commandCentreView');
   if (savedView) document.querySelector(`[data-view="${savedView}"]`)?.click();
+}
+
+function setupProjectFilter() {
+  const container = document.getElementById('project-filter');
+  if (!container) return;
+
+  container.querySelectorAll('.filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      container.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeProject = btn.getAttribute('data-project') || 'all';
+      renderAllViews();
+    });
+  });
+}
+
+function setupSummaryScroll() {
+  document.querySelectorAll('.summary-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const targetId = card.getAttribute('data-scroll-target');
+      if (!targetId) return;
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.add('highlighted');
+      setTimeout(() => target.classList.remove('highlighted'), 1500);
+    });
+  });
 }
 
 async function loadData() {
@@ -105,13 +140,8 @@ async function loadData() {
       rateLimitData = DEFAULT_RATE_LIMITS;
     }
 
-    renderTasksBoard();
-    renderAssignees();
-    renderStatusBreakdown();
+    renderAllViews();
     renderRoster();
-    renderRecentDone();
-    updateSummaryCounts();
-    updateHUD();
     updateHeartbeatStatus();
     renderRateLimits();
     updateDataTimestamp();
@@ -128,6 +158,7 @@ function applyMetrics(metrics) {
 
   const rawTasks = extractTaskList(metrics);
   const normalizedTasks = rawTasks.map(normalizeTask).filter(t => t.title || t.id);
+  allTasks = normalizedTasks;
   tasks = normalizedTasks.filter(t => ['pending', 'in-progress', 'blocked'].includes(t.status));
 
   const doneFromMetrics = extractDoneList(metrics);
@@ -136,6 +167,8 @@ function applyMetrics(metrics) {
 
   const backlogFromMetrics = summary.backlog ?? metrics.backlog ?? metrics.backlogCount;
   backlogCount = Number.isFinite(backlogFromMetrics) ? backlogFromMetrics : normalizedTasks.filter(t => t.status === 'backlog').length;
+  backlogBreakdown = normalizeBacklog(metrics.backlogBreakdown || metrics.backlogCategories || metrics.backlogByCategory || metrics.backlogMeta);
+  backlogByProject = metrics.backlogByProject || metrics.backlogProjects || null;
 
   metricsSummary = {
     pending: summary.pending ?? countByStatus(normalizedTasks, 'pending'),
@@ -271,16 +304,44 @@ function normalizeStatuses(source, summary) {
   ];
 }
 
+function normalizeBacklog(source) {
+  if (!source) return [];
+  if (Array.isArray(source)) {
+    return source.map(item => ({
+      label: item.label || item.name || item.category || 'Other',
+      count: item.count ?? item.total ?? 0
+    }));
+  }
+  if (typeof source === 'object') {
+    return Object.entries(source).map(([label, count]) => ({ label, count: count ?? 0 }));
+  }
+  return [];
+}
+
 function countByStatus(list, status) {
   return list.filter(t => t.status === status).length;
 }
 
 // ---------- Rendering ----------
 
-function renderTasksBoard() {
-  const pendingTasks = tasks.filter(t => t.status === 'pending');
-  const inProgressTasks = tasks.filter(t => t.status === 'in-progress');
-  const blockedTasks = tasks.filter(t => t.status === 'blocked');
+function renderAllViews() {
+  const filteredTasks = filterByProject(tasks);
+  const filteredDone = filterByProject(tasksDone);
+  const summary = getSummaryCounts(filteredTasks, filteredDone);
+
+  renderTasksBoard(filteredTasks);
+  renderAssignees(filteredTasks);
+  renderStatusBreakdown(summary);
+  renderRecentDone(filteredDone);
+  renderBacklogPanel(summary);
+  updateSummaryCounts(summary);
+  updateHUD(summary);
+}
+
+function renderTasksBoard(list) {
+  const pendingTasks = list.filter(t => t.status === 'pending');
+  const inProgressTasks = list.filter(t => t.status === 'in-progress');
+  const blockedTasks = list.filter(t => t.status === 'blocked');
 
   renderTaskColumn('pending-tasks', pendingTasks, 'No pending tasks');
   renderTaskColumn('inprogress-tasks', inProgressTasks, 'No tasks in progress');
@@ -314,52 +375,59 @@ function renderTaskColumn(containerId, list, emptyText) {
 }
 
 function renderTaskItem(task) {
+  const project = normalizeProject(task.project);
   return `
     <li class="task-item ${task.status === 'blocked' ? 'blocked-item' : ''}">
-      <span class="task-priority ${task.status === 'blocked' ? 'blocked' : 'medium'}">
-        ${task.status === 'blocked' ? '⚠' : '•'}
-      </span>
-      <div class="task-content">
+      <div class="task-item-header">
         <div class="task-title">${escapeHtml(task.title)}</div>
-        <div class="task-meta">
-          ${task.assigned ? `<span class="task-assignee">@${escapeHtml(task.assigned)}</span>` : ''}
-          <span class="task-id">${escapeHtml(task.id)}</span>
-          ${task.added ? `<span class="task-date">${escapeHtml(task.added)}</span>` : ''}
-        </div>
-        ${task.notes ? `<div class="task-blocker">${escapeHtml(task.notes)}</div>` : ''}
+        <span class="task-id">${escapeHtml(task.id)}</span>
       </div>
+      <div class="task-meta">
+        ${task.assigned ? `<span class="task-assignee">${escapeHtml(task.assigned)}</span>` : ''}
+        ${project ? `<span class="task-project ${project}">${escapeHtml(project)}</span>` : ''}
+        ${task.added ? `<span class="task-date">${escapeHtml(task.added)}</span>` : ''}
+      </div>
+      ${task.notes ? `<div class="task-blocker">${escapeHtml(task.notes)}</div>` : ''}
     </li>
   `;
 }
 
-function renderAssignees() {
+function renderAssignees(list) {
   const container = document.getElementById('assignee-breakdown');
   if (!container) return;
 
-  const rows = assigneeBreakdown
+  const breakdown = activeProject === 'all'
+    ? assigneeBreakdown
+    : normalizeAssignees(null, list);
+
+  const rows = breakdown
     .sort((a, b) => b.total - a.total)
     .map(({ name, pending, inProgress, blocked, total }) => `
       <div class="assignee-row">
         <div class="assignee-name">${escapeHtml(name)}</div>
         <div class="assignee-counts">
-          <span class="pill pill-pending">${pending}</span>
-          <span class="pill pill-progress">${inProgress}</span>
-          <span class="pill pill-blocked">${blocked}</span>
-          <span class="pill pill-total">${total}</span>
+          <span class="assignee-dot pending">${pending}</span>
+          <span class="assignee-dot progress">${inProgress}</span>
+          <span class="assignee-dot blocked">${blocked}</span>
+          <span class="assignee-dot total">${total}</span>
         </div>
       </div>
     `)
     .join('');
 
   container.innerHTML = rows || '<div class="empty-state"><div class="empty-state-text">No assignees yet</div></div>';
-  collapseIfEmpty('assignee-breakdown', assigneeBreakdown.length);
+  collapseIfEmpty('assignee-breakdown', breakdown.length);
 }
 
-function renderStatusBreakdown() {
+function renderStatusBreakdown(summary) {
   const container = document.getElementById('status-breakdown');
   if (!container) return;
 
-  const rows = statusBreakdown
+  const breakdown = activeProject === 'all'
+    ? statusBreakdown
+    : normalizeStatuses(null, summary);
+
+  const rows = breakdown
     .sort((a, b) => b.count - a.count)
     .map(item => `
       <div class="status-row">
@@ -370,7 +438,7 @@ function renderStatusBreakdown() {
     .join('');
 
   container.innerHTML = rows || '<div class="empty-state"><div class="empty-state-text">No status data</div></div>';
-  collapseIfEmpty('status-breakdown', statusBreakdown.length);
+  collapseIfEmpty('status-breakdown', breakdown.length);
 }
 
 function renderRoster() {
@@ -401,11 +469,11 @@ function renderRoster() {
   `;
 }
 
-function renderRecentDone() {
+function renderRecentDone(list) {
   const container = document.getElementById('recent-activity');
   if (!container) return;
 
-  if (!tasksDone.length) {
+  if (!list.length) {
     container.innerHTML = `
       <div class="empty-state">
         <div class="empty-state-icon">📝</div>
@@ -416,8 +484,8 @@ function renderRecentDone() {
     return;
   }
 
-  const sorted = [...tasksDone].sort((a, b) => (b.completed || '').localeCompare(a.completed || ''));
-  const html = sorted.slice(0, 5).map(t => `
+  const sorted = [...list].sort((a, b) => (b.completed || '').localeCompare(a.completed || ''));
+  const html = sorted.slice(0, 10).map(t => `
     <div class="activity-item">
       <span class="activity-icon">✅</span>
       <div class="activity-content">
@@ -430,6 +498,35 @@ function renderRecentDone() {
 
   container.innerHTML = `<div class="activity-list">${html}</div>`;
   collapseIfEmpty('recent-activity', sorted.length);
+}
+
+function renderBacklogPanel(summary) {
+  const container = document.getElementById('backlog-panel');
+  if (!container) return;
+
+  const rows = activeProject === 'all'
+    ? backlogBreakdown
+      .sort((a, b) => b.count - a.count)
+      .map(item => `
+        <div class="backlog-row">
+          <span>${escapeHtml(item.label)}</span>
+          <strong>${item.count}</strong>
+        </div>
+      `)
+      .join('')
+    : '';
+
+  const breakdownHtml = rows || (activeProject === 'all'
+    ? '<div class="muted">No category data</div>'
+    : '<div class="muted">No category breakdown for this project</div>');
+
+  container.innerHTML = `
+    <div class="backlog-total">${summary.backlog}</div>
+    <div class="backlog-meta">Total backlog items</div>
+    <div class="backlog-breakdown">${breakdownHtml}</div>
+  `;
+
+  collapseIfEmpty('backlog-panel', summary.backlog);
 }
 
 function renderQuickLinks() {
@@ -479,24 +576,54 @@ function renderRateLimits() {
   `;
 }
 
-// ---------- Counts / HUD ----------
+// ---------- Filters & Summary ----------
 
-function updateSummaryCounts() {
-  setText('pending-count', metricsSummary.pending);
-  setText('inprogress-count', metricsSummary.inProgress);
-  setText('blocked-count', metricsSummary.blocked);
-  setText('done-count', metricsSummary.done);
-  setText('backlog-count', metricsSummary.backlog);
+function normalizeProject(project) {
+  return String(project || '').toLowerCase().trim();
 }
 
-function updateHUD() {
-  const total = metricsSummary.pending + metricsSummary.inProgress + metricsSummary.blocked;
-  setText('hud-tasks', `${metricsSummary.inProgress}/${total}`);
-  setText('hud-blocked', metricsSummary.blocked);
+function filterByProject(list) {
+  if (!Array.isArray(list)) return [];
+  if (activeProject === 'all') return list;
+  return list.filter(item => normalizeProject(item.project) === activeProject);
+}
+
+function getSummaryCounts(filteredTasks, filteredDone) {
+  const pending = filteredTasks.filter(t => t.status === 'pending').length;
+  const inProgress = filteredTasks.filter(t => t.status === 'in-progress').length;
+  const blocked = filteredTasks.filter(t => t.status === 'blocked').length;
+  const done = filteredDone.length;
+  const backlog = getBacklogCount();
+
+  return { pending, inProgress, blocked, done, backlog };
+}
+
+function getBacklogCount() {
+  if (activeProject === 'all') return metricsSummary.backlog;
+  if (backlogByProject && backlogByProject[activeProject] !== undefined) {
+    return backlogByProject[activeProject];
+  }
+  return 0;
+}
+
+// ---------- Counts / HUD ----------
+
+function updateSummaryCounts(summary) {
+  setText('pending-count', summary.pending);
+  setText('inprogress-count', summary.inProgress);
+  setText('blocked-count', summary.blocked);
+  setText('done-count', summary.done);
+  setText('backlog-count', summary.backlog);
+}
+
+function updateHUD(summary) {
+  const total = summary.pending + summary.inProgress + summary.blocked;
+  setText('hud-tasks', `${summary.inProgress}/${total}`);
+  setText('hud-blocked', summary.blocked);
   setText('hud-status', 'Online');
 
   const blockedEl = document.getElementById('hud-blocked');
-  if (blockedEl) blockedEl.style.color = metricsSummary.blocked > 0 ? 'var(--accent-orange)' : 'var(--accent-green)';
+  if (blockedEl) blockedEl.style.color = summary.blocked > 0 ? 'var(--accent-orange)' : 'var(--accent-green)';
 }
 
 // ---------- Heartbeat / Pulse ----------
@@ -548,16 +675,24 @@ function updatePulseIndicator(healthy) {
 
 function updateRelativeTimes() {
   updateHeartbeatStatus();
-  renderRecentDone();
+  renderRecentDone(filterByProject(tasksDone));
+  updateDataTimestamp();
 }
 
 function updateDataTimestamp() {
   const el = document.getElementById('data-updated');
-  if (!el) return;
-  if (metricsUpdatedAt) {
-    el.textContent = new Date(metricsUpdatedAt).toLocaleString('en-GB', { timeZone: CONFIG.timezone });
-  } else {
-    el.textContent = formatTime(new Date());
+  const hud = document.getElementById('hud-updated');
+  const activity = document.getElementById('activity-updated');
+  const stamp = metricsUpdatedAt ? new Date(metricsUpdatedAt) : new Date();
+
+  if (el) {
+    el.textContent = stamp.toLocaleString('en-GB', { timeZone: CONFIG.timezone });
+  }
+  if (hud) {
+    hud.textContent = formatRelativeTime(stamp);
+  }
+  if (activity) {
+    activity.textContent = `Last updated: ${formatRelativeTime(stamp)}`;
   }
 }
 
