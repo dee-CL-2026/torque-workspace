@@ -188,6 +188,7 @@ function extractDoneList(metrics) {
   if (Array.isArray(metrics.doneRecent)) return metrics.doneRecent;
   if (Array.isArray(metrics.doneItems)) return metrics.doneItems;
   if (Array.isArray(metrics.completed)) return metrics.completed;
+  if (Array.isArray(metrics.tasksDone)) return metrics.tasksDone;
   return [];
 }
 
@@ -196,6 +197,7 @@ function normalizeTask(task) {
   return {
     id: task.id || task.taskId || task.key || '',
     title: task.title || task.task || task.name || task.summary || '',
+    project: task.project || task.domain || task.area || '',
     assigned: task.assigned || task.assignee || task.owner || '',
     status: normalizeStatus(task.status || task.state || ''),
     added: task.added || task.createdAt || task.created || task.addedAt || '',
