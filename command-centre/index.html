@@ -8,6 +8,37 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <style>
+    .fixed-scroll {
+      height: 240px;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+    .task-card .card-body.scrollable {
+      height: 280px;
+      max-height: 280px;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    .status-row:last-child {
+      border-bottom: none;
+    }
+    .status-name {
+      color: var(--text-secondary);
+      text-transform: capitalize;
+    }
+    .status-count {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard">
@@ -135,8 +166,19 @@
             <h2>🧑‍🤝‍🧑 Assignees</h2>
             <span class="collapse-icon">−</span>
           </div>
-          <div class="card-body" id="assignee-breakdown">
+          <div class="card-body scrollable fixed-scroll" id="assignee-breakdown">
             <div class="loading">Loading assignees...</div>
+          </div>
+        </section>
+
+        <!-- Status Breakdown -->
+        <section class="card">
+          <div class="card-header collapsible" data-section="status-breakdown">
+            <h2>📍 Status Breakdown</h2>
+            <span class="collapse-icon">−</span>
+          </div>
+          <div class="card-body scrollable fixed-scroll" id="status-breakdown">
+            <div class="loading">Loading status...</div>
           </div>
         </section>
 
@@ -165,10 +207,10 @@
         <!-- Recent Activity -->
         <section class="card">
           <div class="card-header collapsible" data-section="recent-activity">
-            <h2>✅ Recently Done</h2>
+            <h2>✅ Recently Done (Last 5)</h2>
             <span class="collapse-icon">−</span>
           </div>
-          <div class="card-body scrollable" id="recent-activity">
+          <div class="card-body scrollable fixed-scroll" id="recent-activity">
             <div class="loading">Loading...</div>
           </div>
         </section>

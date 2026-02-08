@@ -77,3 +77,6 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 3. Secretary triages inbox and assigns
 4. Done tasks move to tasks-done.md
 5. IDs are sequential: T001, T002, etc.
+
+| T053 | Investigate Gemini sub-agent file write failures | analyst | pending | 2026-02-08 | Agents process content but fail to call write tool. Need root cause + fix. |
+

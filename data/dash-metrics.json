@@ -1,0 +1,50 @@
+{
+  "tasks_total": 50,
+  "tasks_pending": 45,
+  "tasks_in_progress": 0,
+  "tasks_blocked": 5,
+  "tasks_done": 59,
+  "backlog_total": 60,
+  "last_updated": "2026-02-08T21:41:05.803893",
+  "by_assignee": {
+    "Dee": 17,
+    "Torque": 13,
+    "frontend": 7,
+    "gas-dev": 1,
+    "pa": 1,
+    "secretary": 3,
+    "analyst": 2,
+    "ops": 6
+  },
+  "by_status": {
+    "pending": 45,
+    "blocked": 5
+  },
+  "recent_done": [
+    {
+      "id": "D055",
+      "task": "Git push protection resolved",
+      "date": "2026-02-08"
+    },
+    {
+      "id": "D056",
+      "task": ".gitignore updated + sensitive files removed from tracking",
+      "date": "2026-02-08"
+    },
+    {
+      "id": "D057",
+      "task": "GitHub CLI installed and authenticated",
+      "date": "2026-02-08"
+    },
+    {
+      "id": "D058",
+      "task": "Full TG re-export completed",
+      "date": "2026-02-08"
+    },
+    {
+      "id": "D059",
+      "task": "New messages extracted (589 msgs, Feb 8 afternoon)",
+      "date": "2026-02-08"
+    }
+  ]
+}

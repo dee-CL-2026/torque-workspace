@@ -75,4 +75,10 @@ Torque NEVER does directly:
 
 NO EXCEPTIONS unless Dee explicitly approves an override for that specific action.
 
+### Override Escalation Protocol
+1. **First attempt:** Spawn sub-agent on Gemini
+2. **If it fails:** Spawn again with stricter instructions ("WRITE THE FILE. Confirm by reading back.")
+3. **Only then:** Take Dee's standing override and do it directly
+4. Never skip straight to doing it yourself after one failure.
+
 *Updated: 2026-02-08 20:29*

@@ -1,5 +1,5 @@
 /* ===========================================
-   COMMAND CENTRE - Application Logic v2.1
+   COMMAND CENTRE - Application Logic v2.2
    =========================================== */
 
 let tasks = [];
@@ -8,6 +8,10 @@ let backlogCount = 0;
 let teamRoster = { staff: [], consultants: [], roles: {} };
 let heartbeatState = null;
 let rateLimitData = null;
+let metricsSummary = { pending: 0, inProgress: 0, blocked: 0, done: 0, backlog: 0 };
+let assigneeBreakdown = [];
+let statusBreakdown = [];
+let metricsUpdatedAt = null;
 
 // Initialize
 window.addEventListener('DOMContentLoaded', () => {
@@ -60,7 +64,7 @@ function setupViewToggle() {
 
 async function loadData() {
   try {
-    // TEAM roster
+    // Team roster
     try {
       const teamResponse = await fetch(DATA_SOURCES.team + '?t=' + Date.now());
       if (teamResponse.ok) {
@@ -71,37 +75,16 @@ async function loadData() {
       teamRoster = { staff: [], consultants: [], roles: {} };
     }
 
-    // tasks.md
+    // Metrics JSON
     try {
-      const tasksResponse = await fetch(DATA_SOURCES.tasksMd + '?t=' + Date.now());
-      if (tasksResponse.ok) {
-        const tasksMd = await tasksResponse.text();
-        tasks = parseTasksTable(tasksMd);
-      }
-    } catch (e) {
-      tasks = [];
-    }
+      const metrics = await fetchJsonWithFallback([
+        DATA_SOURCES.metrics + '?t=' + Date.now(),
+        DATA_SOURCES.metricsFallback + '?t=' + Date.now()
+      ]);
 
-    // tasks-done.md
-    try {
-      const doneResponse = await fetch(DATA_SOURCES.tasksDoneMd + '?t=' + Date.now());
-      if (doneResponse.ok) {
-        const doneMd = await doneResponse.text();
-        tasksDone = parseDoneTable(doneMd);
-      }
+      applyMetrics(metrics || {});
     } catch (e) {
-      tasksDone = [];
-    }
-
-    // backlog.md
-    try {
-      const backlogResponse = await fetch(DATA_SOURCES.backlogMd + '?t=' + Date.now());
-      if (backlogResponse.ok) {
-        const backlogMd = await backlogResponse.text();
-        backlogCount = countBacklogItems(backlogMd);
-      }
-    } catch (e) {
-      backlogCount = 0;
+      applyMetrics({});
     }
 
     // heartbeat
@@ -124,6 +107,7 @@ async function loadData() {
 
     renderTasksBoard();
     renderAssignees();
+    renderStatusBreakdown();
     renderRoster();
     renderRecentDone();
     updateSummaryCounts();
@@ -136,6 +120,157 @@ async function loadData() {
     console.error('Failed to load data:', error);
     updatePulseIndicator(false);
   }
+}
+
+function applyMetrics(metrics) {
+  const summary = metrics.summary || metrics.totals || metrics.counts || {};
+  metricsUpdatedAt = metrics.lastUpdated || metrics.updatedAt || metrics.generatedAt || metrics.meta?.lastUpdated || null;
+
+  const rawTasks = extractTaskList(metrics);
+  const normalizedTasks = rawTasks.map(normalizeTask).filter(t => t.title || t.id);
+  tasks = normalizedTasks.filter(t => ['pending', 'in-progress', 'blocked'].includes(t.status));
+
+  const doneFromMetrics = extractDoneList(metrics);
+  const doneFromTasks = normalizedTasks.filter(t => t.status === 'done');
+  tasksDone = (doneFromMetrics.length ? doneFromMetrics : doneFromTasks).map(normalizeTask);
+
+  const backlogFromMetrics = summary.backlog ?? metrics.backlog ?? metrics.backlogCount;
+  backlogCount = Number.isFinite(backlogFromMetrics) ? backlogFromMetrics : normalizedTasks.filter(t => t.status === 'backlog').length;
+
+  metricsSummary = {
+    pending: summary.pending ?? countByStatus(normalizedTasks, 'pending'),
+    inProgress: summary.inProgress ?? summary['in-progress'] ?? countByStatus(normalizedTasks, 'in-progress'),
+    blocked: summary.blocked ?? countByStatus(normalizedTasks, 'blocked'),
+    done: summary.done ?? countByStatus(normalizedTasks, 'done'),
+    backlog: backlogCount
+  };
+
+  assigneeBreakdown = normalizeAssignees(metrics.byAssignee || metrics.assignees || metrics.assigneeBreakdown, normalizedTasks);
+  statusBreakdown = normalizeStatuses(metrics.byStatus || metrics.statusBreakdown || metrics.statuses, metricsSummary);
+}
+
+async function fetchJsonWithFallback(urls) {
+  for (const url of urls) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) return await res.json();
+    } catch (e) {
+      // try next
+    }
+  }
+  throw new Error('No metrics source available');
+}
+
+function extractTaskList(metrics) {
+  if (!metrics) return [];
+  if (Array.isArray(metrics.tasks)) return metrics.tasks;
+  if (Array.isArray(metrics.items)) return metrics.items;
+  if (Array.isArray(metrics.taskList)) return metrics.taskList;
+
+  if (metrics.tasks && typeof metrics.tasks === 'object') {
+    const list = [];
+    const statusKeys = Object.keys(metrics.tasks);
+    statusKeys.forEach(key => {
+      const items = metrics.tasks[key];
+      if (Array.isArray(items)) {
+        items.forEach(item => list.push({ ...item, status: item.status || key }));
+      }
+    });
+    return list;
+  }
+
+  return [];
+}
+
+function extractDoneList(metrics) {
+  if (!metrics) return [];
+  if (Array.isArray(metrics.recentDone)) return metrics.recentDone;
+  if (Array.isArray(metrics.doneRecent)) return metrics.doneRecent;
+  if (Array.isArray(metrics.doneItems)) return metrics.doneItems;
+  if (Array.isArray(metrics.completed)) return metrics.completed;
+  return [];
+}
+
+function normalizeTask(task) {
+  if (!task) return {};
+  return {
+    id: task.id || task.taskId || task.key || '',
+    title: task.title || task.task || task.name || task.summary || '',
+    assigned: task.assigned || task.assignee || task.owner || '',
+    status: normalizeStatus(task.status || task.state || ''),
+    added: task.added || task.createdAt || task.created || task.addedAt || '',
+    notes: task.notes || task.blocker || task.reason || task.detail || '',
+    completed: task.completed || task.completedAt || task.doneAt || task.closedAt || ''
+  };
+}
+
+function normalizeAssignees(source, fallbackTasks) {
+  if (Array.isArray(source)) {
+    return source.map(item => ({
+      name: item.name || item.assignee || item.id || 'Unassigned',
+      pending: item.pending ?? 0,
+      inProgress: item.inProgress ?? item['in-progress'] ?? 0,
+      blocked: item.blocked ?? 0,
+      total: item.total ?? (item.pending ?? 0) + (item.inProgress ?? item['in-progress'] ?? 0) + (item.blocked ?? 0)
+    }));
+  }
+
+  if (source && typeof source === 'object') {
+    return Object.entries(source).map(([name, counts]) => ({
+      name,
+      pending: counts.pending ?? 0,
+      inProgress: counts.inProgress ?? counts['in-progress'] ?? 0,
+      blocked: counts.blocked ?? 0,
+      total: counts.total ?? (counts.pending ?? 0) + (counts.inProgress ?? counts['in-progress'] ?? 0) + (counts.blocked ?? 0)
+    }));
+  }
+
+  // derive from tasks
+  const counts = {};
+  fallbackTasks.forEach(task => {
+    if (!['pending', 'in-progress', 'blocked'].includes(task.status)) return;
+    const name = (task.assigned || 'Unassigned').trim();
+    if (!counts[name]) counts[name] = { pending: 0, inProgress: 0, blocked: 0 };
+    if (task.status === 'pending') counts[name].pending++;
+    if (task.status === 'in-progress') counts[name].inProgress++;
+    if (task.status === 'blocked') counts[name].blocked++;
+  });
+
+  return Object.entries(counts).map(([name, c]) => ({
+    name,
+    pending: c.pending,
+    inProgress: c.inProgress,
+    blocked: c.blocked,
+    total: c.pending + c.inProgress + c.blocked
+  }));
+}
+
+function normalizeStatuses(source, summary) {
+  if (Array.isArray(source)) {
+    return source.map(item => ({
+      status: normalizeStatus(item.status || item.name || item.label || ''),
+      count: item.count ?? item.total ?? 0
+    }));
+  }
+
+  if (source && typeof source === 'object') {
+    return Object.entries(source).map(([status, count]) => ({
+      status: normalizeStatus(status),
+      count: count ?? 0
+    }));
+  }
+
+  return [
+    { status: 'pending', count: summary.pending || 0 },
+    { status: 'in-progress', count: summary.inProgress || 0 },
+    { status: 'blocked', count: summary.blocked || 0 },
+    { status: 'done', count: summary.done || 0 },
+    { status: 'backlog', count: summary.backlog || 0 }
+  ];
+}
+
+function countByStatus(list, status) {
+  return list.filter(t => t.status === status).length;
 }
 
 // ---------- Rendering ----------
@@ -152,6 +287,10 @@ function renderTasksBoard() {
   document.getElementById('pending-badge').textContent = pendingTasks.length;
   document.getElementById('inprogress-badge').textContent = inProgressTasks.length;
   document.getElementById('blocked-badge').textContent = blockedTasks.length;
+
+  collapseIfEmpty('pending-tasks', pendingTasks.length);
+  collapseIfEmpty('inprogress-tasks', inProgressTasks.length);
+  collapseIfEmpty('blocked-tasks', blockedTasks.length);
 }
 
 function renderTaskColumn(containerId, list, emptyText) {
@@ -195,32 +334,41 @@ function renderAssignees() {
   const container = document.getElementById('assignee-breakdown');
   if (!container) return;
 
-  const counts = {};
-  tasks.forEach(task => {
-    const name = (task.assigned || 'Unassigned').trim();
-    if (!counts[name]) counts[name] = { total: 0, pending: 0, inProgress: 0, blocked: 0 };
-    counts[name].total++;
-    if (task.status === 'pending') counts[name].pending++;
-    if (task.status === 'in-progress') counts[name].inProgress++;
-    if (task.status === 'blocked') counts[name].blocked++;
-  });
-
-  const rows = Object.entries(counts)
-    .sort((a, b) => b[1].total - a[1].total)
-    .map(([name, c]) => `
+  const rows = assigneeBreakdown
+    .sort((a, b) => b.total - a.total)
+    .map(({ name, pending, inProgress, blocked, total }) => `
       <div class="assignee-row">
         <div class="assignee-name">${escapeHtml(name)}</div>
         <div class="assignee-counts">
-          <span class="pill pill-pending">${c.pending}</span>
-          <span class="pill pill-progress">${c.inProgress}</span>
-          <span class="pill pill-blocked">${c.blocked}</span>
-          <span class="pill pill-total">${c.total}</span>
+          <span class="pill pill-pending">${pending}</span>
+          <span class="pill pill-progress">${inProgress}</span>
+          <span class="pill pill-blocked">${blocked}</span>
+          <span class="pill pill-total">${total}</span>
         </div>
       </div>
     `)
     .join('');
 
   container.innerHTML = rows || '<div class="empty-state"><div class="empty-state-text">No assignees yet</div></div>';
+  collapseIfEmpty('assignee-breakdown', assigneeBreakdown.length);
+}
+
+function renderStatusBreakdown() {
+  const container = document.getElementById('status-breakdown');
+  if (!container) return;
+
+  const rows = statusBreakdown
+    .sort((a, b) => b.count - a.count)
+    .map(item => `
+      <div class="status-row">
+        <div class="status-name">${formatStatusLabel(item.status)}</div>
+        <div class="status-count">${item.count}</div>
+      </div>
+    `)
+    .join('');
+
+  container.innerHTML = rows || '<div class="empty-state"><div class="empty-state-text">No status data</div></div>';
+  collapseIfEmpty('status-breakdown', statusBreakdown.length);
 }
 
 function renderRoster() {
@@ -262,11 +410,12 @@ function renderRecentDone() {
         <div class="empty-state-text">No completed tasks yet</div>
       </div>
     `;
+    collapseIfEmpty('recent-activity', 0);
     return;
   }
 
   const sorted = [...tasksDone].sort((a, b) => (b.completed || '').localeCompare(a.completed || ''));
-  const html = sorted.slice(0, 6).map(t => `
+  const html = sorted.slice(0, 5).map(t => `
     <div class="activity-item">
       <span class="activity-icon">✅</span>
       <div class="activity-content">
@@ -278,6 +427,7 @@ function renderRecentDone() {
   `).join('');
 
   container.innerHTML = `<div class="activity-list">${html}</div>`;
+  collapseIfEmpty('recent-activity', sorted.length);
 }
 
 function renderQuickLinks() {
@@ -330,30 +480,21 @@ function renderRateLimits() {
 // ---------- Counts / HUD ----------
 
 function updateSummaryCounts() {
-  const pending = tasks.filter(t => t.status === 'pending').length;
-  const inProgress = tasks.filter(t => t.status === 'in-progress').length;
-  const blocked = tasks.filter(t => t.status === 'blocked').length;
-  const done = tasksDone.length;
-
-  setText('pending-count', pending);
-  setText('inprogress-count', inProgress);
-  setText('blocked-count', blocked);
-  setText('done-count', done);
-  setText('backlog-count', backlogCount);
+  setText('pending-count', metricsSummary.pending);
+  setText('inprogress-count', metricsSummary.inProgress);
+  setText('blocked-count', metricsSummary.blocked);
+  setText('done-count', metricsSummary.done);
+  setText('backlog-count', metricsSummary.backlog);
 }
 
 function updateHUD() {
-  const pending = tasks.filter(t => t.status === 'pending').length;
-  const inProgress = tasks.filter(t => t.status === 'in-progress').length;
-  const blocked = tasks.filter(t => t.status === 'blocked').length;
-  const total = pending + inProgress + blocked;
-
-  setText('hud-tasks', `${inProgress}/${total}`);
-  setText('hud-blocked', blocked);
+  const total = metricsSummary.pending + metricsSummary.inProgress + metricsSummary.blocked;
+  setText('hud-tasks', `${metricsSummary.inProgress}/${total}`);
+  setText('hud-blocked', metricsSummary.blocked);
   setText('hud-status', 'Online');
 
   const blockedEl = document.getElementById('hud-blocked');
-  if (blockedEl) blockedEl.style.color = blocked > 0 ? 'var(--accent-orange)' : 'var(--accent-green)';
+  if (blockedEl) blockedEl.style.color = metricsSummary.blocked > 0 ? 'var(--accent-orange)' : 'var(--accent-green)';
 }
 
 // ---------- Heartbeat / Pulse ----------
@@ -410,7 +551,12 @@ function updateRelativeTimes() {
 
 function updateDataTimestamp() {
   const el = document.getElementById('data-updated');
-  if (el) el.textContent = formatTime(new Date());
+  if (!el) return;
+  if (metricsUpdatedAt) {
+    el.textContent = new Date(metricsUpdatedAt).toLocaleString('en-GB', { timeZone: CONFIG.timezone });
+  } else {
+    el.textContent = formatTime(new Date());
+  }
 }
 
 function updateCurrentTime() {
@@ -429,69 +575,6 @@ function updateCurrentTime() {
 }
 
 // ---------- Parsing ----------
-
-function parseTasksTable(text) {
-  const rows = [];
-  const lines = text.split('\n');
-
-  for (const line of lines) {
-    if (!line.trim().startsWith('|')) continue;
-    if (line.includes('---')) continue;
-
-    const cells = line.split('|').map(c => c.trim()).filter(c => c !== '');
-    if (cells.length < 6) continue;
-
-    const [id, task, assigned, status, added, notes] = cells;
-    if (!id || !id.startsWith('T')) continue;
-
-    const normalizedStatus = (status || '').toLowerCase().trim();
-
-    rows.push({
-      id,
-      title: task,
-      assigned,
-      status: normalizeStatus(normalizedStatus),
-      added,
-      notes
-    });
-  }
-
-  return rows;
-}
-
-function parseDoneTable(text) {
-  const rows = [];
-  const lines = text.split('\n');
-
-  for (const line of lines) {
-    if (!line.trim().startsWith('|')) continue;
-    if (line.includes('---')) continue;
-
-    const cells = line.split('|').map(c => c.trim()).filter(c => c !== '');
-    if (cells.length < 5) continue;
-
-    const [id, task, assigned, completed, notes] = cells;
-    if (!id || !id.startsWith('D')) continue;
-
-    rows.push({
-      id,
-      title: task,
-      assigned,
-      completed,
-      notes
-    });
-  }
-
-  return rows;
-}
-
-function countBacklogItems(text) {
-  return text.split('\n')
-    .filter(line => line.trim().startsWith('- '))
-    .map(line => line.replace(/^\s*-\s*/, '').trim())
-    .filter(line => line.length > 0)
-    .length;
-}
 
 function parseTeamRoster(markdown) {
   const staff = [];
@@ -526,9 +609,34 @@ function parseTeamRoster(markdown) {
 }
 
 function normalizeStatus(status) {
-  if (status === 'in-progress' || status === 'in progress') return 'in-progress';
-  if (status === 'blocked') return 'blocked';
-  return 'pending';
+  const normalized = String(status || '').toLowerCase().trim();
+  if (normalized === 'in progress') return 'in-progress';
+  if (normalized === 'in-progress') return 'in-progress';
+  if (normalized === 'blocked') return 'blocked';
+  if (normalized === 'done' || normalized === 'completed') return 'done';
+  if (normalized === 'backlog') return 'backlog';
+  return normalized || 'pending';
+}
+
+function formatStatusLabel(status) {
+  if (status === 'in-progress') return 'In Progress';
+  if (status === 'backlog') return 'Backlog';
+  return status.charAt(0).toUpperCase() + status.slice(1);
+}
+
+function collapseIfEmpty(sectionId, count) {
+  const body = document.getElementById(sectionId);
+  const header = document.querySelector(`[data-section="${sectionId}"]`);
+  if (!body || !header) return;
+
+  const icon = header.querySelector('.collapse-icon');
+  if (count === 0) {
+    body.classList.add('collapsed');
+    if (icon) icon.textContent = '+';
+  } else {
+    body.classList.remove('collapsed');
+    if (icon) icon.textContent = '−';
+  }
 }
 
 // ---------- Utilities ----------

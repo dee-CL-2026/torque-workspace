@@ -4,9 +4,8 @@
 
 // Data source URLs (GitHub raw content)
 const DATA_SOURCES = {
-  tasksMd: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/tasks.md',
-  tasksDoneMd: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/tasks-done.md',
-  backlogMd: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/backlog.md',
+  metrics: '../data/dash-metrics.json',
+  metricsFallback: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/data/dash-metrics.json',
   heartbeat: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/data/heartbeat-state.json',
   team: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/team/TEAM.md',
   rateLimits: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/data/rate-limits.json'
@@ -14,6 +13,7 @@ const DATA_SOURCES = {
 
 // Quick access links (raw files)
 const QUICK_LINKS = [
+  { label: 'dash-metrics.json', url: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/data/dash-metrics.json', icon: '📊' },
   { label: 'tasks.md', url: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/tasks.md', icon: '📝' },
   { label: 'tasks-done.md', url: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/tasks-done.md', icon: '✅' },
   { label: 'backlog.md', url: 'https://raw.githubusercontent.com/dee-CL-2026/torque-workspace/master/backlog.md', icon: '📥' },

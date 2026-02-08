@@ -79,3 +79,5 @@ Items here are not assigned or scheduled. Promote to tasks.md when ready.
 - Brave usage tracker + Command Centre widget
 - Command Centre task CRUD (create/edit/assign from UI)
 - Command Centre pages/tabs for detail views
+- Dashboard "Update All" trigger button (needs backend — Cloudflare Worker or API endpoint)
+- Nightly maintenance chain: metrics refresh + system audit + git push (cron already set, button for manual trigger)
