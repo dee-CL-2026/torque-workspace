@@ -1,0 +1,23 @@
+{
+  "_comment": "Config patch to enable cheaper models for sub-agents",
+  "_instructions": "Replace YOUR_API_KEY_HERE with key from console.anthropic.com",
+  
+  "auth": {
+    "profiles": {
+      "anthropic:subagents": {
+        "provider": "anthropic",
+        "mode": "api_key",
+        "apiKey": "YOUR_API_KEY_HERE"
+      }
+    }
+  },
+  
+  "agents": {
+    "defaults": {
+      "subagents": {
+        "model": "anthropic/claude-3-5-haiku-20241022",
+        "auth": "anthropic:subagents"
+      }
+    }
+  }
+}

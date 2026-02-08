@@ -16,20 +16,20 @@ Shows and movies Dee & Sinead want to watch together.
 
 ## To Watch
 
-| Title | Type | Platform | Added By | Notes |
-|-------|------|----------|----------|-------|
-| Can You Keep a Secret | TV | TBC | Sinead | Dawn French — spotted on Graham Norton |
-| Chris Pratt movie (TBC) | Film | TBC | Sinead | Spotted on Graham Norton — title TBC |
-| The Thing with Feathers | Film | UK cinemas | Sinead | Benedict Cumberbatch, David Thewlis — grief drama based on Max Porter book |
-| Ballad of a Small Player | Film | Netflix | Sinead | Colin Farrell, Tilda Swinton — psychological thriller set in Macau, gambling & ghosts |
-| The Traitors | TV | BBC (iPlayer) | Sinead | Claudia Winkleman hosts — social deduction game in Scottish castle, huge UK hit |
+| Title | Type | Platform | Added By | Rating | Notes |
+|-------|------|----------|----------|--------|-------|
+| Can You Keep a Secret | TV | TBC | Sinead | TBC | Dawn French — spotted on Graham Norton |
+| Chris Pratt movie (TBC) | Film | TBC | Sinead | TBC | Spotted on Graham Norton — title TBC |
+| The Thing with Feathers | Film | UK cinemas | Sinead | 15+ | Benedict Cumberbatch — grief drama (heavy themes) |
+| Ballad of a Small Player | Film | Netflix | Sinead | 18+ | Colin Farrell, Tilda Swinton — gambling, dark themes |
+| The Traitors | TV | BBC (iPlayer) | Sinead | All | Claudia Winkleman — social deduction game, family-friendly |
 
 ---
 
 ## Currently Watching
 
-| Title | Type | Platform | Progress | Notes |
-|-------|------|----------|----------|-------|
+| Title | Type | Platform | Progress | Rating | Notes |
+|-------|------|----------|----------|--------|-------|
 
 ---
 

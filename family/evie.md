@@ -6,26 +6,33 @@ Daughter.
 
 ## Basics
 
-- *(details to add)*
+- **Born:** April 7, 2016 (9 years old, turning 10 in 2026)
+- **Loves:** Dogs 🐕
+- **Dream job:** Marine biologist 🌊
+- **Also into:** Space 🚀
 
 ---
 
 ## School
 
-- *(school name, schedule)*
+- AIS Jakarta (Australian International School)
+- School year ends: June 21, 2026
+- Summer break: June 22 – July 13, 2026
 
 ---
 
-## Activities & Commitments
+## Activities & Interests
 
-- *(clubs, sports, regular events)*
+- Marine biology / ocean life
+- Space & astronomy
+- Dogs (Marley must be her buddy!)
 
 ---
 
 ## Upcoming Events
 
-*(birthday, parties, pickups to track)*
+- **Birthday:** April 7 (turning 10 in 2026!) 🎂
 
 ---
 
-*Last updated: 2026-02-06*
+*Last updated: 2026-02-07*

@@ -1,105 +1,125 @@
 # HEARTBEAT.md
 
-Checked every 15 minutes. Follow it strictly.
+Checked every 15 minutes. Follow strictly.
 
 ---
 
-## 0. Check Conversation State
+## 0. Conversation State
 
-Before doing heavy work, check: **Am I in active conversation with Dee?**
+Before heavy work, check: **Am I in active conversation with Dee?**
 
-- **Active conversation** (message in last 10 min): Stay responsive. Do quick housekeeping only.
-- **Quiet period** (no message for 10+ min): Pick up pending Torque tasks.
-- **Downtime** (23:00-07:00 or Dee marked away): Work through task backlog.
+- **Active** (message <10 min): Stay responsive. Quick housekeeping only.
+- **Quiet** (no message 10+ min): Do proactive work.
+- **Night** (23:00-07:00): Work through backlog quietly.
 
 ---
 
-## 1. Check tasks.md
+## 1. Morning Briefing (REQUIRED)
+
+**First heartbeat after 07:00 each day** → Send morning briefing to Dee:
+
+1. Check `data/heartbeat-state.json` for `lastMorningBriefing` date
+2. If not today → Generate and send briefing:
+   - Weather outlook (use weather skill)
+   - Tasks due today / urgent items from tasks.md
+   - Any overnight activity or alerts
+   - Quick "here's your day" summary
+3. Update `lastMorningBriefing` to today's date
+
+Don't skip this. If Dee is asleep, message anyway — they'll see it when they wake.
+
+---
+
+## 2. Check tasks.md
 
 1. Read `tasks.md`
 2. For each task:
-   - **pending + unassigned** → Assign to team member (see `team/TEAM.md` for roster)
-   - **assigned to Torque + pending** → Change to in-progress, start work directly
-   - **assigned to sub-agent + pending** → Spawn sub-agent, update Notes with session label, change to in-progress
-   - **assigned to Dee/human + pending** → Leave as pending (human will action)
-   - **in-progress (Torque)** → Continue work
-   - **in-progress (sub-agent)** → Check session status via `sessions_list`, update Notes
-   - **blocked** → Note blocker, escalate if needed
-   - **done** → Move row to `tasks-done.md`, remove from `tasks.md`
+   - **Torque + pending** → Start work NOW (see section 3)
+   - **Sub-agent + pending** → Note: subagents currently broken. Reassign to Torque if doable directly, otherwise leave blocked
+   - **Dee + pending** → Leave (human action)
+   - **in-progress** → Continue or check status
+   - **done** → Move to `tasks-done.md`
 
-3. If ALL tasks are in-progress or blocked with nothing actionable → HEARTBEAT_OK
-
-### Torque Task Delegation Rule
-
-For any task assigned to Torque that takes >30 seconds:
-
-1. **Can a sub-agent do it?** (no main-session context needed)
-   → Spawn sub-agent, reassign task, mark in-progress
-
-2. **Needs main session context?** (memory, conversation history, Dee interaction)
-   → Mark with `[downtime]` tag in Notes, do during quiet period
-
-3. **Quick task?** (<30s)
-   → Just do it inline
-
-### Spawning sub-agents
-When spawning, use:
-```
-sessions_spawn(task="[task description]", label="[agent-id]-[date]", model="haiku")
-```
-Update task Notes with: `Spawned: [label] @ [time]`
-
-### Error checking (in-progress tasks)
-For tasks marked in-progress with a spawned agent:
-1. Check session status via `sessions_list`
-2. If `stopReason: "error"` → check error message
-3. **Rate limit / quota errors (429):** Mark blocked, note "Rate limited. Retry on haiku."
-4. **Other errors:** Mark blocked, escalate to Dee
-5. **Completed successfully:** Move to tasks-done.md with summary
-
-Default model: **haiku** (reliable, no free-tier limits)
-Upgrade to sonnet/opus only when task complexity requires it.
+3. **DO NOT just log "stable" if there's pending Torque work**
 
 ---
 
-## 2. Check obsidian inbox
+## 3. Torque Direct Work (No Subagents Needed)
+
+During quiet periods, I CAN and SHOULD do:
+
+### Always Available
+- **Web research** — search, fetch, summarize findings
+- **File analysis** — read docs, extract info, write summaries
+- **Memory maintenance** — review daily files, update MEMORY.md
+- **Git sync** — commit changes, push to remote
+- **Writing tasks** — drafts, docs, notes, analysis
+- **Data processing** — parse files, extract patterns
+
+### With Current Setup
+- **Weather checks** — via skill
+- **Telegram messaging** — proactive updates
+
+### Blocked Until Setup
+- Calendar integration (needs interactive auth)
+- Email access (needs setup)
+
+**Rule:** If a task can be done with web_search + read + write + exec, DO IT. Don't wait for subagents.
+
+---
+
+## 4. Proactive Work Rotation
+
+When tasks.md is clear, rotate through these (track in heartbeat-state.json):
+
+| Check | Frequency | How |
+|-------|-----------|-----|
+| Memory review | Daily | Read recent memory/*.md, update MEMORY.md |
+| Git sync | Every 2h | Commit + push workspace changes |
+| Weather | Morning + if going out | Weather skill |
+| Inbox processing | Every heartbeat | vault/inbox/ for new files |
+| YouTube watchlist | Weekly | Flag items >14 days old |
+
+---
+
+## 5. Obsidian Inbox
 
 1. Read `vault/inbox/` for new files
-2. For any new/unprocessed items:
-   - Extract tasks → **check for duplicates in tasks.md first** → add if new
-   - Extract reference material → move to appropriate vault folder
-   - Mark/move processed files so they don't get re-read
-
-**Duplicate check:** Before adding any task, scan tasks.md AND tasks-done.md for similar items. If exists, skip or merge.
+2. For new/unprocessed items:
+   - Extract tasks → check for duplicates → add if new
+   - Move reference material to appropriate vault folder
+   - Mark processed (move to vault/processed/ or delete)
 
 ---
 
-## 3. Quick checks (only if tasks clear)
+## 6. Update State
 
-- [ ] YouTube watchlist: items >14 days in `vault/youtube-watchlist.md` → flag for cleanup
+After each heartbeat, update `data/heartbeat-state.json`:
+```json
+{
+  "lastHeartbeat": "ISO timestamp",
+  "lastMorningBriefing": "YYYY-MM-DD",
+  "lastChecks": ["what was checked"],
+  "lastGitSync": "ISO timestamp",
+  "stats": {
+    "heartbeatsToday": N,
+    "lastProactiveAction": "what was done"
+  }
+}
+```
+
+Then commit + push if meaningful changes.
 
 ---
 
 ## Rules
 
-- **Do NOT just say HEARTBEAT_OK if there's pending work**
-- **Update task status in the file before starting work**
-- **If spawning a sub-agent, note it in the task Notes column**
+1. **Do NOT say HEARTBEAT_OK if there's actionable work**
+2. **Morning briefing is mandatory** — first heartbeat after 7am
+3. **Subagents broken? Do it yourself** if possible
+4. **Quiet period = work time**, not just monitoring
+5. **Actually complete tasks**, don't just check boxes
 
 ---
 
----
-
-## 4. Update heartbeat-state.json
-
-After completing checks, update `data/heartbeat-state.json` with:
-- `lastHeartbeat`: current timestamp (ISO 8601)
-- `lastChecks`: what was checked this cycle
-- `stats.heartbeatsToday`: increment if same day
-- `stats.lastProactiveAction`: brief note of what was done
-
-Then commit and push so Command Centre dashboard stays current.
-
----
-
-*Updated: 2026-02-07 06:49*
+*Updated: 2026-02-08 10:25*

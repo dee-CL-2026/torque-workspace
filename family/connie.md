@@ -6,26 +6,32 @@ Daughter.
 
 ## Basics
 
-- *(details to add)*
+- **Born:** July 26, 2014 (11 years old)
+- **Personality:** High energy, enthusiastic, the jazz-hands waver
+- **Fan of:** Stranger Things
 
 ---
 
 ## School
 
-- *(school name, schedule)*
+- AIS Jakarta (Australian International School)
+- School year ends: June 21, 2026
+- Summer break: June 22 – July 13, 2026
 
 ---
 
-## Activities & Commitments
+## Activities & Interests
 
-- *(clubs, sports, regular events)*
+- **#1 Sport:** Swimming 🏊‍♀️
+- **Music:** Loves it
+- Likes other sports too, but swimming is the favorite
 
 ---
 
 ## Upcoming Events
 
-*(birthday, parties, pickups to track)*
+- **Birthday:** July 26 (turning 12 in 2026)
 
 ---
 
-*Last updated: 2026-02-06*
+*Last updated: 2026-02-07*

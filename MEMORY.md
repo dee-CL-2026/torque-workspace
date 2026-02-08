@@ -14,7 +14,10 @@
 - **Heritage:** English, Ghanaian, Welsh, German(?), Hungarian, Scottish (step)
 - **Spouse:** Sinead (British, born South Africa) — Deputy Head at international school
 - **Kids:** Evie & Connie
+  - **Connie:** Born July 26, 2014 (11). Loves swimming (#1 sport) and music. High energy, enthusiastic (the jazz-hands waver). Stranger Things fan.
+  - **Evie:** (details tbd)
 - **Dog:** Marley 🐕 (golden retriever)
+- **Sinead's passport:** Renewed (confirmed 2026-02-08)
 
 ### Personality & Working Style
 
@@ -133,4 +136,74 @@
 
 ---
 
-*Last updated: 2026-02-05*
+---
+
+## OpenClaw Critical Knowledge
+
+### MAX Subscription API Limits (Discovered 2026-02-07)
+- **MAX OAuth token only authorizes Opus** for API calls
+- Sonnet/Haiku fail with "No API provider registered for api: undefined"
+- Claude.ai UI lets you switch models, but API access is Opus-only
+- Need separate pay-per-use API key for cheaper models
+
+### Auth Recovery
+If OpenClaw stops responding after model change:
+1. `claude setup-token` (generates OAuth token)
+2. `openclaw config` → Model → "Anthropic token" → paste token
+3. Don't manually edit auth config — use wizard
+
+### Subagents with Gemini (Discovered 2026-02-08) ✅
+**Problem solved:** Subagents can now run on Gemini Flash for FREE!
+
+**The fix:** `agents.defaults.models` is a model ALLOWLIST. If it has entries, only those models are permitted for subagents. Add Google models to allow them:
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "models": {
+        "anthropic/claude-opus-4-5": { "alias": "opus" },
+        "google/gemini-2.5-flash": {},
+        "google/gemini-2.5-pro": {}
+      },
+      "subagents": {
+        "model": "google/gemini-2.5-flash"
+      }
+    }
+  }
+}
+```
+
+**Current setup:**
+- Main agent: Claude Opus 4.5 (via MAX subscription)
+- Subagents: Gemini 2.5 Flash (free tier: 15 RPM, 1M tokens/day)
+- Cost savings: Subagents cost $0 instead of ~$0.03+ each
+
+**Google provider config required:**
+```json
+{
+  "models": {
+    "providers": {
+      "google": {
+        "baseUrl": "https://generativelanguage.googleapis.com",
+        "apiKey": "YOUR_GEMINI_API_KEY",
+        "auth": "api-key",
+        "api": "google-generative-ai",
+        "models": [...]
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "google:gemini": { "provider": "google", "mode": "api_key" }
+    },
+    "order": { "google": ["google:gemini"] }
+  }
+}
+```
+
+**Get API key:** https://aistudio.google.com/app/apikey
+
+---
+
+*Last updated: 2026-02-07*
