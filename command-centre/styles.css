@@ -626,7 +626,7 @@ body {
 
 .task-blocker {
   font-size: 0.75rem;
-  color: var(--accent-orange);
+  color: var(--accent-red);
   font-style: italic;
 }
 

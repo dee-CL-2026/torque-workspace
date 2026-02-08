@@ -731,6 +731,7 @@ function updateDataTimestamp() {
   const el = document.getElementById('data-updated');
   const hud = document.getElementById('hud-updated');
   const activity = document.getElementById('activity-updated');
+  const metricsEl = document.getElementById('metrics-updated');
   const stamp = metricsUpdatedAt ? new Date(metricsUpdatedAt) : new Date();
 
   if (el) {
@@ -741,6 +742,9 @@ function updateDataTimestamp() {
   }
   if (activity) {
     activity.textContent = `Last updated: ${formatRelativeTime(stamp)}`;
+  }
+  if (metricsEl) {
+    metricsEl.textContent = stamp.toLocaleString('en-GB', { timeZone: CONFIG.timezone });
   }
 }
 

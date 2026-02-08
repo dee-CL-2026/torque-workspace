@@ -5,5 +5,12 @@
     "agent": "ops",
     "timestamp": "2026-02-09T00:40:28.893481",
     "output": "Analyzed TG export delta mode, documented at vault/research/tg-export-delta-analysis.md"
+  },
+  {
+    "task": "T025",
+    "status": "done",
+    "agent": "frontend",
+    "timestamp": "2026-02-09T00:41:11.981056",
+    "output": "Command Centre layout improvements: side-by-side, channel bar, colour coding, timestamp"
   }
 ]
