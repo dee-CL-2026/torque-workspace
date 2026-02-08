@@ -33,26 +33,15 @@ Secretary triages and assigns. Done tasks move to tasks-done.md.
 | T027 | Token usage tracking for Command Centre | torque | frontend | pending | 2026-02-05 |  |
 | T028 | Build Family Command Centre | torque | frontend | pending | 2026-02-07 | Watchlist, reading list, chat gateway |
 | T030 | Deploy tiered scripts to GAS | candid | gas-dev | pending | 2026-02-05 | Via clasp, compare to legacy |
-| T031 | Set up daily morning briefing cron | torque | pa | pending | 2026-02-08 | 7-8am Jakarta, weather + tasks + urgent |
-| T032 | Scope nightly build workflow | general | Torque | pending | 2026-02-08 | Scope before bed, agent builds overnight, morning review |
 | T033 | Set up meeting prep automation | general | secretary | blocked | 2026-02-07 | Blocked on calendar integration |
 | T034 | Audit Drive structure and consolidate | general | secretary | pending | 2026-02-05 |  |
-| T035 | Draft daily value-add idea prompt | general | Torque | pending | 2026-02-05 | Rotating: Candid/GoodDoctor/personal/family |
 | T036 | Activity log file creation | general | Torque | pending | 2026-02-06 | data/activity.json |
 | T037 | Set up scheduled messages in family chat | personal | Torque | pending | 2026-02-05 | Cron jobs |
 | T039 | Update TG export script for delta mode | torque | Torque | pending | 2026-02-08 | Track last msg ID, only export new |
-| T040 | Fix cross-channel messaging | general | analyst | pending | 2026-02-08 | TG→WA and vice versa |
 | T043 | Set up Cloudflare Tunnel for remote SSH | infra | ops | pending | 2026-02-08 | Scope: transfer/point TSLC domain to Cloudflare, configure tunnel, test SSH from mobile. Dep: Dee to provide Squarespace login or transfer domain |
 | T044 | Set up mobile terminal access | infra | ops | blocked | 2026-02-08 | Blocked on T043. Install Termux/JuiceSSH on phone, configure SSH to Chromebook via tunnel |
-| T045 | Confirm Cloudflare Pages deploy path (git-linked or wrangler) | infra | ops | pending | 2026-02-08 | Need to verify torque-works.pages.dev connection |
-| T046 | Clone candidlabs-site repo locally | candid | ops | pending | 2026-02-08 | Lost in powerwash |
 | T047 | Migrate candidlabs-site to Cloudflare Pages + Access | candid | frontend | pending | 2026-02-08 | Business data shouldn't be public on GH Pages |
-| T048 | Command Centre layout fixes | torque | frontend | pending | 2026-02-08 | Scroll, collapse empty, filter by assignee, links |
-| T049 | Build supervisor/ops-monitor agent | torque | ops | pending | 2026-02-08 | Gemini, checks sessions_list, flags stuck tasks |
-| T050 | Investigate main heartbeat model routing | torque | analyst | pending | 2026-02-08 | Config says gemini but heartbeat still polls Opus |
-| T051 | Update secretary cron for single-list system | torque | secretary | pending | 2026-02-08 | Still referencing old per-agent task files |
 | T052 | Update TG export script for delta mode improvements | torque | ops | pending | 2026-02-08 | Track last msg ID, incremental exports |
-| T054 | Establish model routing rules: Codex=code, Gemini=specs/research/data | torque | ops | pending | 2026-02-08 | Update all agent docs |
 
 ## Status Key
 - **pending** — not yet started

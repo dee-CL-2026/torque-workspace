@@ -17,6 +17,11 @@
     .task-card .card-body.scrollable {
       height: 280px;
       max-height: 280px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .card.is-empty {
+      display: none;
     }
     .status-row {
       display: flex;
@@ -62,6 +67,23 @@
       </div>
     </header>
 
+    <!-- Channel Status Bar -->
+    <div class="channel-bar">
+      <div class="channel-group">
+        <div class="channel-item">
+          <span class="channel-indicator online"></span>
+          <span class="channel-name">WhatsApp</span>
+          <span class="channel-state">Connected</span>
+        </div>
+        <div class="channel-item">
+          <span class="channel-indicator online"></span>
+          <span class="channel-name">Telegram</span>
+          <span class="channel-state">Connected</span>
+        </div>
+      </div>
+      <div class="channel-updated">Last updated: <span id="metrics-updated">—</span></div>
+    </div>
+
     <!-- Session HUD Bar -->
     <div class="session-hud" id="session-hud">
       <div class="hud-item">
@@ -97,78 +119,92 @@
       <!-- Left Column -->
       <div class="column-left">
 
-        <!-- Task Summary Cards -->
-        <section class="task-summary">
-          <div class="summary-card pending" data-scroll-target="pending-section">
-            <div class="summary-number" id="pending-count">-</div>
-            <div class="summary-label">Pending</div>
-          </div>
-          <div class="summary-card inprogress" data-scroll-target="inprogress-section">
-            <div class="summary-number" id="inprogress-count">-</div>
-            <div class="summary-label">In Progress</div>
-          </div>
-          <div class="summary-card blocked" data-scroll-target="blocked-section">
-            <div class="summary-number" id="blocked-count">-</div>
-            <div class="summary-label">Blocked</div>
-          </div>
-          <div class="summary-card done" data-scroll-target="recent-activity">
-            <div class="summary-number" id="done-count">-</div>
-            <div class="summary-label">Done</div>
-          </div>
-          <div class="summary-card backlog" data-scroll-target="ideas-backlog">
-            <div class="summary-number" id="backlog-count">-</div>
-            <div class="summary-label">Backlog</div>
-          </div>
-        </section>
+        <div class="task-overview">
+          <div class="task-overview-left">
+            <!-- Task Summary Cards -->
+            <section class="task-summary">
+              <div class="summary-card pending" data-scroll-target="pending-section">
+                <div class="summary-number" id="pending-count">-</div>
+                <div class="summary-label">Pending</div>
+              </div>
+              <div class="summary-card inprogress" data-scroll-target="inprogress-section">
+                <div class="summary-number" id="inprogress-count">-</div>
+                <div class="summary-label">In Progress</div>
+              </div>
+              <div class="summary-card blocked" data-scroll-target="blocked-section">
+                <div class="summary-number" id="blocked-count">-</div>
+                <div class="summary-label">Blocked</div>
+              </div>
+              <div class="summary-card done" data-scroll-target="recent-activity">
+                <div class="summary-number" id="done-count">-</div>
+                <div class="summary-label">Done</div>
+              </div>
+              <div class="summary-card backlog" data-scroll-target="ideas-backlog">
+                <div class="summary-number" id="backlog-count">-</div>
+                <div class="summary-label">Backlog</div>
+              </div>
+            </section>
 
-        <!-- Project Filter -->
-        <section class="project-filter" id="project-filter">
-          <button class="filter-chip active" data-project="all">All</button>
-          <button class="filter-chip" data-project="torque">Torque</button>
-          <button class="filter-chip" data-project="candid">Candid</button>
-          <button class="filter-chip" data-project="tslc">TSLC</button>
-          <button class="filter-chip" data-project="infra">Infra</button>
-          <button class="filter-chip" data-project="personal">Personal</button>
-          <button class="filter-chip" data-project="general">General</button>
-        </section>
+            <!-- Project Filter -->
+            <section class="project-filter" id="project-filter">
+              <button class="filter-chip active" data-project="all">All</button>
+              <button class="filter-chip" data-project="torque">Torque</button>
+              <button class="filter-chip" data-project="candid">Candid</button>
+              <button class="filter-chip" data-project="tslc">TSLC</button>
+              <button class="filter-chip" data-project="infra">Infra</button>
+              <button class="filter-chip" data-project="personal">Personal</button>
+              <button class="filter-chip" data-project="general">General</button>
+            </section>
 
-        <!-- Tasks Row (3 columns: Pending, In Progress, Blocked) -->
-        <div class="tasks-row">
-          <!-- Pending Tasks -->
-          <section class="card task-card" id="pending-section">
-            <div class="card-header collapsible" data-section="pending-tasks">
-              <h2>📌 Pending</h2>
-              <span class="badge" id="pending-badge">0</span>
-              <span class="collapse-icon">−</span>
-            </div>
-            <div class="card-body scrollable" id="pending-tasks">
-              <div class="loading">Loading tasks...</div>
-            </div>
-          </section>
+            <!-- Assignee Filter -->
+            <section class="assignee-filter">
+              <label for="assignee-filter" class="filter-label">Assignee</label>
+              <select id="assignee-filter" class="filter-select">
+                <option value="all">All</option>
+              </select>
+            </section>
+          </div>
 
-          <!-- In Progress Tasks -->
-          <section class="card task-card" id="inprogress-section">
-            <div class="card-header collapsible" data-section="inprogress-tasks">
-              <h2>🚧 In Progress</h2>
-              <span class="badge" id="inprogress-badge">0</span>
-              <span class="collapse-icon">−</span>
-            </div>
-            <div class="card-body scrollable" id="inprogress-tasks">
-              <div class="loading">Loading...</div>
-            </div>
-          </section>
+          <div class="task-overview-right">
+            <!-- Tasks Row (3 columns: Pending, In Progress, Blocked) -->
+            <div class="tasks-row">
+              <!-- Pending Tasks -->
+              <section class="card task-card" id="pending-section">
+                <div class="card-header collapsible" data-section="pending-tasks">
+                  <h2>📌 Pending</h2>
+                  <span class="badge" id="pending-badge">0</span>
+                  <span class="collapse-icon">−</span>
+                </div>
+                <div class="card-body scrollable" id="pending-tasks">
+                  <div class="loading">Loading tasks...</div>
+                </div>
+              </section>
 
-          <!-- Blocked Tasks -->
-          <section class="card task-card blocked-section" id="blocked-section">
-            <div class="card-header collapsible" data-section="blocked-tasks">
-              <h2>🚫 Blocked</h2>
-              <span class="badge warning" id="blocked-badge">0</span>
-              <span class="collapse-icon">−</span>
+              <!-- In Progress Tasks -->
+              <section class="card task-card" id="inprogress-section">
+                <div class="card-header collapsible" data-section="inprogress-tasks">
+                  <h2>🚧 In Progress</h2>
+                  <span class="badge" id="inprogress-badge">0</span>
+                  <span class="collapse-icon">−</span>
+                </div>
+                <div class="card-body scrollable" id="inprogress-tasks">
+                  <div class="loading">Loading...</div>
+                </div>
+              </section>
+
+              <!-- Blocked Tasks -->
+              <section class="card task-card blocked-section" id="blocked-section">
+                <div class="card-header collapsible" data-section="blocked-tasks">
+                  <h2>🚫 Blocked</h2>
+                  <span class="badge warning" id="blocked-badge">0</span>
+                  <span class="collapse-icon">−</span>
+                </div>
+                <div class="card-body scrollable" id="blocked-tasks">
+                  <div class="loading">Loading...</div>
+                </div>
+              </section>
             </div>
-            <div class="card-body scrollable" id="blocked-tasks">
-              <div class="loading">Loading...</div>
-            </div>
-          </section>
+          </div>
         </div>
 
       </div>

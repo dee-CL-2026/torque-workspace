@@ -9,6 +9,7 @@ let backlogCount = 0;
 let backlogBreakdown = [];
 let backlogByProject = null;
 let activeProject = 'all';
+let activeAssignee = 'all';
 let teamRoster = { staff: [], consultants: [], roles: {} };
 let heartbeatState = null;
 let rateLimitData = null;
@@ -29,6 +30,7 @@ async function init() {
   setupCollapsibleSections();
   setupViewToggle();
   setupProjectFilter();
+  setupAssigneeFilter();
   setupSummaryScroll();
   renderQuickLinks();
   renderRateLimits();
@@ -79,6 +81,16 @@ function setupProjectFilter() {
       activeProject = btn.getAttribute('data-project') || 'all';
       renderAllViews();
     });
+  });
+}
+
+function setupAssigneeFilter() {
+  const select = document.getElementById('assignee-filter');
+  if (!select) return;
+
+  select.addEventListener('change', () => {
+    activeAssignee = select.value || 'all';
+    renderAllViews();
   });
 }
 
@@ -325,8 +337,13 @@ function countByStatus(list, status) {
 // ---------- Rendering ----------
 
 function renderAllViews() {
-  const filteredTasks = filterByProject(tasks);
-  const filteredDone = filterByProject(tasksDone);
+  const projectTasks = filterByProject(tasks);
+  const projectDone = filterByProject(tasksDone);
+
+  renderAssigneeFilter(projectTasks);
+
+  const filteredTasks = filterByAssignee(projectTasks);
+  const filteredDone = filterByAssignee(projectDone);
   const summary = getSummaryCounts(filteredTasks, filteredDone);
 
   renderTasksBoard(filteredTasks);
@@ -376,8 +393,9 @@ function renderTaskColumn(containerId, list, emptyText) {
 
 function renderTaskItem(task) {
   const project = normalizeProject(task.project);
+  const statusClass = `status-${task.status}`;
   return `
-    <li class="task-item ${task.status === 'blocked' ? 'blocked-item' : ''}">
+    <li class="task-item ${statusClass} ${task.status === 'blocked' ? 'blocked-item' : ''}">
       <div class="task-item-header">
         <div class="task-title">${escapeHtml(task.title)}</div>
         <span class="task-id">${escapeHtml(task.id)}</span>
@@ -387,7 +405,7 @@ function renderTaskItem(task) {
         ${project ? `<span class="task-project ${project}">${escapeHtml(project)}</span>` : ''}
         ${task.added ? `<span class="task-date">${escapeHtml(task.added)}</span>` : ''}
       </div>
-      ${task.notes ? `<div class="task-blocker">${escapeHtml(task.notes)}</div>` : ''}
+      ${task.notes ? `<div class="task-blocker">${linkify(task.notes)}</div>` : ''}
     </li>
   `;
 }
@@ -430,7 +448,7 @@ function renderStatusBreakdown(summary) {
   const rows = breakdown
     .sort((a, b) => b.count - a.count)
     .map(item => `
-      <div class="status-row">
+      <div class="status-row status-${item.status}">
         <div class="status-name">${formatStatusLabel(item.status)}</div>
         <div class="status-count">${item.count}</div>
       </div>
@@ -582,10 +600,40 @@ function normalizeProject(project) {
   return String(project || '').toLowerCase().trim();
 }
 
+function normalizeAssignee(name) {
+  const normalized = String(name || '').trim();
+  return normalized.length ? normalized : 'Unassigned';
+}
+
+function renderAssigneeFilter(list) {
+  const select = document.getElementById('assignee-filter');
+  if (!select) return;
+
+  const assignees = Array.from(new Set(
+    (list || []).map(task => normalizeAssignee(task.assigned))
+  )).sort((a, b) => a.localeCompare(b));
+
+  const options = ['all', ...assignees];
+  if (!options.includes(activeAssignee)) activeAssignee = 'all';
+
+  select.innerHTML = options.map(value => {
+    const label = value === 'all' ? 'All' : value;
+    return `<option value="${escapeHtml(value)}">${escapeHtml(label)}</option>`;
+  }).join('');
+
+  select.value = activeAssignee;
+}
+
 function filterByProject(list) {
   if (!Array.isArray(list)) return [];
   if (activeProject === 'all') return list;
   return list.filter(item => normalizeProject(item.project) === activeProject);
+}
+
+function filterByAssignee(list) {
+  if (!Array.isArray(list)) return [];
+  if (activeAssignee === 'all') return list;
+  return list.filter(item => normalizeAssignee(item.assigned) === activeAssignee);
 }
 
 function getSummaryCounts(filteredTasks, filteredDone) {
@@ -767,12 +815,15 @@ function collapseIfEmpty(sectionId, count) {
   if (!body || !header) return;
 
   const icon = header.querySelector('.collapse-icon');
+  const card = body.closest('.card');
   if (count === 0) {
     body.classList.add('collapsed');
     if (icon) icon.textContent = '+';
+    if (card) card.classList.add('is-empty');
   } else {
     body.classList.remove('collapsed');
     if (icon) icon.textContent = '−';
+    if (card) card.classList.remove('is-empty');
   }
 }
 
@@ -802,6 +853,25 @@ function formatRelativeTime(date) {
   if (diffMinutes < 60) return `${diffMinutes}m ago`;
   if (diffHours < 24) return `${diffHours}h ago`;
   return `${diffDays}d ago`;
+}
+
+function linkify(text) {
+  if (!text) return '';
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  let result = '';
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(urlRegex)) {
+    const url = match[0];
+    const index = match.index ?? 0;
+    result += escapeHtml(text.slice(lastIndex, index));
+    const safeUrl = escapeHtml(url);
+    result += `<a href="${safeUrl}" target="_blank" rel="noopener">${safeUrl}</a>`;
+    lastIndex = index + url.length;
+  }
+
+  result += escapeHtml(text.slice(lastIndex));
+  return result;
 }
 
 function escapeHtml(str) {

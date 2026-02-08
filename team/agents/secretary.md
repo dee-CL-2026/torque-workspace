@@ -19,32 +19,33 @@ Every heartbeat:
 **Step A — Monitor & Consume Activity Log:**
 1. Read `tasks.md`
 2. Read `data/activity-log.json` for new task completion entries.
-3. For each entry in `activity-log.json`:
+3. For each entry in `data/activity-log.json`:
    a. Update corresponding task statuses in `tasks.md` (e.g., pending → in-progress, in-progress → done, pending → done).
    b. Move tasks with `status: done` from `tasks.md` to `tasks-done.md` (append with date completed).
-   c. Clear the processed entry from `activity-log.json`.
+   c. Clear the processed entry from `data/activity-log.json`.
 
 **Step B — Flag Issues:**
 1. Flag tasks `in-progress` for >48h with no activity log update.
 2. Flag tasks `blocked` that haven't been resolved.
 
 **Step C — Regenerate Dashboard Data:**
-1. After making any changes to `tasks.md` or `tasks-done.md`, run: `cd /home/dieterwerwath/torque-workspace && python3 scripts/generate-dash-metrics.py` to regenerate the dashboard data.
+1. After making any changes to `tasks.md` or `tasks-done.md`, regenerate `data/dash-metrics.json`.
 
 ### 2. Documentation
 - Keep `tasks.md` clean and current.
 - Archive done tasks to `tasks-done.md`.
 - Flag duplicates.
+
 ## File Locations
 - Master task list: `tasks.md`
 - Done archive: `tasks-done.md`
 - Backlog (unprioritized): `backlog.md`
-- Briefings: `vault/briefings/`
+- Activity log: `data/activity-log.json`
+- Dashboard metrics: `data/dash-metrics.json`
 
 ## Constraints
 - Do NOT change task assignments — only Torque or Dee can reassign.
 - Do NOT start work on tasks — you manage, you don't execute.
-- Do NOT create or read per-agent task files.
 - Do NOT modify files outside your scope (no MEMORY.md, no config).
 - If something looks wrong, flag it — don't fix it silently.
 

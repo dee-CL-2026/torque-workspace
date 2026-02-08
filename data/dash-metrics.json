@@ -1,11 +1,421 @@
 {
-  "tasks_total": 48,
-  "tasks_pending": 44,
-  "tasks_in_progress": 0,
-  "tasks_blocked": 4,
-  "tasks_done": 6,
-  "backlog_total": 1,
-  "last_updated": "2026-02-09T00:08:54.365942",
-  "by_assignee": {},
-  "by_status": {}
+  "summary": {
+    "pending": 25,
+    "in-progress": 0,
+    "blocked": 4,
+    "done": 17,
+    "backlog": 0
+  },
+  "lastUpdated": "2026-02-09T00:38:13.218466",
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Send 2024-2025 financial data to Anders",
+      "project": "candid",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "From Anders call"
+    },
+    {
+      "id": "T002",
+      "title": "Ask Ryan for pitch deck + 3 marketing scenarios",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "From Anders call"
+    },
+    {
+      "id": "T008",
+      "title": "Get Finns co-branding contract",
+      "project": "candid",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "For budget data"
+    },
+    {
+      "id": "T009",
+      "title": "Share historical data from SKD",
+      "project": "candid",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": "For Modern Trade assessment"
+    },
+    {
+      "id": "T010",
+      "title": "Get second SIM for WhatsApp bot",
+      "project": "torque",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-02",
+      "notes": "Dedicated bot number"
+    },
+    {
+      "id": "T011",
+      "title": "Set up Obsidian mobile + Git sync",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-07",
+      "notes": "[desk] Deprioritised \u2014 using GitHub web + VS Code"
+    },
+    {
+      "id": "T012",
+      "title": "Install OpenClaw Browser Relay extension",
+      "project": "torque",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "[desk] Chrome Web Store"
+    },
+    {
+      "id": "T013",
+      "title": "Introduce Torque in Pizza Pasta Prosecco group",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Mention @Torque to intro"
+    },
+    {
+      "id": "T014",
+      "title": "Get Anthropic pay-per-use API key",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-07",
+      "notes": "console.anthropic.com, unlocks Sonnet/Haiku"
+    },
+    {
+      "id": "T015",
+      "title": "Create YouTube playlist for Watch List",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": "Public or unlisted"
+    },
+    {
+      "id": "T016",
+      "title": "Get email address for Torque",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": "Candid or personal?"
+    },
+    {
+      "id": "T019",
+      "title": "Connect Outlook calendar",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "blocked",
+      "added": "2026-02-06",
+      "notes": "Needs interactive auth [desk]"
+    },
+    {
+      "id": "T020",
+      "title": "Configure Anthropic Haiku/Sonnet as fallback",
+      "project": "torque",
+      "assigned": "Torque",
+      "status": "blocked",
+      "added": "2026-02-08",
+      "notes": "Blocked on T014"
+    },
+    {
+      "id": "T021",
+      "title": "Italy trip planning support",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Rome\u2192Naples\u2192Pompeii\u2192Amalfi. Jun 22-Jul 13"
+    },
+    {
+      "id": "T022",
+      "title": "Process YouTube watchlist (7 videos)",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "Pull transcripts, summarize"
+    },
+    {
+      "id": "T023",
+      "title": "Set up Whisper transcription reliably",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "whisper-cli keeps failing between sessions"
+    },
+    {
+      "id": "T024",
+      "title": "Create Mission Control infographic (PNG)",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Chromium now installed, HTML at tmp/infographic.html"
+    },
+    {
+      "id": "T025",
+      "title": "Improve Command Centre layout",
+      "project": "torque",
+      "assigned": "frontend",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "Side-by-side, scrollable, channel bar"
+    },
+    {
+      "id": "T026",
+      "title": "Wire Command Centre to read from tasks.md",
+      "project": "torque",
+      "assigned": "frontend",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "Replace data/tasks.json"
+    },
+    {
+      "id": "T028",
+      "title": "Build Family Command Centre",
+      "project": "torque",
+      "assigned": "frontend",
+      "status": "pending",
+      "added": "2026-02-07",
+      "notes": "Watchlist, reading list, chat gateway"
+    },
+    {
+      "id": "T030",
+      "title": "Deploy tiered scripts to GAS",
+      "project": "candid",
+      "assigned": "gas-dev",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": "Via clasp, compare to legacy"
+    },
+    {
+      "id": "T033",
+      "title": "Set up meeting prep automation",
+      "project": "general",
+      "assigned": "secretary",
+      "status": "blocked",
+      "added": "2026-02-07",
+      "notes": "Blocked on calendar integration"
+    },
+    {
+      "id": "T036",
+      "title": "Activity log file creation",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": "data/activity.json"
+    },
+    {
+      "id": "T037",
+      "title": "Set up scheduled messages in family chat",
+      "project": "personal",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": "Cron jobs"
+    },
+    {
+      "id": "T039",
+      "title": "Update TG export script for delta mode",
+      "project": "torque",
+      "assigned": "Torque",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Track last msg ID, only export new"
+    },
+    {
+      "id": "T043",
+      "title": "Set up Cloudflare Tunnel for remote SSH",
+      "project": "infra",
+      "assigned": "ops",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Scope: transfer/point TSLC domain to Cloudflare, configure tunnel, test SSH from mobile. Dep: Dee to provide Squarespace login or transfer domain"
+    },
+    {
+      "id": "T044",
+      "title": "Set up mobile terminal access",
+      "project": "infra",
+      "assigned": "ops",
+      "status": "blocked",
+      "added": "2026-02-08",
+      "notes": "Blocked on T043. Install Termux/JuiceSSH on phone, configure SSH to Chromebook via tunnel"
+    },
+    {
+      "id": "T047",
+      "title": "Migrate candidlabs-site to Cloudflare Pages + Access",
+      "project": "candid",
+      "assigned": "frontend",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Business data shouldn't be public on GH Pages"
+    },
+    {
+      "id": "T052",
+      "title": "Update TG export script for delta mode improvements",
+      "project": "torque",
+      "assigned": "ops",
+      "status": "pending",
+      "added": "2026-02-08",
+      "notes": "Track last msg ID, incremental exports"
+    },
+    {
+      "id": "T018",
+      "title": "Connect Google calendar research complete",
+      "project": "general",
+      "assigned": "analyst",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T029",
+      "title": "Build nightly Telegram export digest template",
+      "project": "torque",
+      "assigned": "pa",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T038",
+      "title": "Create agent roster reference doc (TEAM.md)",
+      "project": "torque",
+      "assigned": "docs-bot",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T042",
+      "title": "Cloudflare Tunnel setup research",
+      "project": "infra",
+      "assigned": "ops",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T053",
+      "title": "Investigate Gemini sub-agent file write failures",
+      "project": "torque",
+      "assigned": "Torque",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T057",
+      "title": "Create `setup.sh` recovery script",
+      "project": "torque",
+      "assigned": "ops",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T051",
+      "title": "Update secretary cron for single-list system",
+      "project": "torque",
+      "assigned": "secretary",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T046",
+      "title": "Clone candidlabs-site repo locally",
+      "project": "candid",
+      "assigned": "ops",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T045",
+      "title": "Confirm Cloudflare Pages deploy path (git-linked or wrangler)",
+      "project": "infra",
+      "assigned": "ops",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T048",
+      "title": "Command Centre layout fixes",
+      "project": "torque",
+      "assigned": "frontend",
+      "status": "done",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T031",
+      "title": "Set up daily morning briefing cron",
+      "project": "torque",
+      "assigned": "pa",
+      "status": "pending",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T032",
+      "title": "Scope nightly build workflow",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T035",
+      "title": "Draft daily value-add idea prompt",
+      "project": "general",
+      "assigned": "Torque",
+      "status": "pending",
+      "completed": "2026-02-05"
+    },
+    {
+      "id": "T040",
+      "title": "Fix cross-channel messaging",
+      "project": "general",
+      "assigned": "analyst",
+      "status": "pending",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T049",
+      "title": "Build supervisor/ops-monitor agent",
+      "project": "torque",
+      "assigned": "ops",
+      "status": "pending",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T050",
+      "title": "Investigate main heartbeat model routing",
+      "project": "torque",
+      "assigned": "analyst",
+      "status": "pending",
+      "completed": "2026-02-08"
+    },
+    {
+      "id": "T054",
+      "title": "Establish model routing rules: Codex=code, Gemini=specs/research/data",
+      "project": "torque",
+      "assigned": "ops",
+      "status": "pending",
+      "completed": "2026-02-08"
+    }
+  ],
+  "assignee_counts": {
+    "Dee": 11,
+    "Torque": 12,
+    "frontend": 5,
+    "gas-dev": 1,
+    "secretary": 2,
+    "ops": 9,
+    "analyst": 3,
+    "pa": 2,
+    "docs-bot": 1
+  },
+  "backlog_items": []
 }
