@@ -1,12 +1,12 @@
 {
   "summary": {
-    "pending": 21,
+    "pending": 28,
     "in-progress": 0,
     "blocked": 4,
     "done": 25,
-    "backlog": 0
+    "backlog": 64
   },
-  "lastUpdated": "2026-02-09T00:50:51.021715",
+  "lastUpdated": "2026-02-09T01:19:28.521934",
   "tasks": [
     {
       "id": "T001",
@@ -25,6 +25,51 @@
       "status": "pending",
       "added": "2026-02-06",
       "notes": "From Anders call"
+    },
+    {
+      "id": "T003",
+      "title": "Follow up: Teddy (KKS)",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": ""
+    },
+    {
+      "id": "T004",
+      "title": "Follow up: PKF (Cheryl)",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": ""
+    },
+    {
+      "id": "T005",
+      "title": "Follow up: Jules (zero cap accounts)",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": ""
+    },
+    {
+      "id": "T006",
+      "title": "Push SKD for sales data + road show data",
+      "project": "candid",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": ""
+    },
+    {
+      "id": "T007",
+      "title": "Get Ferry involved in all groups",
+      "project": "candid",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-06",
+      "notes": ""
     },
     {
       "id": "T008",
@@ -108,6 +153,15 @@
       "notes": "Candid or personal?"
     },
     {
+      "id": "T017",
+      "title": "Test-drive PA with a quick task",
+      "project": "general",
+      "assigned": "Dee",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": ""
+    },
+    {
       "id": "T019",
       "title": "Connect Outlook calendar",
       "project": "general",
@@ -151,6 +205,15 @@
       "status": "pending",
       "added": "2026-02-06",
       "notes": "Replace data/tasks.json"
+    },
+    {
+      "id": "T027",
+      "title": "Token usage tracking for Command Centre",
+      "project": "torque",
+      "assigned": "frontend",
+      "status": "pending",
+      "added": "2026-02-05",
+      "notes": ""
     },
     {
       "id": "T028",
@@ -435,9 +498,9 @@
     }
   ],
   "assignee_counts": {
-    "Dee": 11,
+    "Dee": 17,
     "Torque": 12,
-    "frontend": 5,
+    "frontend": 6,
     "gas-dev": 1,
     "secretary": 3,
     "ops": 9,
@@ -448,5 +511,390 @@
     "pa": 2,
     "docs-bot": 1
   },
-  "backlog_items": []
+  "backlog_items": [
+    {
+      "id": "B001",
+      "title": "Cloudflare tunnel for remote Chromebook access (needs domain)",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B002",
+      "title": "Cloudflare Access on Command Centre + Candidlabs site",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B003",
+      "title": "Migrate candidlabs-site from GitHub Pages \u2192 Cloudflare Pages",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B004",
+      "title": "Buy candidlab.co domain",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B005",
+      "title": "Transfer TSLC domain from Squarespace to Cloudflare",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B006",
+      "title": "Set up auto-transcription for voice notes (Whisper)",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B007",
+      "title": "PM2 or systemd for process management",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B008",
+      "title": "Backup script for ~/.openclaw/",
+      "project": "Infrastructure",
+      "notes": ""
+    },
+    {
+      "id": "B009",
+      "title": "Activity log (data/activity.json) feeding live dashboard",
+      "project": "Command Centre",
+      "notes": ""
+    },
+    {
+      "id": "B010",
+      "title": "Session stats widget (tokens, context, sub-agents)",
+      "project": "Command Centre",
+      "notes": ""
+    },
+    {
+      "id": "B011",
+      "title": "Channel status bar (Gateway, TG, WA indicators)",
+      "project": "Command Centre",
+      "notes": ""
+    },
+    {
+      "id": "B012",
+      "title": "Context % indicator",
+      "project": "Command Centre",
+      "notes": ""
+    },
+    {
+      "id": "B013",
+      "title": "Tabs pattern (like Candid budget builder)",
+      "project": "Command Centre",
+      "notes": ""
+    },
+    {
+      "id": "B014",
+      "title": "Cost tracker per agent per day",
+      "project": "Command Centre",
+      "notes": ""
+    },
+    {
+      "id": "B015",
+      "title": "Expense classification audit (accounting vs operational categories)",
+      "project": "Candid",
+      "notes": ""
+    },
+    {
+      "id": "B016",
+      "title": "BUDGET-2026-BUCKETS.md refinement",
+      "project": "Candid",
+      "notes": ""
+    },
+    {
+      "id": "B017",
+      "title": "Candid Daily Cockpit with real data",
+      "project": "Candid",
+      "notes": ""
+    },
+    {
+      "id": "B018",
+      "title": "Work separation tagging (Candid vs Good Doctor)",
+      "project": "Candid",
+      "notes": ""
+    },
+    {
+      "id": "B019",
+      "title": "Populate candid/ directory with colleague profiles",
+      "project": "Candid",
+      "notes": ""
+    },
+    {
+      "id": "B020",
+      "title": "SKD historical data for MT turnover calibration",
+      "project": "Candid",
+      "notes": ""
+    },
+    {
+      "id": "B021",
+      "title": "Scraper agent (Precoro auto-approvals, Teams approvals, Zoom\u2192email)",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B022",
+      "title": "Meeting transcript pipeline",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B023",
+      "title": "Build-and-ship nightly workflow",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B024",
+      "title": "Daily idea prompt (rotating domains)",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B025",
+      "title": "Sub-agent for grunt work (scan inbox, poll APIs, return summary)",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B026",
+      "title": "Watch button shortcut research (Pixel Watch)",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B027",
+      "title": "Voice setup (ElevenLabs, agent voices)",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B028",
+      "title": "Therapist agent (Scarlett Johansson voice)",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B029",
+      "title": "Give PA agent Emily Blunt voice via ElevenLabs",
+      "project": "Agents & Automation",
+      "notes": ""
+    },
+    {
+      "id": "B030",
+      "title": "\"It's All Torque\" podcast/blog documenting the journey",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B031",
+      "title": "SuperheroNinjaPirate (Jakarta flooding story)",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B032",
+      "title": "TSLC: The Shoeless Life Coach",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B033",
+      "title": "Betting analytics bot (had working edge, lost discipline)",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B034",
+      "title": "Private poker app (replace Pokerrrr2)",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B035",
+      "title": "Park Run Indonesia",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B036",
+      "title": "Yoga app (could be TSLC module)",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B037",
+      "title": "Stretching studio concept",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B038",
+      "title": "Character development platform (students + creators)",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B039",
+      "title": "Post podcasts/files on Spotify bot for streams",
+      "project": "Content & Personal",
+      "notes": ""
+    },
+    {
+      "id": "B040",
+      "title": "Family Command Centre (watchlist, reading list, activities, chat gateway)",
+      "project": "Family",
+      "notes": ""
+    },
+    {
+      "id": "B041",
+      "title": "Kids email chat gateway with guardrails",
+      "project": "Family",
+      "notes": ""
+    },
+    {
+      "id": "B042",
+      "title": "Connie PAT Reading tracking",
+      "project": "Family",
+      "notes": ""
+    },
+    {
+      "id": "B043",
+      "title": "Be Sinead's training ally (gentle nudges, accountability)",
+      "project": "Family",
+      "notes": ""
+    },
+    {
+      "id": "B044",
+      "title": "OpenClaw in smart glasses",
+      "project": "Research",
+      "notes": ""
+    },
+    {
+      "id": "B045",
+      "title": "Recreate NLM-style capabilities (knowledge base, embeddings, grounded agents)",
+      "project": "Research",
+      "notes": ""
+    },
+    {
+      "id": "B046",
+      "title": "YouTube API for auto-processing watchlist",
+      "project": "Research",
+      "notes": ""
+    },
+    {
+      "id": "B047",
+      "title": "Zoom transcript Chrome extension approach",
+      "project": "Research",
+      "notes": ""
+    },
+    {
+      "id": "B048",
+      "title": "WhatsApp history export methods",
+      "project": "Research",
+      "notes": ""
+    },
+    {
+      "id": "B049",
+      "title": "OpenClaw ecosystem links vault",
+      "project": "Research",
+      "notes": ""
+    },
+    {
+      "id": "B050",
+      "title": "Mindstax: use for one week, track 3 habits before designing 2.0",
+      "project": "Deferred",
+      "notes": ""
+    },
+    {
+      "id": "B051",
+      "title": "Obsidian graph view exploration (janky on Chromebook)",
+      "project": "Deferred",
+      "notes": ""
+    },
+    {
+      "id": "B052",
+      "title": "Google Recorder \u2192 transcript pipeline for long voice notes",
+      "project": "Deferred",
+      "notes": ""
+    },
+    {
+      "id": "B053",
+      "title": "Add multi-chat selection to Telegram export script (restore old capability)",
+      "project": "Deferred",
+      "notes": ""
+    },
+    {
+      "id": "B054",
+      "title": "Supervisor agent on Gemini (cheaper alternative to Opus heartbeat)",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B055",
+      "title": "Session self-management (auto-compact at >80% context)",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B056",
+      "title": "Candidlabs Command Centre fork (same core, human team assignees, auth)",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B057",
+      "title": "TSLC domain for Cloudflare Tunnel",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B058",
+      "title": "Brave usage tracker + Command Centre widget",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B059",
+      "title": "Command Centre task CRUD (create/edit/assign from UI)",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B060",
+      "title": "Command Centre pages/tabs for detail views",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B061",
+      "title": "Dashboard \"Update All\" trigger button (needs backend \u2014 Cloudflare Worker or API endpoint)",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B062",
+      "title": "Nightly maintenance chain: metrics refresh + system audit + git push (cron already set, button for manual trigger)",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B063",
+      "title": "Assess model capabilities per task type (Gemini vs Codex vs GPT-4o) \u2014 which model for which job",
+      "project": "Feb 8 Evening Additions",
+      "notes": ""
+    },
+    {
+      "id": "B064",
+      "title": "Investigate improved WhatsApp group discovery and whitelisting (avoid manual JID entry).",
+      "project": "Infrastructure",
+      "notes": "assignee: Torque; status: pending"
+    }
+  ]
 }

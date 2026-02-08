@@ -21,7 +21,7 @@ def parse_markdown_table(content):
     
     # Manually map headers for consistency
     header_map = {
-        "id": "id", "task": "title", "project": "project", "assigned": "assigned",
+        "id": "id", "task": "title", "item": "title", "project": "project", "assigned": "assigned",
         "status": "status", "added": "added", "notes": "notes"
     }
     final_headers = [header_map.get(h, h) for h in headers]
@@ -33,9 +33,34 @@ def parse_markdown_table(content):
             continue
         
         values = [v.strip() for v in line.split('|') if v.strip()]
-        if len(values) == len(final_headers):
-            row_dict = dict(zip(final_headers, values))
+        if len(values) >= len(final_headers) - 1:  # Allow missing trailing columns
+            row_dict = dict(zip(final_headers, values + [''] * (len(final_headers) - len(values))))
             rows.append(row_dict)
+    return rows
+
+def parse_backlog(content):
+    # Try table format first
+    items = parse_markdown_table(content)
+    if items:
+        return items
+
+    # Fallback to bullet list lines starting with "- "
+    rows = []
+    for line in content.strip().split('\n'):
+        line = line.strip()
+        if not line.startswith('- '):
+            continue
+        text = line[2:].strip()
+        project_match = re.search(r'\[\s*project:(.+?)\s*\]', text)
+        project = project_match.group(1).strip() if project_match else ""
+        # Remove bracket tags
+        text = re.sub(r'\[\s*[^\]]+\s*\]', '', text).strip()
+        rows.append({
+            "id": "",
+            "title": text,
+            "project": project,
+            "notes": ""
+        })
     return rows
 
 def parse_done_tasks(content):
@@ -95,7 +120,7 @@ def generate_dash_metrics():
     # Parse tasks
     active_tasks = parse_markdown_table(tasks_content)
     done_tasks = parse_done_tasks(tasks_done_content) # Use dedicated parser for done tasks
-    backlog_items = parse_markdown_table(backlog_content) # backlog.md should be markdown table
+    backlog_items = parse_backlog(backlog_content)
 
     # Calculate summary
     summary = {
